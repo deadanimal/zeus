@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zeus-webapp
+  labels:
+    service: zeus-webapp
+  name: zeus-webapp
+spec:
+  selector:
+    app: zeus-webapp
+  ports:
+  - port: 80
+    targetPort: 80

@@ -1,0 +1,47 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+      defaultHref="/core/profile"
+      routerLink="/core/profile"
+      routerDirection="back"
+      text=""
+      >
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>About</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen>
+  <ion-list class="ion-no-margin list-core" mode="ios">
+    <ion-list-header lines="none" mode="ios">
+			<h3>About application</h3>
+		</ion-list-header>
+
+    <ion-item lines="none">
+      <ion-icon name="star-outline" color="primary" slot="end"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h4>Application version</h4>
+        <p>Zeus 0.1.0-beta</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-icon name="information-circle-outline" color="primary" slot="end"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h4>Firmware version</h4>
+        <p>Zeus hardware 0.1.0-beta</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-icon name="information-circle-outline" color="primary" slot="end"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h4>Legal information</h4>
+        <p>Copyright 2020 Pipeline Network Sdn. Bhd. All rights reserved</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: zeus-my-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "zeus-my-prod"
+spec:
+  tls:
+  - hosts:
+    - zeus.pipe.my
+    - zeus-api.pipe.my
+
+    secretName: zeus-my-prod
+
+  rules:
+  - host: zeus-api.pipe.my
+    http:
+      paths:
+      - backend:
+          serviceName: zeus-api
+          servicePort: 5000    
+  - host: zeus.pipe.my
+    http:
+      paths:
+      - backend:
+          serviceName: zeus-webapp
+          servicePort: 80    

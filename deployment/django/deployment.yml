@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeus-api-deployment
+  labels:
+    app: zeus-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zeus-api
+  template:
+    metadata:
+      labels:
+        app: zeus-api
+    spec:
+      containers:
+      - name: zeus-api
+        image: syafiqpipe/zeus-api #boleh tambah version
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        envFrom:
+          - secretRef:
+              name: zeus-api-secret        

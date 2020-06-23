@@ -1,0 +1,55 @@
+<!-- <ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-title>Bills</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div class="wave-container">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5e72e4" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,245.3C384,256,480,224,576,186.7C672,149,768,107,864,80C960,53,1056,43,1152,64C1248,85,1344,139,1392,165.3L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+  </div>
+  <div class="ion-margin-start ion-margin-bottom welcome-container">
+    <p class="ion-no-margin ion-margin-top text-white"></p>
+    <h4 class="ion-no-margin text-white"></h4>
+  </div>
+
+  <ion-card mode="ios" class="card-core" class="ion-no-margin ion-margin-start ion-margin-end summary-container">
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>
+          <p class="ion-text-bold">Due on 19/05/2020</p>
+          <h2 class="ion-text-bold">RM182.77</h2>
+        </ion-label>
+        <ion-button class="btn-core" color="primary" (click)="navigatePage('/bill-payment')">Pay Bill</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list
+    mode="ios"
+    class="ion-no-margin list-core"
+  >
+    <ion-list-header mode="ios">
+      <h3>History</h3>
+    </ion-list-header>
+
+    <!-- <div [hidden]="!isListEmpty">
+      <img [src]="iconError" class="error-img">
+      <p class="error-text">No bills founded</p>
+    </div> -->
+    
+    <div>
+      <ion-item lines="none" detail (click)="navigatePage('/bill-detail')">
+        <ion-icon name="receipt-outline" color="primary" slot="start"></ion-icon>
+        <ion-label>
+          <h3>February 2020</h3>
+          <p>Paid</p>
+        </ion-label>
+        <ion-label slot="end" class="ion-text-wrap ion-text-right">
+          <h3>RM186.75</h3>
+          <p>11/03/2020</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

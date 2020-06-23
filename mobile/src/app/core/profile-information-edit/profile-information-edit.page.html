@@ -1,0 +1,56 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+      defaultHref="/core/profile"
+      routerLink="/core/profile"
+      routerDirection="back"
+      text=""
+      >
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list class="ion-no-margin list-core" mode="ios">
+    <ion-list-header lines="none" mode="ios">
+			<h3>Edit information</h3>
+    </ion-list-header>
+
+    <form [formGroup]="userForm">
+      <ion-item class="item-form" lines="none" *ngIf="formType == 'name'">
+        <ion-label position="stacked" mode="ios">Name</ion-label>
+        <ion-input formControlName="name" mode="ios"></ion-input>
+      </ion-item>
+
+      <ion-item class="item-form" lines="none" *ngIf="formType == 'billing_address'">
+        <ion-label position="stacked" mode="ios">Billing address</ion-label>
+        <ion-textarea formControlName="billing_address" mode="ios"></ion-textarea>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-padding ion-no-border"  transparent>
+  <ion-button
+    class="round" 
+    shape="round" 
+    expand="block"
+    mode="ios"
+    (click)="update()"
+    *ngIf="!isLoading"
+  >
+    Update
+  </ion-button>
+  <ion-button
+    class="round" 
+    shape="round" 
+    expand="block"
+    mode="ios"
+    *ngIf="isLoading"
+  >
+    <ion-spinner name="bubbles"></ion-spinner>
+  </ion-button>
+</ion-footer>

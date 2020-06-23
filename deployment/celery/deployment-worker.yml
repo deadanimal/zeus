@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeus-api-celery-worker
+  labels:
+    deployment: zeus-api-celery-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: zeus-api-celery-worker
+  template:
+    metadata:
+      labels:
+        pod: zeus-api-celery-worker
+    spec:
+      containers:
+        - name: zeus-api-celery-worker
+          image: syafiqpipe/zeus-api
+          # celery -A mbpj-ghgapi worker -l debug
+          command: ['celery', '-A', 'api', 'worker', '-l', 'info']
+          envFrom:
+            - secretRef:
+                name: zeus-api-secret            

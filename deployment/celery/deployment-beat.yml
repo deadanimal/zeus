@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zeus-api-celery-beat
+  labels:
+    deployment: zeus-api-celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: zeus-api-celery-beat
+  template:
+    metadata:
+      labels:
+        pod: zeus-api-celery-beat
+    spec:
+      containers:
+        - name: zeus-api-celery-beat
+          image: syafiqpipe/zeus-api
+          # celery -A mbpj-ghgapi beat -l debug
+          command: ['celery', '-A', 'api', 'beat', '-l', 'debug']
+          envFrom:
+            - secretRef:
+                name: zeus-api-secret   

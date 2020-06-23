@@ -1,0 +1,40 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+      defaultHref="/core/profile"
+      routerLink="/core/profile"
+      routerDirection="back"
+      text=""
+      >
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Hardware</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-list class="ion-no-margin list-core" mode="ios">
+    <ion-list-header lines="none" mode="ios">
+			<h3>Information</h3>
+    </ion-list-header>
+    
+    <ion-item lines="none" class="item-form">
+      <ion-label position="stacked" mode="ios">Connected device</ion-label>
+      <ion-input placeholder="Connected device"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="ion-padding ion-no-border" transparent>
+  <ion-button 
+    class="round" 
+    shape="round"
+    color="primary"
+    expand="block"
+    mode="ios"
+    (click)="connect()"
+  >
+    Connect
+  </ion-button>
+</ion-footer>

@@ -1,0 +1,45 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+      defaultHref="/core/profile"
+      routerLink="/core/profile"
+      routerDirection="back"
+      text=""
+      >
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Help</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list
+    mode="ios"
+    class="ion-no-margin list-core"
+  >
+    <ion-list-header mode="ios">
+      <h3>New ticket</h3>
+    </ion-list-header>
+
+    <ion-item lines="none" detail (click)="navigatePage('/profile-help-ticket')">
+      <ion-icon name="reader-outline" color="primary" slot="end"></ion-icon>
+      <ion-label>
+        <h3>Create new ticket</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-list-header mode="ios">
+      <h3>Ticket history</h3>
+    </ion-list-header>
+
+    <ion-item lines="none" detail (click)="navigatePage('/profile-help-ticket')">
+      <ion-avatar slot="start">
+				<img [src]="iconSpeech">
+			</ion-avatar>
+      <ion-label class="ion-text-wrap">
+        <h4>Ticket</h4>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

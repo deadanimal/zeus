@@ -1,0 +1,58 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-title>Appliances</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list mode="ios" class="ion-no-margin list-core">
+    <ion-list-header mode="ios">
+      <h3>Registered appliances</h3>
+    </ion-list-header>
+
+    <div [hidden]="!isListEmpty">
+      <img [src]="iconError" class="error-img">
+      <p class="error-text">No appliances registered</p>
+    </div>
+
+    <ion-item detail *ngFor="let appliance of appliances" lines="none" (click)="view()">
+      <ion-avatar slot="start">
+        <img *ngIf="appliance.appliance == 'TV'" [src]="iconLCD">
+        <img *ngIf="appliance.appliance == 'Lamp'" [src]="iconLamp">
+        <img *ngIf="appliance.appliance == 'Light'" [src]="iconLamp1">
+        <img *ngIf="appliance.appliance == 'Fridge'" [src]="iconFridge">
+        <img *ngIf="appliance.appliance == 'Airconditioner'" [src]="iconAirCond">
+        <img *ngIf="appliance.appliance == 'Dishwasher'" [src]="iconDishwasher">
+        <img *ngIf="appliance.appliance == 'Toaster'" [src]="iconToaster">
+        <img *ngIf="appliance.appliance == 'Dryer'" [src]="iconDryer">
+      </ion-avatar>
+
+      <ion-label class="ion-text-wrap">
+        <h2>{{appliance.appliance}}</h2>
+        <p>{{appliance.description}}</p>
+      </ion-label>
+
+      <ion-label slot="end" class="ion-text-right">
+        <ion-badge *ngIf="appliance.status == 'On'" color="success">On</ion-badge>
+        <ion-badge *ngIf="appliance.status == 'Off'" color="medium">Off</ion-badge>
+        <p>{{appliance.reading}}</p>
+      </ion-label>
+    </ion-item>
+
+  <!-- <ion-item detail lines="none" (click)="view()">
+    <ion-avatar slot="start">
+      <img [src]="iconLCD">
+    </ion-avatar>
+
+    <ion-label class="ion-text-wrap">
+      <h2>Name</h2>
+      <p>Description</p>
+    </ion-label>
+
+    <ion-label slot="end" class="ion-text-right">
+      <ion-badge color="success">On</ion-badge>
+      <p>Reading</p>
+    </ion-label>
+  </ion-item> -->
+  </ion-list>
+</ion-content>

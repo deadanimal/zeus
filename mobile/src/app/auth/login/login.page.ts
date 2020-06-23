@@ -1,0 +1,106 @@
+import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { NotifyService } from 'src/app/shared/handler/notify/notify.service';
+import { UsersService } from 'src/app/shared/services/users/users.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+
+  // Form
+  loginForm: FormGroup;
+  loginFormMessages = {
+    'username': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Please enter a valid email.' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required.' },
+      { type: 'minlength', message: 'At least 6 characters long.' }
+    ]
+  };
+
+  // Loading
+  isLoading: boolean = false
+
+  // Image
+  imgLogo
+
+  constructor(
+    private authService: AuthService,
+    private userService: UsersService,
+    private formBuilder: FormBuilder,
+    private toastr: NotifyService,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      ])),
+    });
+  }
+
+  tryLogin(value) {
+    console.log(value)
+  }
+
+  login() {
+    this.isLoading = true
+    // console.log(this.loginForm.value)
+    this.authService.obtainToken(this.loginForm.value).subscribe(
+      () => {
+        // Success
+        // this.isLoading = false
+      },
+      () => {
+        // Failed
+        this.isLoading = false
+      },
+      () => {
+        // After
+        this.getSelf()
+      }
+    )
+  }
+
+  getSelf() {
+    this.userService.getOne(this.authService.userID).subscribe(
+      () => {},
+      () => { this.isLoading = false },
+      () => {
+        this.isLoading = false
+        this.toastr.openToastr('Welcome back')
+        this.navigateHomePage()
+      }
+    )
+  }
+
+  tipu() {
+    this.loginForm.controls['username'].setValue('syafiqbasri@pipeline.com.my')
+    this.loginForm.controls['password'].setValue('PabloEscobar')
+    this.login()
+  }
+
+  navigateHomePage() {
+    this.router.navigate(['/core/dashboard'], {
+      replaceUrl: true
+    })
+  }
+
+  navigatePage(path: string) {
+    this.router.navigate([path])
+  }
+
+}
