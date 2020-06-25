@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom" id="navbar-main">
+<nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom" id="navbar-main">
 	<div class="container-fluid">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<!-- Search form -->
@@ -143,6 +143,9 @@
 						</a>
 						<a class="dropdown-item" (click)="navigatePage('settings')">
 							<i class="fas fa-cogs fa-fw"></i> <span>Settings</span>
+						</a>
+						<a class="dropdown-item" (click)="navigatePage('tools')">
+							<i class="fas fa-tools fa-fw"></i> <span>Tools</span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a (click)="logout()" class="dropdown-item">

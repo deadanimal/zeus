@@ -12,7 +12,8 @@ from django.utils.timezone import now
 
 
 from .models import (
-    Device
+    Device,
+    DeviceValue
 )
 
 
@@ -20,4 +21,11 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Device
+        fields = '__all__'
+
+
+class DeviceValueSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DeviceValue
         fields = '__all__'

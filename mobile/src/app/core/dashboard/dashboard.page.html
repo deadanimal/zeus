@@ -26,13 +26,13 @@
     <ion-row>
       <ion-col class="ion-text-right">
         <ion-label>
-          <h1>461<span class="text-small">W</span></h1>
+          <h1>{{dataKiri | number:'1.2-2'}}<span class="text-small">kWh</span></h1>
           <p><span class="text-small">RM0.70/hr</span></p>
         </ion-label>
       </ion-col>
       <ion-col>
         <ion-label>
-          <h1>691<span class="text-small">W</span></h1>
+          <h1>{{dataKanan | number:'1.2-2'}}<span class="text-small">kWh</span></h1>
           <p><span class="text-small">RM0.70/hr</span></p>
         </ion-label>
       </ion-col>
@@ -44,7 +44,7 @@
     class="ion-no-margin list-core"
   >
     <ion-list-header mode="ios">
-      <h3>Feed</h3>
+      <h3>News Feed</h3>
     </ion-list-header>
 
     <div [hidden]="!isFeedEmpty">
@@ -53,7 +53,7 @@
     </div>
     
     <div [hidden]="isFeedEmpty">
-      <ion-item detail lines="none" detail *ngFor="let activity of activities" (click)="view()">
+      <ion-item detail lines="none" detail *ngFor="let activity of activities">
         <ion-avatar slot="start">
           <img *ngIf="activity.appliance == 'Microwave'" [src]="iconMicrowave">
           <img *ngIf="activity.appliance == 'Toaster'" [src]="iconToaster">

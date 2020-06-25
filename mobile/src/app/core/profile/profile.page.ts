@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { UsersService } from 'src/app/shared/services/users/users.service';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/services/users/user.model';
+import { User } from 'src/app/shared/services/users/users.model';
 import { JwtService } from 'src/app/shared/handler/jwt/jwt.service';
 
 @Component({

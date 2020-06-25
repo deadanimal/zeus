@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { TokenResponse } from './auth.model';
 import { Form } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { TokenResponse, Registration } from './auth.model';
 import { JwtService } from '../../handler/jwt/jwt.service';
 
 @Injectable({
@@ -16,34 +16,34 @@ export class AuthService {
   // URL
   public urlRegister: string = environment.baseUrl + 'auth/registration/'
   public urlPasswordChange: string = environment.baseUrl + 'auth/password/change/'
-  public urlPasswordReset: string = environment.baseUrl + 'auth/password/reset'
-  public urlTokenObtain: string = environment.baseUrl + 'auth/obtain/'
+  public urlPasswordReset: string = environment.baseUrl + 'auth/password/reset/'
+  public urlTokenObtain: string = environment.baseUrl + 'auth/token/'
   public urlTokenRefresh: string = environment.baseUrl + 'auth/refresh/'
-  public urlTokenVerify: string = environment.baseUrl + 'auth/verify/' 
-  public urlUser: string = environment.baseUrl + 'v1/users/'
+  public urlTokenVerify: string = environment.baseUrl + 'auth/token/verify/'
 
   // Data
   public token: TokenResponse
-  public tokenAccess: string
   public tokenRefresh: string
+  public tokenAccess: string
+
   public email: string
-  public userID: string
   public username: string
+  public userID: string
   public userType: string
+
+  public registeredID: string
+  
   public userRole: number = 1
 
-  // Temp
-  userDetail: any
-  retrievedUsers: any = []
-  
   constructor(
     private jwtService: JwtService,
     private http: HttpClient
   ) { }
-
-  register(body: Form): Observable<any> {
+  
+  registerAccount(body: Form): Observable<any> {
     return this.http.post<any>(this.urlRegister, body).pipe(
       tap((res) => {
+        this.registeredID = res.user.pk
         console.log('Registration: ', res)
       })
     )
@@ -67,6 +67,11 @@ export class AuthService {
 
   obtainToken(body: Form): Observable<any> {
     let jwtHelper: JwtHelperService = new JwtHelperService()
+    console.log('66')
+    console.log(this.urlTokenObtain)
+    console.log('68')
+    console.log(body)
+
     return this.http.post<any>(this.urlTokenObtain, body).pipe(
       tap((res) => {
         this.token = res
@@ -93,11 +98,7 @@ export class AuthService {
     )
   }
 
-  refreshToken(): Observable<any> {
-    let refreshToken = this.jwtService.getToken('refreshToken')
-    let body = {
-      refresh: refreshToken
-    }
+  refreshToken(body: Form): Observable<any> {
     return this.http.post<any>(this.urlTokenRefresh, body).pipe(
       tap((res) => {
         console.log('Token refresh: ', res)
@@ -109,17 +110,6 @@ export class AuthService {
     return this.http.post<any>(this.urlTokenVerify, body).pipe(
       tap((res) => {
         console.log('Token verify: ', res)
-      })
-    )
-  }
-
-  getUserDetail(): Observable<any> {
-    console.log('getuserdetail')
-    let selfInformationUrl = this.urlUser + this.userID + '/'
-    return this.http.get<any>(selfInformationUrl).pipe(
-      tap((res) => {
-        this.userDetail = res
-        // console.log('User detail', this.userDetail)
       })
     )
   }

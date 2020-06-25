@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileHardwarePage implements OnInit {
 
+  input 
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  connect() {
+
   }
 
 }

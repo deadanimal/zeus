@@ -97,6 +97,9 @@ export class NavbarComponent implements OnInit {
     else if (path == 'home') {
       return this.router.navigate(['/auth/login'])
     }
+    else if (path == 'tools') {
+      return this.router.navigate(['/admin/tools'])
+    }
   }
 
   successMessage() {

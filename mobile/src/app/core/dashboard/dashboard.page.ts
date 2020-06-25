@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Activity } from 'src/assets/mock/activities';
 import { Router } from '@angular/router';
 import { Chart } from "chart.js";
+import { DevicesService } from 'src/app/shared/services/devices/devices.service';
+import { interval } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +15,9 @@ export class DashboardPage implements OnInit {
 
   // Data
   activities = []
+
+  dataKiri: number = 0
+  dataKanan: number = 0
 
   // Segment
   segment: string
@@ -31,13 +37,15 @@ export class DashboardPage implements OnInit {
   iconToaster = 'assets/img/appliance/toaster.svg'
 
   constructor(
+    private deviceService: DevicesService,
     private router: Router
   ) { 
     this.getData()
+    this.getCSV()
   }
 
   ngOnInit() {
-    this.segment = 'A'
+    this.segment = 'P'
   }
 
   getData() {
@@ -56,8 +64,8 @@ export class DashboardPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.initChartAppliance()
     this.initChartPower()
+    this.initChartAppliance()
   }
 
   segmentChanged(ev: any) {
@@ -118,14 +126,14 @@ export class DashboardPage implements OnInit {
     this.chartPower = new Chart(this.canvasPower.nativeElement, {
       type: "line",
       data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: [],
         datasets: [
           {
             label: "",
             fill: false,
             lineTension: 0.1,
             backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
+            borderColor: "rgba(75,192,192,0.4)",
             borderCapStyle: "butt",
             borderDash: [],
             borderDashOffset: 0.0,
@@ -139,12 +147,88 @@ export class DashboardPage implements OnInit {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: [],
+            spanGaps: false
+          },
+          {
+            label: "",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(192,75,192,0.4)",
+            borderColor: "rgba(192,75,192,0.4)",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [],
+            spanGaps: false
+          },
+          {
+            label: "",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,75,0.4)",
+            borderColor: "rgba(75,192,75,0.4)",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [],
             spanGaps: false
           }
         ]
       }
     });
+
+  }
+
+  getCSV() {
+    let timer = setInterval(
+      () => {
+        this.deviceService.getCSV().subscribe(
+          (res) => {
+            let row = res.body.split(",")
+            if (res.body.length < 30) {
+              let label = moment.unix(res.test).format('h:mm:ss a')
+              let data1 = row[0]*240/1000
+              let data2 = row[1]*240/1000
+              let data3 = row[2]*240/1000
+              this.dataKiri = (this.dataKiri + data1 + data2 + data3) / 60
+              this.dataKanan = (this.dataKanan + data1 + data2 + data3) / 50
+              this.chartPower.data.labels.push(label)
+              this.chartPower.data.datasets[0].data.push(data1)
+              this.chartPower.data.datasets[1].data.push(data2)
+              this.chartPower.data.datasets[2].data.push(data3)
+              this.chartPower.update()
+            }
+            // console.log('Dashboard: ', res)
+            // this.
+            console.log()
+          }
+        )
+      }, 1000
+    )
+  }
+
+  addData(chart, label, data) {
 
   }
 

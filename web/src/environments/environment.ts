@@ -4,11 +4,13 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://www.api.prototype.com.my/',
+  baseUrl: 'http://127.0.0.1:8000/',
   mapbox: {
     accessToken: 'pk.eyJ1IjoiYWZlZXpheml6IiwiYSI6ImNqNjJ6anlhYzA0bTczM3FvYnppbDh4eTEifQ.AdDRr42bNfNJvQENLrE6eg' // Your access token goes here
   }
 };
+// http://127.0.0.1:8000/
+// https://zeus-api.pipeline.com.my/
 
 /*
  * For easier debugging in development mode, you can import the following file

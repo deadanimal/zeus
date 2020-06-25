@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Form } from '@angular/forms';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { User } from './user.model'
+import { User } from './users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,12 @@ import { User } from './user.model'
 export class UsersService {
 
   // URL
-   public urlUsers: string = environment.baseUrl + 'v1/users/'
+  public urlUsers: string = environment.baseUrl + 'v1/users/'
 
   // Data
-  public users: User[] = []
   public user: User
+  public users: User[] = []
+  public usersFiltered: User[] = []
 
   constructor(
     private http: HttpClient
@@ -33,8 +34,8 @@ export class UsersService {
   get(): Observable<User[]> {
     return this.http.get<User[]>(this.urlUsers).pipe(
       tap((res: User[]) => {
-        console.log('Users: ', res)
         this.users = res
+        console.log('Users: ', this.users)
       })
     )
   }
@@ -43,25 +44,37 @@ export class UsersService {
     let urlID = this.urlUsers + id + '/'
     return this.http.get<User>(urlID).pipe(
       tap((res: User) => {
-        console.log('User: ', res)
         this.user = res
+        console.log('User: ', this.user)
       })
     )
   }
 
   update(id: string, body: Form): Observable<User> {
-    return this.http.put<User>(this.urlUsers, body).pipe(
+    let urlTemp = this.urlUsers + id + '/'
+    return this.http.patch<User>(urlTemp, body).pipe(
       tap((res) => {
         this.user = res
-        console.log('User: ', res)
+        console.log('User: ', this.user)
       })
     )
   }
 
   delete(id: string): Observable<any> {
-    return this.http.delete<any>(this.urlUsers + id + '/').pipe(
+    let urlTemp = this.urlUsers + id + '/'
+    return this.http.delete<any>(urlTemp).pipe(
       tap((res) => {
         console.log('User: ', res)
+      })
+    )
+  }
+
+  filter(field: string): Observable<User[]> {
+    let urlTemp = this.urlUsers + '?' + field
+    return this.http.get<User[]>(urlTemp).pipe(
+      tap((res) => {
+        this.usersFiltered = res
+        console.log('Users filtered: ', this.usersFiltered)
       })
     )
   }

@@ -12,7 +12,7 @@ import { User } from './users.model';
 export class UsersService {
 
   // URL
-  public urlUser: string = environment.baseUrl + 'v1/users/'
+  public urlUsers: string = environment.baseUrl + 'v1/users/'
 
   // Data
   public user: User
@@ -23,45 +23,58 @@ export class UsersService {
     private http: HttpClient
   ) { }
 
-  create(body: Form): Observable<User> {
-    return this.http.post<any>(this.urlUser, body).pipe(
+  post(body: Form): Observable<User> {
+    return this.http.post<any>(this.urlUsers, body).pipe(
       tap((res) => {
         console.log('User: ', res)
       })
     )
   }
 
-  getAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.urlUser).pipe(
-      tap((res) => {
-        console.log('Users: ', res)
+  get(): Observable<User[]> {
+    return this.http.get<User[]>(this.urlUsers).pipe(
+      tap((res: User[]) => {
+        this.users = res
+        console.log('Users: ', this.users)
       })
     )
   }
 
-  getOne(id: String): Observable<User> {
-    let urlUserOne = this.urlUser + id + '/'
-    return this.http.get<User>(urlUserOne).pipe(
+  getOne(id: string): Observable<User> {
+    let urlID = this.urlUsers + id + '/'
+    return this.http.get<User>(urlID).pipe(
+      tap((res: User) => {
+        this.user = res
+        console.log('User: ', this.user)
+      })
+    )
+  }
+
+  update(id: string, body: Form): Observable<User> {
+    let urlTemp = this.urlUsers + id + '/'
+    return this.http.patch<User>(urlTemp, body).pipe(
+      tap((res) => {
+        this.user = res
+        console.log('User: ', this.user)
+      })
+    )
+  }
+
+  delete(id: string): Observable<any> {
+    let urlTemp = this.urlUsers + id + '/'
+    return this.http.delete<any>(urlTemp).pipe(
       tap((res) => {
         console.log('User: ', res)
       })
     )
   }
 
-  update(id: String, body: Form): Observable<User> {
-    let urlUserOne = this.urlUser + id + '/'
-    return this.http.put<User>(urlUserOne, body).pipe(
+  filter(field: string): Observable<User[]> {
+    let urlTemp = this.urlUsers + '?' + field
+    return this.http.get<User[]>(urlTemp).pipe(
       tap((res) => {
-        console.log('User', res)
-      })
-    )
-  }
-
-  filter(field: String): Observable<User[]> {
-    let urlFilter = this.urlUser + '?' + field + '/'
-    return this.http.get<User[]>(urlFilter).pipe(
-      tap((res) => {
-        console.log('Users', res)
+        this.usersFiltered = res
+        console.log('Users filtered: ', this.usersFiltered)
       })
     )
   }

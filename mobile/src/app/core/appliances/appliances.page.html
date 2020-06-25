@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list mode="ios" class="ion-no-margin list-core">
     <ion-list-header mode="ios">
-      <h3>Registered appliances</h3>
+      <h3>Registered Appliances</h3>
     </ion-list-header>
 
     <div [hidden]="!isListEmpty">
@@ -15,27 +15,35 @@
       <p class="error-text">No appliances registered</p>
     </div>
 
-    <ion-item detail *ngFor="let appliance of appliances" lines="none" (click)="view()">
+    <ion-item detail *ngFor="let appliance of tempAppliance" lines="none" (click)="view(appliance)">
       <ion-avatar slot="start">
-        <img *ngIf="appliance.appliance == 'TV'" [src]="iconLCD">
-        <img *ngIf="appliance.appliance == 'Lamp'" [src]="iconLamp">
-        <img *ngIf="appliance.appliance == 'Light'" [src]="iconLamp1">
-        <img *ngIf="appliance.appliance == 'Fridge'" [src]="iconFridge">
-        <img *ngIf="appliance.appliance == 'Airconditioner'" [src]="iconAirCond">
-        <img *ngIf="appliance.appliance == 'Dishwasher'" [src]="iconDishwasher">
-        <img *ngIf="appliance.appliance == 'Toaster'" [src]="iconToaster">
-        <img *ngIf="appliance.appliance == 'Dryer'" [src]="iconDryer">
+        <img *ngIf="appliance.type == 'TV'" [src]="iconLCD">
+        <img *ngIf="appliance.type == 'Lamp'" [src]="iconLamp">
+        <img *ngIf="appliance.type == 'Light'" [src]="iconLamp1">
+        <img *ngIf="appliance.type == 'Fridge'" [src]="iconDryer">
+        <img *ngIf="appliance.type == 'AC'" [src]="iconAirCond">
+        <img *ngIf="appliance.type == 'Dishwasher'" [src]="iconDishwasher">
+        <img *ngIf="appliance.type == 'Toaster'" [src]="iconToaster">
+        <img *ngIf="appliance.type == 'Dryer'" [src]="iconDryer">
+        <img *ngIf="appliance.type == 'Washing'" [src]="iconDryer">
+        <img *ngIf="appliance.type == 'Microwave'" [src]="iconMicrowave">
+        <img *ngIf="appliance.type == 'Air'" [src]="iconAir">
+        <img *ngIf="appliance.type == 'Deep'" [src]="iconDeep">
+        <img *ngIf="appliance.type == 'Blender'" [src]="iconBlender">
+        <img *ngIf="appliance.type == 'Induction'" [src]="iconInduction">
+        <img *ngIf="appliance.type == 'Iron'" [src]="iconIron">
+        <img *ngIf="appliance.type == 'Vacuum'" [src]="iconVacuum">
       </ion-avatar>
 
       <ion-label class="ion-text-wrap">
-        <h2>{{appliance.appliance}}</h2>
-        <p>{{appliance.description}}</p>
+        <h2>{{appliance.name}}</h2>
+        <!-- <p>{{appliance.description}}</p> -->
       </ion-label>
 
       <ion-label slot="end" class="ion-text-right">
-        <ion-badge *ngIf="appliance.status == 'On'" color="success">On</ion-badge>
-        <ion-badge *ngIf="appliance.status == 'Off'" color="medium">Off</ion-badge>
-        <p>{{appliance.reading}}</p>
+        <ion-badge *ngIf="appliance.active" color="success">Active</ion-badge>
+        <ion-badge *ngIf="!appliance.active" color="medium">Inactive</ion-badge>
+        <!-- <p>{{appliance.reading}}</p> -->
       </ion-label>
     </ion-item>
 

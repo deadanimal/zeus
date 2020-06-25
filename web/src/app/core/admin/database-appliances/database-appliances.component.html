@@ -1,0 +1,336 @@
+<ngx-loading-bar></ngx-loading-bar>
+<div class="header pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-dark d-inline-block mb-0">Appliance</h6>
+
+                    <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> <i class="fas fa-database text-dark"> </i> </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="javascript:void(0)" class="text-dark"> Database </a>
+                            </li>
+                            <li aria-current="page" class="breadcrumb-item active">
+                                Appliance
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="col-lg-6 col-5 text-right">
+                    <a class="btn btn-sm btn-primary text-white" (click)="openModal(createBase)">
+                        <i class="fas fa-plus"></i>
+						Base
+					</a>
+					<a class="btn btn-sm btn-primary text-white" (click)="openModal(createAppliance)">
+                        <i class="fas fa-plus"></i>
+						Appliance
+					</a>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-lg-7 col-sm-12">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <h3 class="m-0">Base List</h3>
+                </div>
+                <div class="dataTables_wrapper py-4">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="datatable_length">
+                                <label>
+                                    Show
+                                    <select 
+                                        name="datatable_length"
+                                        aria-controls="datatable"
+                                        class="form-control form-control-sm custom-select custom-select-sm"
+                                        (change)="entriesBaseChange($event)"
+                                    >
+                                        <option value="10" [selected]="tableBaseEntries==5">5</option>
+                                        <option value="25" [selected]="tableBaseEntries==10">10</option>
+                                        <option value="50" [selected]="tableBaseEntries==15">15</option>
+                                        <option value="-1" [selected]="tableBaseEntries==-1">All</option>
+                                    </select>
+                                    records
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="datatable_filter" class="dataTables_filter">
+                                <label>
+                                    <input 
+                                        type="search"
+                                        class="form-control form-control-sm"
+                                        placeholder="Search base records"
+                                        aria-controls="datatable"
+                                        (keyup)="filterBaseTable($event)" 
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ngx-datatable 
+                        class="bootstrap selection-cell"
+                        [columnMode]="'force'"
+                        [headerHeight]="50"
+                        [footerHeight]="50" 
+                        [rowHeight]="'auto'"
+                        [limit]="tableBaseEntries != -1 ? tableBaseEntries:undefined"
+                        [rows]="tableBaseTemp" 
+                        (activate)="onBaseActivate($event)"
+                    >
+
+                        <ngx-datatable-column>
+                            <ng-template ngx-datatable-header-template>
+                                <span>Index</span>
+                            </ng-template>
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                {{row.id_index}}
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Brand"></ngx-datatable-column>
+                        <ngx-datatable-column name="Model"></ngx-datatable-column>
+                        <ngx-datatable-column>
+                            <ng-template ngx-datatable-header-template>
+                                <span>Status</span>
+                            </ng-template>
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <span *ngIf="row.active" class="badge badge-pill badge-success">Active</span>
+                                <span *ngIf="!row.active" class="badge badge-pill badge-warning">Inactive</span>
+                            </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5 col-sm-12">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <h3 class="m-0">Appliance List</h3>
+                </div>
+                <div class="dataTables_wrapper py-4">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="datatable_length">
+                                <label>
+                                    Show
+                                    <select 
+                                        name="datatable_length"
+                                        aria-controls="datatable"
+                                        class="form-control form-control-sm custom-select custom-select-sm"
+                                        (change)="entriesApplianceChange($event)"
+                                    >
+                                        <option value="10" [selected]="tableApplianceEntries==5">5</option>
+                                        <option value="25" [selected]="tableApplianceEntries==10">10</option>
+                                        <option value="50" [selected]="tableApplianceEntries==15">15</option>
+                                        <option value="-1" [selected]="tableApplianceEntries==-1">All</option>
+                                    </select>
+                                    records
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="datatable_filter" class="dataTables_filter">
+                                <label>
+                                    <input 
+                                        type="search"
+                                        class="form-control form-control-sm"
+                                        placeholder="Search appliance records"
+                                        aria-controls="datatable"
+                                        (keyup)="filterApplianceTable($event)" 
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ngx-datatable 
+                        class="bootstrap selection-cell"
+                        [columnMode]="'force'"
+                        [headerHeight]="50"
+                        [footerHeight]="50" 
+                        [rowHeight]="'auto'"
+                        [limit]="tableApplianceEntries != -1 ? tableApplianceEntries:undefined"
+                        [rows]="tableApplianceTemp" 
+                        (activate)="onApplianceActivate($event)"
+                    >
+
+                        <ngx-datatable-column>
+                            <ng-template ngx-datatable-header-template>
+                                <span>Index</span>
+                            </ng-template>
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                {{row.id_index}}
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Name"></ngx-datatable-column>
+                        <ngx-datatable-column>
+                            <ng-template ngx-datatable-header-template>
+                                <span>Status</span>
+                            </ng-template>
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <span *ngIf="row.active" class="badge badge-pill badge-success">Active</span>
+                                <span *ngIf="!row.active" class="badge badge-pill badge-warning">Inactive</span>
+                            </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #createBase>
+    <div class="modal-header bg-default">
+        <h6 class="modal-title text-white my-auto" id="modal-title-default">
+            Add Base
+        </h6>
+
+        <button
+            aria-label="Close"
+            class="close"
+            data-dismiss="modal"
+            type="button"
+            (click)="closeModal()"
+        >
+            <span aria-hidden="true" class="text-white my-auto"> × </span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="baseForm">
+            <div class="form-group">
+                <label class="form-control-label">Brand</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter brand"
+                  formControlName="brand"
+                  type="text"
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Model</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter model"
+                  formControlName="model"
+                  type="text"
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Year</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter year"
+                  formControlName="year"
+                  type="text"
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Manufacturer</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter manufacturer"
+                  formControlName="manufacturer"
+                  type="text"
+                >
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button 
+            class="btn btn-success"
+            type="button"
+            (click)="confirm('base')"
+            [disabled]="!baseForm.valid"
+        >
+            Create
+        </button>
+
+        <button
+            class="btn btn-outline-danger ml-auto"
+            data-dismiss="modal"
+            type="button"
+            (click)="closeModal()"
+        >
+            Close
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #createAppliance>
+    <div class="modal-header bg-default">
+        <h6 class="modal-title text-white my-auto" id="modal-title-default">
+            Add Appliance
+        </h6>
+
+        <button
+            aria-label="Close"
+            class="close"
+            data-dismiss="modal"
+            type="button"
+            (click)="closeModal()"
+        >
+            <span aria-hidden="true" class="text-white my-auto"> × </span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="applianceForm">
+            <div class="form-group">
+                <label class="form-control-label">Name</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter name"
+                  formControlName="name"
+                  type="text"
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Base</label>
+                <select 
+                  class="form-control custom-select"
+                  formControlName="appliance_base"
+                >
+                    <option *ngFor="let base of bases" value="{{base.id}}">{{base.brand}} {{base.model}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button 
+            class="btn btn-success"
+            type="button"
+            (click)="confirm('appliance')"
+            [disabled]="!applianceForm.valid"
+        >
+            Create
+        </button>
+
+        <button
+            class="btn btn-outline-danger ml-auto"
+            data-dismiss="modal"
+            type="button"
+            (click)="closeModal()"
+        >
+            Close
+        </button>
+    </div>
+</ng-template>

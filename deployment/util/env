@@ -2,7 +2,7 @@
 SECRET_KEY=MyNameIsAfeezAzizAndThisIsTheHardestSecretKeyEverSoDoNotFretAboutThisOkayERP!_b8yhdmo#uahqa$k1upj42$1#9b02-ce)t^)l+khx4k24h+db
 DEBUG=True
 BUILD_WITH_GEO_LIBRARIES=1
-DATABASE_URL=postgresql://apiuser:wvk56u9q3tzejkji@piperapi-db-001-do-user-812878-0.a.db.ondigitalocean.com:25060/mbpj-ghg-api?sslmode=require
+DATABASE_URL=postgresql://api:uhhxlcjuscps90wf@project-do-user-812878-0.a.db.ondigitalocean.com:25060/zeus?sslmode=require
 
 
 # 3rd Party

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://zeus-api.pipeline.com.my/'
+  baseUrl: 'http://127.0.0.1:8000/'
 };
 
 /*

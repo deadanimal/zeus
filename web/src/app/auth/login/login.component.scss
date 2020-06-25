@@ -3,12 +3,13 @@
     margin-bottom: 2rem;
     .logo {
         max-height: 9rem;
+        max-width: 100%;
     }
 }
 
 .auth-content {
     background-color: #172b4d;
-    // background-image: url('../../../assets/img/background/galaxy.jpg');
+    background-image: url('../../../assets/img/background/rounce.jpg');
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;

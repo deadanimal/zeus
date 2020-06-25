@@ -194,12 +194,12 @@ DEFAULT_FROM_EMAIL = "api@pipeline.com.my"  # if you don't already have this in 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'http://zeusapi.herokuapp.com',
+    'http://zeus-api.pipeline.com.my',
     'http://127.0.0.1',
     'http://localhost'
 ]
 CORS_ORIGIN_REGEX_WHITELIST = [
-    'http://zeusapi.herokuapp.com',
+    'http://zeus-api.pipeline.com.my',
     'http://127.0.0.1',
     'http://localhost'
 ]

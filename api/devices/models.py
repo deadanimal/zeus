@@ -19,3 +19,15 @@ class Device(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class DeviceValue(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    power = models.CharField(null=True, max_length=255)
+    label = models.CharField(null=True, max_length=255)
+    time = models.CharField(null=True, max_length=255)
+
+    def __str__(self):
+        return self.label
+

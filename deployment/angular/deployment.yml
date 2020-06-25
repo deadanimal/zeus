@@ -18,7 +18,7 @@ spec:
         app: zeus-webapp
     spec:
       containers:
-      - image: syafiqpipe/zeus-webapp:latest
+      - image: syafiqpipe/zeus-webapp:1.0.0
         imagePullPolicy: Always   
         name: zeus-webapp
         resources: {}

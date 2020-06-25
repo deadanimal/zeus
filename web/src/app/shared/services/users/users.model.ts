@@ -1,24 +1,30 @@
 export class User {
     public id: string
     public name: string
-    public email: string
     public username: string
-    public is_active: boolean
-    public date_joined: string
+    public active: boolean
+    public enabled: boolean
+    public user_type: string
+    public billing_address: string
+    // public joined_at: string
 
     constructor(
         id: string,
         name: string,
-        email: string,
         username: string,
-        is_active: boolean,
-        date_joined: string
+        active: boolean,
+        enabled: boolean,
+        user_type: string,
+        billing_address: string,
+        // joined_at: string
     ) {
         this.id = id
         this.name = name
-        this.email = email
         this.username = username
-        this.is_active = is_active
-        this.date_joined = date_joined
+        this.active = active
+        this.enabled = enabled
+        this.user_type = user_type
+        this.billing_address = billing_address
+        // this.joined_at = joined_at
     }
 }

@@ -8,7 +8,7 @@ import requests
 @periodic_task(run_every=(crontab()), ignore_result=True)
 def lol():
 
-    link_provided = 'https://webhook.site/2f3532f4-24f1-41e6-952d-b9482ebcd3b1'
+    link_provided = 'https://webhook.site/f473829b-8b5c-4237-80b5-a2743cb2debd'
     r = requests.get(link_provided)
 
     return True

@@ -29,13 +29,39 @@ export const ROUTES: RouteInfo[] = [
     path: '/admin/dashboard',
     title: 'Dashboard',
     type: 'link',
-    icontype: 'fas fa-home text-purple'
+    icontype: 'fas fa-home text-primary'
   },
+  {
+    path: '/admin/database',
+    title: 'Database',
+    type: 'sub',
+    icontype: 'fas fa-database text-primary',
+    collapse: 'database',
+    isCollapsed: true,
+    children: [
+      { path: 'summary', title: 'Summary', type: 'link' },
+      { path: 'appliances', title: 'Appliances', type: 'link' },
+      { path: 'devices', title: 'Devices', type: 'link' },
+      // { path: '', title: '', type: 'link' },
+    ]
+  },
+  // {
+  //   path: '/admin/billing',
+  //   title: 'Billing',
+  //   type: 'sub',
+  //   icontype: 'fas fa-file-invoice text-primary',
+  //   collapse: 'billing',
+  //   isCollapsed: true,
+  //   children: [
+  //     { path: 'summary', title: 'Summary', type: 'link' },
+  //     // { path: '', title: '', type: 'link' },
+  //   ]
+  // },
   {
     path: '/admin/management',
     title: 'Management',
     type: 'sub',
-    icontype: 'fas fa-file-invoice text-pink',
+    icontype: 'fas fa-file-alt text-primary',
     collapse: 'management',
     isCollapsed: true,
     children: [
@@ -47,7 +73,7 @@ export const ROUTES: RouteInfo[] = [
     path: '/admin/report',
     title: 'Reporting',
     type: 'link',
-    icontype: 'fas fa-chart-bar text-red'
+    icontype: 'fas fa-chart-bar text-primary'
   },
   /*
   {

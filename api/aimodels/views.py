@@ -25,7 +25,7 @@ from .serializers import (
 
 
 
-appliance_detection_model = default_storage.open('aimodels/appliance_detection.pkl', 'r')
+# appliance_detection_model = default_storage.open('aimodels/appliance_detection.pkl', 'r')
 
 
 

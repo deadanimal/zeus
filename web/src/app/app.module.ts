@@ -19,6 +19,18 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 
+import {
+  IMqttMessage,
+  MqttModule,
+  IMqttServiceOptions
+} from 'ngx-mqtt';
+
+export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: '163.47.11.245',
+  port: 1883,
+  path: '/bolt-008/current/'
+};
+
 @NgModule({
   imports: [
     AppRoutingModule,
@@ -37,7 +49,8 @@ import { ComponentsModule } from './components/components.module';
       positionClass: 'toast-top-right'
     }),
     LeafletModule,
-    PresentationModule
+    PresentationModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
   declarations: [
     AppComponent, 
@@ -45,11 +58,10 @@ import { ComponentsModule } from './components/components.module';
     AuthLayoutComponent
   ],
   providers: [
-    /* Uncomment this to use interceptor
+    //Uncomment this to use interceptor
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true
     }
-    */
   ],
   bootstrap: [AppComponent]
 })

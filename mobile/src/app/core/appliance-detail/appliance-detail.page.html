@@ -9,16 +9,32 @@
       >
       </ion-back-button>
     </ion-buttons>
-    <ion-title>Appliance detail</ion-title>
+    <ion-title>Appliance Detail</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-img
-    [src]="iconLamp"
-    style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto"
-  >
-  </ion-img>
+  	<!-- <ion-img
+		[src]="iconLamp"
+		style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto"
+	>
+	</ion-img> -->
+		<ion-img *ngIf="appliance.type == 'TV'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconLCD"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Lamp'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconLamp"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Light'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconLamp1"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Fridge'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconDryer"></ion-img>
+		<ion-img *ngIf="appliance.type == 'AC'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconAirCond"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Dishwasher'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconDishwasher"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Toaster'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconToaster"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Dryer'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconDryer"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Washing'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconDryer"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Microwave'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconMicrowave"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Air'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconAir"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Deep'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconDeep"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Blender'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconBlender"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Induction'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconInduction"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Iron'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconIron"></ion-img>
+		<ion-img *ngIf="appliance.type == 'Vacuum'" style="max-width: 50%; margin-top: 5%; margin-left: auto; margin-right: auto" [src]="iconVacuum"></ion-img>
 
   <ion-card mode="ios">
 		<ion-card-content>
@@ -26,12 +42,9 @@
 				<ion-item lines="none">
 					<ion-label slot="start">
 						<h2 class="ion-no-margin">
-							Philip Lamp
+							{{appliance.name}}
 						</h2>
 						<ion-text>
-							<h3 style="font-size: 0.7rem; margin: 0;">
-								Model E27
-							</h3>
 							<h3 style="font-size: 0.7rem; margin: 0;">
 								Year 2020
 							</h3>
@@ -40,7 +53,7 @@
 							</h3>
 						</ion-text>
 					</ion-label>
-					<ion-toggle slot="end" color="primary"></ion-toggle>
+					<ion-toggle slot="end" color="primary" disabled></ion-toggle>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>

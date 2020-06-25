@@ -19,13 +19,23 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManagementAuditComponent } from './management-audit/management-audit.component';
 import { ManagementUserComponent } from './management-user/management-user.component';
 import { ReportComponent } from './report/report.component';
+import { DatabaseComponent } from './database/database.component';
+import { DatabaseAppliancesComponent } from './database-appliances/database-appliances.component';
+import { DatabaseDevicesComponent } from './database-devices/database-devices.component';
+import { BillingComponent } from './billing/billing.component';
+import { ToolsComponent } from './tools/tools.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ManagementAuditComponent,
     ManagementUserComponent,
-    ReportComponent
+    ReportComponent,
+    DatabaseComponent,
+    DatabaseAppliancesComponent,
+    DatabaseDevicesComponent,
+    BillingComponent,
+    ToolsComponent
   ],
   imports: [
     CommonModule,

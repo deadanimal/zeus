@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileHelpTicketPage implements OnInit {
 
+  input
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  sendMessage() {
+    
   }
 
 }

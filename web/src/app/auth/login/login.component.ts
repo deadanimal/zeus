@@ -13,7 +13,7 @@ import { NotifyService } from 'src/app/shared/handler/notify/notify.service';
 export class LoginComponent implements OnInit {
 
   // Image
-  imgLogo = 'assets/img/logo/prototype-logo.png'
+  imgLogo = 'assets/img/logo/red.png'
 
   // Form
   focusUsername
@@ -54,15 +54,22 @@ export class LoginComponent implements OnInit {
   login() {
     this.loadingBar.start()
     this.loadingBar.complete()
-    this.successMessage()
-    if (this.loginForm.value.username == 'admin') {
-      this.authService.userRole = 1
-      this.navigatePage('dashboard-admin')
-    }
-    else if (this.loginForm.value.username == 'user') {
-      this.authService.userRole = 2
-      this.navigatePage('dashboard-user')
-    }
+    this.authService.obtainToken(this.loginForm.value).subscribe(
+      () => {},
+      () => {},
+      () => {
+        this.navigatePage('dashboard-admin')
+        this.successMessage()
+      }
+    )
+    // if (this.loginForm.value.username == 'admin') {
+    //   this.authService.userRole = 1
+    //   this.navigatePage('dashboard-admin')
+    // }
+    // else if (this.loginForm.value.username == 'user') {
+    //   this.authService.userRole = 2
+    //   this.navigatePage('dashboard-user')
+    // }
   }
 
   navigatePage(path: String) {
@@ -85,7 +92,7 @@ export class LoginComponent implements OnInit {
 
   successMessage() {
     let title = 'Success'
-    let message = 'Loging in right now'
+    let message = 'Logging in right now'
     this.notifyService.openToastr(title, message)
   }
 

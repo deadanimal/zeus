@@ -1,3 +1,4 @@
+<ngx-loading-bar></ngx-loading-bar>
 <div class="header pb-6">
     <div class="container-fluid">
         <div class="header-body">
@@ -8,7 +9,7 @@
                     <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class=" breadcrumb-item">
-                                <a href="javascript:void(0)"> <i class="fas fa-file-invoice text-dark"> </i> </a>
+                                <a href="javascript:void(0)"> <i class="fas fa-file-alt text-dark"> </i> </a>
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)" class="text-dark"> Management </a>
@@ -21,8 +22,9 @@
                 </div>
 
                 <div class="col-lg-6 col-5 text-right">
-					<a class="btn btn-sm btn-neutral" (click)="openModal(createUser)">
-						Create
+					<a class="btn btn-sm btn-primary text-white" (click)="openModal(createUser)">
+                        <i class="fas fa-plus"></i>
+						User
 					</a>
 				</div>
             </div>
@@ -39,7 +41,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                        <div class="amchart" id="chartdiv"></div>
+                        <div class="amchart" id="chartdivRegisteredUser"></div>
                     </div>
                 </div>
             </div>
@@ -61,13 +63,13 @@
                                     <select 
                                         name="datatable_length"
                                         aria-controls="datatable"
-                                        class="form-control form-control-sm"
+                                        class="form-control form-control-sm custom-select custom-select-sm"
                                         (change)="entriesChange($event)"
                                     >
-                                        <option value="10" [selected]="entries==5">5</option>
-                                        <option value="25" [selected]="entries==10">10</option>
-                                        <option value="50" [selected]="entries==15">15</option>
-                                        <option value="-1" [selected]="entries==-1">All</option>
+                                        <option value="10" [selected]="tableEntries==5">5</option>
+                                        <option value="25" [selected]="tableEntries==10">10</option>
+                                        <option value="50" [selected]="tableEntries==15">15</option>
+                                        <option value="-1" [selected]="tableEntries==-1">All</option>
                                     </select>
                                     records
                                 </label>
@@ -104,17 +106,16 @@
                                 <span>User ID</span>
                             </ng-template>
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                {{row.user_id}}
+                                {{row.id_index}}
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Name"></ngx-datatable-column>
-                        <ngx-datatable-column name="Email"></ngx-datatable-column>
                         <ngx-datatable-column>
                             <ng-template ngx-datatable-header-template>
-                                <span>Joined At</span>
+                                <span>Email</span>
                             </ng-template>
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                {{row.joined_at}}
+                                {{row.username}}
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column>
@@ -130,8 +131,8 @@
                                 <span>Status</span>
                             </ng-template>
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                <span *ngIf="row.is_active == 'Active'" class="badge badge-pill badge-success">Active</span>
-                                <span *ngIf="row.is_active == 'Inactive'" class="badge badge-pill badge-warning">Inactive</span>
+                                <span *ngIf="row.active" class="badge badge-pill badge-success">Active</span>
+                                <span *ngIf="!row.active" class="badge badge-pill badge-warning">Inactive</span>
                             </ng-template>
                         </ngx-datatable-column>
                     </ngx-datatable>
@@ -161,20 +162,6 @@
     <div class="modal-body">
         <form [formGroup]="registerForm">
             <div class="form-group">
-                <label class="form-control-label">Name</label>
-                <input 
-                  class="form-control"
-                  placeholder="Enter name"
-                  formControlName="name"
-                  type="text"
-                >
-                <ng-container *ngFor="let message of registerFormMessages.name">
-                    <div *ngIf="registerForm.get('name').hasError(message.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
-                        <p class="error-message"><span>{{ message.message }}</span></p>
-                    </div>
-                </ng-container>
-            </div>
-            <div class="form-group">
                 <label class="form-control-label">Email</label>
                 <input 
                   class="form-control"
@@ -187,6 +174,80 @@
                         <p class="error-message"><span>{{ message.message }}</span></p>
                     </div>
                 </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Password</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter password"
+                  formControlName="password1"
+                  type="password"
+                >
+                <ng-container *ngFor="let message of registerFormMessages.password1">
+                    <div *ngIf="registerForm.get('password1').hasError(message.type) && (registerForm.get('password1').dirty || registerForm.get('password1').touched)">
+                        <p class="error-message"><span>{{ message.message }}</span></p>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Confirm Password</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter password"
+                  formControlName="password2"
+                  type="password"
+                >
+                <ng-container *ngFor="let message of registerFormMessages.password2">
+                    <div *ngIf="registerForm.get('password2').hasError(message.type) && (registerForm.get('password2').dirty || registerForm.get('password2').touched)">
+                        <p class="error-message"><span>{{ message.message }}</span></p>
+                    </div>
+                </ng-container>
+            </div>
+        </form>
+
+        <hr class="my-2" />
+
+        <form [formGroup]="updateForm">
+            <div class="form-group">
+                <label class="form-control-label">Name</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter name"
+                  formControlName="name"
+                  type="text"
+                >
+                <ng-container *ngFor="let message of updateFormMessages.name">
+                    <div *ngIf="updateForm.get('name').hasError(message.type) && (updateForm.get('name').dirty || updateForm.get('name').touched)">
+                        <p class="error-message"><span>{{ message.message }}</span></p>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">User Type</label>
+                <select 
+                  class="custom-select"
+                  formControlName="user_type"
+                >
+                    <option *ngFor="let choice of userTypeChoices" value="{{choice.value}}">{{choice.text}}</option>
+                </select>
+                <ng-container *ngFor="let message of updateFormMessages.user_type">
+                    <div *ngIf="updateForm.get('user_type').hasError(message.type) && (updateForm.get('user_type').dirty || updateForm.get('user_type').touched)">
+                        <p class="error-message"><span>{{ message.message }}</span></p>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Billing Address</label>
+                <textarea 
+                  class="form-control"
+                  placeholder="Enter billing address"
+                  formControlName="billing_address"
+                  type="text"
+                ></textarea>
             </div>
         </form>
     </div>

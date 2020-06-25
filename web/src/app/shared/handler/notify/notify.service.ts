@@ -13,15 +13,15 @@ export class NotifyService {
   openToastrConnection() {
     let title = 'Error'
     let message = 'No connection'
-    this.toastr.info(message, title)
+    this.toastr.info(title, message)
   }
 
   openToastrHttp(title: any, message: string) {
-    this.toastr.warning(message, title)
+    this.toastr.warning(title, message)
   }
 
   openToastr(title: any, message: string) {
-    this.toastr.success(message, title)
+    this.toastr.success(title, message)
   }
 
 }

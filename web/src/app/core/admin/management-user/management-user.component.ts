@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone, TemplateRef } from '@angular/core';
-import { User } from 'src/assets/mock/admin-user/users.model'
+// import { User } from 'src/assets/mock/admin-user/users.model'
 import { MocksService } from 'src/app/shared/services/mocks/mocks.service';
 
 import * as moment from 'moment';
@@ -11,6 +11,10 @@ am4core.useTheme(am4themes_animated);
 
 import swal from 'sweetalert2';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { UsersService } from 'src/app/shared/services/users/users.service';
+import { User } from 'src/app/shared/services/users/users.model';
+import { LoadingBarService } from '@ngx-loading-bar/core';
 
 export enum SelectionType {
   single = 'single',
@@ -28,11 +32,12 @@ export enum SelectionType {
 export class ManagementUserComponent implements OnInit, OnDestroy {
 
   // Table
+  users: User[] = []
   tableEntries: number = 5;
   tableSelected: any[] = [];
   tableTemp = [];
   tableActiveRow: any;
-  tableRows: User[] = []
+  tableRows: any[] = []
   SelectionType = SelectionType;
 
   // Chart
@@ -60,37 +65,81 @@ export class ManagementUserComponent implements OnInit, OnDestroy {
   // Form
   registerForm: FormGroup
   registerFormMessages = {
-    'name': [
-      { type: 'required', message: 'Name is required' }
-    ],
     'email': [
       { type: 'required', message: 'Email is required' },
       { type: 'email', message: 'A valid email is required' }
+    ],
+    'password1': [
+      { type: 'required', message: 'Password is required' }
+    ],
+    'password2': [
+      { type: 'required', message: 'Password is required' }
     ]
   }
 
+  updateForm: FormGroup
+  updateFormMessages = {
+    'name': [
+      { type: 'required', message: 'Name is required' }
+    ],
+    'user_type': [
+      { type: 'required', message: 'User type is required' },
+    ]
+  }
+
+  userTypeChoices = [
+    { text: 'Low voltage', value: 'LV' },
+    { text: 'High tension', value: 'HT' },
+    { text: 'Utility', value: 'UT' },
+    { text: 'Power producer', value: 'PP' },
+    { text: 'Superuser', value: 'SU' },
+    { text: 'Not available', value: 'NA'}
+  ]
+
   constructor(
+    private authService: AuthService,
+    private userService: UsersService,
     private mockService: MocksService,
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
+    private loadingBar: LoadingBarService,
     private zone: NgZone
   ) {
-    this.getData()
+    // console.log('constructor')
+    this.loadData()
   }
 
   ngOnInit() {
+    // console.log('ngOnInit')
     this.registerForm = this.formBuilder.group({
-      name: new FormControl('', Validators.compose([
-        Validators.required
-      ])),
+      username: new FormControl(''),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.email
+      ])),
+      password1: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      password2: new FormControl('', Validators.compose([
+        Validators.required
       ]))
+    })
+
+    this.updateForm = this.formBuilder.group({
+      name: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      active: new FormControl(true),
+      enabled: new FormControl(true),
+      user_type: new FormControl('NA', Validators.compose([
+        Validators.required
+      ])),
+      billing_address: new FormControl()
     })
   }
 
   ngOnDestroy() {
+    // console.log('ngOnDestroy')
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
         this.chart.dispose()
@@ -99,27 +148,28 @@ export class ManagementUserComponent implements OnInit, OnDestroy {
   }
 
   getData() {
-    this.mockService.getAll('admin-user/users.data.json').subscribe(
-      (res) => {
-        // Success
-        this.tableRows = [...res]
-        this.tableTemp = this.tableRows.map((prop, key) => {
-          return {
-            ...prop,
-            id: key
-          };
-        });
-        // console.log('Svc: ', this.tableTemp)
-        this.calculateCharts()
-      },
-      () => {
-        // Unsuccess
-      },
-      () => {
-        // After
-        this.getCharts()
-      }
-    )
+    this.loadData()
+    // this.mockService.getAll('admin-user/users.data.json').subscribe(
+    //   (res) => {
+    //     // Success
+    //     this.tableRows = [...res]
+    //     this.tableTemp = this.tableRows.map((prop, key) => {
+    //       return {
+    //         ...prop,
+    //         id: key
+    //       };
+    //     });
+    //     // console.log('Svc: ', this.tableTemp)
+    //     this.calculateCharts()
+    //   },
+    //   () => {
+    //     // Unsuccess
+    //   },
+    //   () => {
+    //     // After
+    //     this.getCharts()
+    //   }
+    // )
   }
 
   getCharts() {
@@ -129,7 +179,7 @@ export class ManagementUserComponent implements OnInit, OnDestroy {
   }
 
   getChart() {
-    let chart = am4core.create("chartdiv", am4charts.XYChart);
+    let chart = am4core.create("chartdivRegisteredUser", am4charts.XYChart);
 
     // Add data
     chart.data = [{
@@ -266,6 +316,7 @@ export class ManagementUserComponent implements OnInit, OnDestroy {
   closeModal() {
     this.modal.hide()
     this.registerForm.reset()
+    this.updateForm.reset()
   }
 
   confirm() {
@@ -277,7 +328,7 @@ export class ManagementUserComponent implements OnInit, OnDestroy {
       confirmButtonClass: "btn btn-info",
       confirmButtonText: "Confirm",
       showCancelButton: true,
-      cancelButtonClass: "btn btn-danger",
+      cancelButtonClass: "btn btn-outline-danger",
       cancelButtonText: "Cancel"
     }).then((result) => {
       if (result.value) {
@@ -287,6 +338,73 @@ export class ManagementUserComponent implements OnInit, OnDestroy {
   }
 
   register() {
+    // console.log('Register start')
+    this.registerForm.controls['username'].setValue(this.registerForm.value.email)
+    this.loadingBar.start()
+    this.authService.registerAccount(this.registerForm.value).subscribe(
+      () => {
+        this.loadingBar.complete()
+        // console.log('Register success')
+      },
+      () => {
+        this.loadingBar.complete()
+        // console.log('Register unsuccess')
+      },
+      () => {
+        // console.log('Register after')
+        this.update()
+        // this.swalRegistered()
+      }
+    )
+  }
+
+  update() {
+    // console.log('Update start')
+    this.loadingBar.start()
+    this.userService.update(this.authService.registeredID, this.updateForm.value).subscribe(
+      () => {
+        // console.log('Update success')
+        this.loadingBar.complete()
+      },
+      () => {
+        // console.log('Update unsuccess')
+        this.loadingBar.complete()
+      },
+      () => {
+        // console.log('Update after')
+        this.swalRegistered()
+        this.loadData()
+      }
+    )
+  }
+
+  loadData() {
+    // console.log('Loading data')
+    this.loadingBar.start()
+    this.userService.get().subscribe(
+      () => {
+        this.users = this.userService.users
+        this.tableRows = [...this.users]
+        this.tableTemp = this.tableRows.map((prop, key) => {
+          return {
+            ...prop,
+            id_index: key+1
+          };
+        });
+        // console.log('Data loaded')
+        this.calculateCharts()
+      },
+      () => {
+        this.loadingBar.complete()
+      },
+      () => {
+        this.loadingBar.complete()
+        this.getCharts()
+      }
+    )
+  }
+
+  swalRegistered() {
     swal.fire({
       title: "Success",
       text: "A new user has been created!",
@@ -296,10 +414,34 @@ export class ManagementUserComponent implements OnInit, OnDestroy {
       confirmButtonText: "Close"
     }).then((result) => {
       if (result.value) {
-        this.modal.hide()
-        this.registerForm.reset()
+        this.closeModal()
       }
     })
+  }
+
+  entriesChange($event) {
+    this.tableEntries = $event.target.value;
+  }
+
+  filterTable($event) {
+    let val = $event.target.value;
+    this.tableTemp = this.tableRows.filter(function (d) {
+      for (var key in d) {
+        if (d[key].toLowerCase().indexOf(val) !== -1) {
+          return true;
+        }
+      }
+      return false;
+    });
+  }
+
+  onSelect({ selected }) {
+    this.tableSelected.splice(0, this.tableSelected.length);
+    this.tableSelected.push(...selected);
+  }
+
+  onActivate(event) {
+    this.tableActiveRow = event.row;
   }
 
 }

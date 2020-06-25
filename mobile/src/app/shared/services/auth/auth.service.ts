@@ -31,6 +31,10 @@ export class AuthService {
   public userID: string
   public userType: string
 
+  public registeredID: string
+  
+  public userRole: number = 1
+
   constructor(
     private jwtService: JwtService,
     private http: HttpClient
@@ -39,6 +43,7 @@ export class AuthService {
   registerAccount(body: Form): Observable<any> {
     return this.http.post<any>(this.urlRegister, body).pipe(
       tap((res) => {
+        this.registeredID = res.user.pk
         console.log('Registration: ', res)
       })
     )
@@ -62,9 +67,9 @@ export class AuthService {
 
   obtainToken(body: Form): Observable<any> {
     let jwtHelper: JwtHelperService = new JwtHelperService()
-    // console.log('66')
-    //console.log(this.urlTokenObtain)
-    //console.log('68')
+    console.log('66')
+    console.log(this.urlTokenObtain)
+    console.log('68')
     console.log(body)
 
     return this.http.post<any>(this.urlTokenObtain, body).pipe(
@@ -72,7 +77,7 @@ export class AuthService {
         this.token = res
         this.tokenRefresh = res.refresh
         this.tokenAccess = res.access
-        // console.log('traaa')
+
         let decodedToken = jwtHelper.decodeToken(this.tokenAccess)
         this.email = decodedToken.email
         this.username = decodedToken.username
