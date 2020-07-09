@@ -22,6 +22,9 @@ export class DevicesService {
 
   public deviceValues: any[] = []
 
+  isFirst = true
+  devValueCounter: number = 0
+
   constructor(
     private http: HttpClient
   ) { }
@@ -94,6 +97,10 @@ export class DevicesService {
   getValue(): Observable<any> {
     return this.http.get<any>(this.urlDeviceValues).pipe(
       tap((res) => {
+        if (this.isFirst) {
+          this.isFirst = false
+          this.devValueCounter = res.length
+        }
         this.deviceValues = res
         console.log('Values: ', this.deviceValues)
       })

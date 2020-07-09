@@ -16,6 +16,8 @@ export class DashboardPage implements OnInit {
   // Data
   activities = []
 
+  notiActivities = []
+
   dataKiri: number = 0
   dataKanan: number = 0
 
@@ -31,10 +33,30 @@ export class DashboardPage implements OnInit {
   // Checker
   isFeedEmpty: boolean = true
 
+
+  // Length
+  notifyMe: any[] = []
+
+  intervalNoti
+  intervalCSV
+
   // Icon
   iconError = 'assets/img/default/404-error.svg'
+  iconAirCond = 'assets/img/appliance/air-conditioner.svg'
+  iconDishwasher = 'assets/img/appliance/dishwasher.svg'
+  iconFridge = 'assets/img/appliance/fridge.svg'
+  iconLamp = 'assets/img/appliance/lamp.svg'
+  iconLamp1 = 'assets/img/appliance/lamp-1.svg'
+  iconLCD = 'assets/img/appliance/lcd.svg'
   iconMicrowave = 'assets/img/appliance/microwave.svg'
   iconToaster = 'assets/img/appliance/toaster.svg'
+  iconDryer = 'assets/img/appliance/tumble-dryer.svg'
+  iconAir = 'assets/img/appliance/air.svg'
+  iconBlender = 'assets/img/appliance/blender.svg'
+  iconDeep = 'assets/img/appliance/deep.svg'
+  iconInduction = 'assets/img/appliance/induction.svg'
+  iconIron = 'assets/img/appliance/iron.svg'
+  iconVacuum = 'assets/img/appliance/vacuum.svg'
 
   constructor(
     private deviceService: DevicesService,
@@ -46,6 +68,12 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     this.segment = 'P'
+    this.intervalNoti = setInterval(
+      () => {
+        this.getNoti()
+      },
+      10000
+    )
   }
 
   getData() {
@@ -66,6 +94,11 @@ export class DashboardPage implements OnInit {
   ionViewWillEnter() {
     this.initChartPower()
     this.initChartAppliance()
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalCSV)
+    clearInterval(this.intervalNoti)
   }
 
   segmentChanged(ev: any) {
@@ -201,7 +234,7 @@ export class DashboardPage implements OnInit {
   }
 
   getCSV() {
-    let timer = setInterval(
+    this.intervalCSV = setInterval(
       () => {
         this.deviceService.getCSV().subscribe(
           (res) => {
@@ -230,6 +263,24 @@ export class DashboardPage implements OnInit {
 
   addData(chart, label, data) {
 
+  }
+
+
+  getNoti() {
+    this.notiActivities = []
+    this.deviceService.getValue().subscribe(
+      (res: any[]) => {
+        res = res.sort((n1,n2) => n1 - n2);
+        res.forEach(
+          (data) => {
+            data.time = moment.unix(data.time).format('h:mm:ss a')
+            this.notiActivities.push(data)
+          }
+        )
+      },
+      () => {},
+      () => {}
+    )
   }
 
 }

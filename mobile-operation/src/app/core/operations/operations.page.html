@@ -1,0 +1,40 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios">
+    <ion-title>Operations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div *ngIf="isSearching">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+  </div>
+  
+  <div *ngIf="!isSearching">
+    <div *ngIf="isEmpty" class="empty-list ion-text-center">
+      <img [src]="iconEmpty" class="empty-img">
+      <p>No wifi detected in your area</p>
+    </div>
+  
+    <ion-list *ngIf="!isEmpty" class="list-core">
+      <ion-list-header>
+        <h3>Find WiFi to connect</h3>
+      </ion-list-header>
+      <ion-item lines="none" class="item-core" *ngFor="let wifi of scannedWifis">
+        <ion-icon name="wifi-outline" slot="start" color="primary"></ion-icon>
+        <ion-label class="ion-text-wrap">
+          <h3>{{wifi.SSID}}</h3>
+          <p>{{wifi.BSSID}}</p>
+        </ion-label>
+        <ion-button
+          slot="end"
+          color="primary"
+          shape="round"
+          mode="ios"
+          (click)="connect(wifi)"
+        >
+          Connect
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

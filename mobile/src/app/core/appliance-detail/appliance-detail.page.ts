@@ -29,6 +29,9 @@ export class ApplianceDetailPage implements OnInit {
   private chartMonth
   private chartYear
 
+  // Interval
+  public intervalCSV
+
   // Icon
   iconError = 'assets/img/default/404-error.svg'
   iconAirCond = 'assets/img/appliance/air-conditioner.svg'
@@ -67,7 +70,7 @@ export class ApplianceDetailPage implements OnInit {
 
   ngOnInit() {
     this.segment = 'D'
-    setInterval(
+    this.intervalCSV = setInterval(
       () => {
         this.getCSV()
       },
@@ -77,6 +80,10 @@ export class ApplianceDetailPage implements OnInit {
 
   ionViewDidEnter() {
     this.initChartDay()
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.intervalCSV)
   }
 
   getData() {

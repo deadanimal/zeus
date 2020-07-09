@@ -70,10 +70,10 @@ class AimodelViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         file_sent = request.data
         params = request.query_params
 
-        if params['model'] == 'appliance':
-            print('appliance')
+        # if params['model'] == 'appliance':
+        #     print('appliance')
         
-        message = {'app': 123}
+        message = file_sent #{'app': 123}
         
         return JsonResponse(message)              
 
