@@ -18,6 +18,8 @@ from rest_framework_extensions.mixins import NestedViewSetMixin
 
 from django_filters.rest_framework import DjangoFilterBackend
 
+from .models import *
+
 from .models import (
     Device,
     DeviceValue
@@ -102,6 +104,63 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
             'body': lol,
             'url': url
         }
+
+        delta = 0
+        appliance_type = ''
+        appliance_condition = ''
+
+        # if delta > 2600:
+        #     appliance_type = 'AC Cassette'
+        #     appliance_condition = 'ON'
+        # elif delta > 1900 && delta < 2600:
+        #     appliance_type = 'AC York'
+        #     appliance_condition = 'ON'
+        # elif delta > 1500 && delta < 1900:
+        #     appliance_type = 'Vacuum'
+        #     appliance_condition = 'ON'
+        # elif delta > 1300 && delta < 1500:
+        #     appliance_type = 'Dryer'
+        #     appliance_condition = 'ON'
+        # elif delta > 1000 && delta < 1300:
+        #     appliance_type = 'Induction Cooker'
+        #     appliance_condition = 'ON'
+        # elif delta > 700 && delta < 1000:
+        #     appliance_type = 'Deep Fryer'
+        #     appliance_condition = 'ON'
+        # elif delta > 400 && delta < 700:
+        #     appliance_type = 'Microwave'
+        #     appliance_condition = 'ON'
+        # elif delta > 200 && delta < 400:
+        #     appliance_type = 'Toaster'
+        #     appliance_condition = 'ON'
+        # elif delta > 160 && delta < 200:
+        #     appliance_type = 'Blender'
+        #     appliance_condition = 'ON'
+        # elif delta > 5 && delta < 20:
+        #     appliance_type = 'Dryer'
+        #     appliance_condition = 'OFF'
+        # elif delta > 4 && delta < 5:
+        #     appliance_type = 'Blender'
+        #     appliance_condition = 'OFF'
+        # elif delta > -3 && delta < 4:
+        #     appliance_type = 'AC York'
+        #     appliance_condition = 'OFF'
+        # elif delta > -6 && delta < -3:
+        #     appliance_type = 'AC Cassette'
+        #     appliance_condition = 'OFF'
+        # elif delta > -600 && delta < -6:
+        #     appliance_type = 'Toaster'
+        #     appliance_condition = 'OFF'
+        # elif delta > -1000 && delta < -600:
+        #     appliance_type = 'Vacuum'
+        #     appliance_condition = 'OFF'
+        # elif delta > -1400 && delta < -1000:
+        #     appliance_type = 'Microwave'
+        #     appliance_condition = 'OFF'
+        # elif delta > -1900 && delta < -1400:
+        #     appliance_type = 'Deep Fryer'
+        #     appliance_condition = 'OFF'
+
     
         return JsonResponse(json_data)
 
@@ -149,8 +208,7 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         #target_user = int(kwargs['target_id'])
         #Follow.objects.create(user=user, target=target_user)
         #return Response(status=status.HTTP_204_NO_CONTENT)        
-        #     
-
+        #
 
 class DeviceValueViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = DeviceValue.objects.all()
@@ -183,4 +241,10 @@ class DeviceValueViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         else:
             queryset = Device.objects.none()
         """
-        return queryset  
+        return queryset 
+
+    def depickling():
+        # Get new added data
+        # Compare the new data with pickle
+        # If return true, change appliance to is_active to true?
+        return 'depickled'

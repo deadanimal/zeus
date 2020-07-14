@@ -19,7 +19,7 @@
 			<h3>Information</h3>
     </ion-list-header>
     
-    <ion-item lines="none" class="item-form">
+    <ion-item lines="none" class="item-form" disabled>
       <ion-label position="stacked" mode="ios">Connected device</ion-label>
       <ion-input placeholder="Connected device"></ion-input>
     </ion-item>
@@ -34,6 +34,7 @@
     expand="block"
     mode="ios"
     (click)="connect()"
+    disabled
   >
     Connect
   </ion-button>

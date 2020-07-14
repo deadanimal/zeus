@@ -234,31 +234,52 @@ export class DashboardPage implements OnInit {
   }
 
   getCSV() {
-    this.intervalCSV = setInterval(
-      () => {
-        this.deviceService.getCSV().subscribe(
-          (res) => {
-            let row = res.body.split(",")
-            if (res.body.length < 30) {
-              let label = moment.unix(res.test).format('h:mm:ss a')
-              let data1 = row[0]*240/1000
-              let data2 = row[1]*240/1000
-              let data3 = row[2]*240/1000
-              this.dataKiri = (this.dataKiri + data1 + data2 + data3) / 60
-              this.dataKanan = (this.dataKanan + data1 + data2 + data3) / 50
-              this.chartPower.data.labels.push(label)
-              this.chartPower.data.datasets[0].data.push(data1)
-              this.chartPower.data.datasets[1].data.push(data2)
-              this.chartPower.data.datasets[2].data.push(data3)
-              this.chartPower.update()
-            }
-            // console.log('Dashboard: ', res)
-            // this.
-            console.log()
-          }
-        )
-      }, 1000
+    this.deviceService.getCSV().subscribe(
+      (res) => {
+        let row = res.body.split(",")
+        if (res.body.length < 30) {
+          let label = moment.unix(res.test).format('h:mm:ss a')
+          let data1 = row[0]*240/1000
+          let data2 = row[1]*240/1000
+          let data3 = row[2]*240/1000
+          this.dataKiri = (this.dataKiri + data1 + data2 + data3) / 60
+          this.dataKanan = (this.dataKanan + data1 + data2 + data3) / 50
+          this.chartPower.data.labels.push(label)
+          this.chartPower.data.datasets[0].data.push(data1)
+          this.chartPower.data.datasets[1].data.push(data2)
+          this.chartPower.data.datasets[2].data.push(data3)
+          this.chartPower.update()
+        }
+        // console.log('Dashboard: ', res)
+        // this.
+        console.log()
+      }
     )
+    // this.intervalCSV = setInterval(
+    //   () => {
+    //     this.deviceService.getCSV().subscribe(
+    //       (res) => {
+    //         let row = res.body.split(",")
+    //         if (res.body.length < 30) {
+    //           let label = moment.unix(res.test).format('h:mm:ss a')
+    //           let data1 = row[0]*240/1000
+    //           let data2 = row[1]*240/1000
+    //           let data3 = row[2]*240/1000
+    //           this.dataKiri = (this.dataKiri + data1 + data2 + data3) / 60
+    //           this.dataKanan = (this.dataKanan + data1 + data2 + data3) / 50
+    //           this.chartPower.data.labels.push(label)
+    //           this.chartPower.data.datasets[0].data.push(data1)
+    //           this.chartPower.data.datasets[1].data.push(data2)
+    //           this.chartPower.data.datasets[2].data.push(data3)
+    //           this.chartPower.update()
+    //         }
+    //         // console.log('Dashboard: ', res)
+    //         // this.
+    //         console.log()
+    //       }
+    //     )
+    //   }, 1000
+    // )
   }
 
   addData(chart, label, data) {
