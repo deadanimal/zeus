@@ -17,6 +17,8 @@ from users.models import CustomUser
 
 class Account(models.Model):
 
+    
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=False, max_length=255)
     account_number = models.CharField(blank=True, max_length=255)
@@ -30,3 +32,4 @@ class Account(models.Model):
 
     def __str__(self):
         return self.name
+

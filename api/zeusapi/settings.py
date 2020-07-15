@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'organisations',
     'plants',
     'reports',
+    'services',
     'tickets',
     'users'
 

@@ -22,12 +22,12 @@ from .models import *
 
 from .models import (
     Device,
-    DeviceValue
+    DeviceReading
 )
 
 from .serializers import (
     DeviceSerializer,
-    DeviceValueSerializer
+    DeviceReadingSerializer
 )
 
 from .helpers import (
@@ -210,9 +210,32 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         #return Response(status=status.HTTP_204_NO_CONTENT)        
         #
 
-class DeviceValueViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
-    queryset = DeviceValue.objects.all()
-    serializer_class = DeviceValueSerializer
+    @action(methods=['GET'], detail=False)
+    def chart_1(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'quantity': 10,
+                'state': 'Active',
+            },{
+                'quantity': 20,
+                'state': 'Inactive',
+            }],
+        }
+        return JsonResponse(json_)         
+
+    @action(methods=['GET'], detail=False)
+    def chart_2(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'quantity': 0,
+                'tak': 'faham',
+            }],
+        }
+        return JsonResponse(json_)          
+
+class DeviceReadingViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
+    queryset = DeviceReading.objects.all()
+    serializer_class = DeviceReadingSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
@@ -228,7 +251,7 @@ class DeviceValueViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
-        queryset = DeviceValue.objects.all()
+        queryset = DeviceReading.objects.all()
         """
         if user.user_type == 'SU':
             queryset = Device.objects.all()
@@ -248,3 +271,15 @@ class DeviceValueViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         # Compare the new data with pickle
         # If return true, change appliance to is_active to true?
         return 'depickled'
+
+
+    @action(methods=['GET'], detail=False)
+    def chart_1(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'quantity': 0,
+                'tak': 'faham',
+            }],
+        }
+        return JsonResponse(json_)  
+
