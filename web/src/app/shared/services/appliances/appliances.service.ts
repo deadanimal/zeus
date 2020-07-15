@@ -19,6 +19,9 @@ export class AppliancesService {
   public appliances: Appliance[] = []
   public appliancesFiltered: Appliance[] = []
 
+  public chart_1
+  public chart_2
+
   constructor(
     private http: HttpClient
   ) { }
@@ -74,6 +77,26 @@ export class AppliancesService {
       tap((res) => {
         this.appliancesFiltered = res
         console.log('Appliances filtered: ', this.appliancesFiltered)
+      })
+    )
+  }
+
+  getChart1() {
+    let urlTemp = this.urlAppliances + 'chart_1/'
+    return this.http.get<any>(urlTemp).pipe(
+      tap((res) => {
+        this.chart_1 = res
+        // console.log('Appliances filtered: ', this.appliancesFiltered)
+      })
+    )
+  }
+
+  getChart2() {
+    let urlTemp = this.urlAppliances + 'chart_2/'
+    return this.http.get<any>(urlTemp).pipe(
+      tap((res) => {
+        this.chart_2 = res
+        // console.log('Appliances filtered: ', this.appliancesFiltered)
       })
     )
   }

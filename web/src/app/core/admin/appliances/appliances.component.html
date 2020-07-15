@@ -42,7 +42,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                        
+                        <div class="amchart" id="chart-appliance-1"></div>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                        
+                        <div class="amchart" id="chart-appliance-2"></div>
                     </div>
                 </div>
             </div>
@@ -207,6 +207,34 @@
                     <option *ngFor="let base of bases" value="{{base.id}}">{{base.brand}} {{base.model}}</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Account</label>
+                <select 
+                  class="form-control custom-select"
+                  formControlName="account"
+                >
+                    <option *ngFor="let account of accounts" value="{{account.id}}">{{account.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Active</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="active">
+                    <label class="custom-control-label" for="customCheck1">Active</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Purchase Date</label>
+                <input class="form-control" type="date" value="2018-11-23" formControlName="purchase_date">
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Install Date</label>
+                <input class="form-control" type="date" value="2018-11-23" formControlName="install_date">
+            </div>
         </form>
     </div>
 
@@ -230,3 +258,94 @@
         </button>
     </div>
 </ng-template>
+
+
+<!-- <ng-template #viewData>
+    <div class="modal-header bg-default">
+        <h6 class="modal-title text-white my-auto" id="modal-title-default">
+            A
+        </h6>
+
+        <button
+            aria-label="Close"
+            class="close"
+            data-dismiss="modal"
+            type="button"
+            (click)="closeModal()"
+        >
+            <span aria-hidden="true" class="text-white my-auto"> × </span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="applianceForm">
+            <div class="form-group">
+                <label class="form-control-label">Name</label>
+                <input 
+                  class="form-control"
+                  placeholder="Enter name"
+                  formControlName="name"
+                  type="text"
+                >
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Base</label>
+                <select 
+                  class="form-control custom-select"
+                  formControlName="appliance_base"
+                >
+                    <option *ngFor="let base of bases" value="{{base.id}}">{{base.brand}} {{base.model}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Account</label>
+                <select 
+                  class="form-control custom-select"
+                  formControlName="account"
+                >
+                    <option *ngFor="let account of accounts" value="{{account.id}}">{{account.name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Active</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="active">
+                    <label class="custom-control-label" for="customCheck1">Active</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Purchase Date</label>
+                <input class="form-control" type="date" value="2018-11-23" formControlName="purchase_date">
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label">Install Date</label>
+                <input class="form-control" type="date" value="2018-11-23" formControlName="install_date">
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button 
+            class="btn btn-success"
+            type="button"
+            (click)="confirm('appliance')"
+            [disabled]="!applianceForm.valid"
+        >
+            Create
+        </button>
+
+        <button
+            class="btn btn-outline-danger ml-auto"
+            data-dismiss="modal"
+            type="button"
+            (click)="closeModal()"
+        >
+            Close
+        </button>
+    </div>
+</ng-template> -->
