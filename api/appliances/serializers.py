@@ -14,7 +14,8 @@ from django.utils.timezone import now
 from .models import (
     Appliance,
     ApplianceBase,
-    ApplianceTransaction
+    ApplianceTransaction,
+    ApplianceTransactionMode
 )
 
 
@@ -35,4 +36,10 @@ class ApplianceTransactionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ApplianceTransaction
-        fields = '__all__'                
+        fields = '__all__'         
+
+class ApplianceTransactionModeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ApplianceTransactionMode
+        fields = '__all__'                   

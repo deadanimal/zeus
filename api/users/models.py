@@ -11,6 +11,8 @@ class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(blank=True, max_length=255)
 
+    mobile_number = models.IntegerField(null=True)
+
     active = models.BooleanField(default=False)
     enabled = models.BooleanField(default=False)
 

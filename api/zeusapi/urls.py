@@ -55,18 +55,20 @@ from aimodels.views import (AimodelViewSet)
 from appliances.views import (
     ApplianceViewSet,
     ApplianceBaseViewSet,
-    ApplianceTransactionViewSet)
+    ApplianceTransactionViewSet,
+    ApplianceTransactionModeViewSet)
 from bills.views import (BillViewSet)
 from buildings.views import (BuildingViewSet)
 from devices.views import (
     DeviceViewSet,
-    DeviceValueViewSet
+    DeviceReadingViewSet
 )
 from gateways.views import (GatewayViewSet)
 from goals.views import (GoalViewSet)
 from notifications.views import (NotificationViewSet)
 from plants.views import (PlantViewSet)
 from reports.views import (ReportViewSet)
+from services.views import (ServiceViewSet)
 from tickets.views import (
     TicketViewSet,
     TicketMessageViewSet)
@@ -92,6 +94,10 @@ appliances_router.register(
    parents_query_lookups=['to_it']
 )
 
+appliance_transaction_modes_router = router.register(
+    'appliance_transaction_modes', ApplianceTransactionModeViewSet
+)
+
 base_appliances_router = router.register(
     'base-appliances', ApplianceBaseViewSet
 )
@@ -110,7 +116,7 @@ devices_router = router.register(
 )
 
 device_valies_router = router.register(
-    'device-values', DeviceValueViewSet
+    'device-readings', DeviceReadingViewSet
 )
 
 gateways_router = router.register(
@@ -131,6 +137,10 @@ plants_router = router.register(
 
 reports_router = router.register(
     'reports', ReportViewSet
+)
+
+services_router = router.register(
+    'services', ServiceViewSet
 )
 
 tickets_router = router.register(

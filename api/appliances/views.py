@@ -16,13 +16,15 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import (
     Appliance, 
     ApplianceBase,
-    ApplianceTransaction
+    ApplianceTransaction,
+    ApplianceTransactionMode
 )
 
 from .serializers import (
     ApplianceSerializer, 
     ApplianceBaseSerializer,
-    ApplianceTransactionSerializer
+    ApplianceTransactionSerializer,
+    ApplianceTransactionModeSerializer
 )
 
 from accounts.models import (
@@ -90,6 +92,23 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         serializer =  ApplianceSerializer(appliance)
         return Response(serializer.data)    
 
+    @action(methods=['GET'], detail=False)
+    def chart_1(self, request, *args, **kwargs):
+        json_ = {
+            'active': 123,
+            'inactive': 21
+        }
+        return JsonResponse(json_)         
+
+    @action(methods=['GET'], detail=False)
+    def chart_2(self, request, *args, **kwargs):
+        import datetime
+        json_ = {
+            'timestamp': datetime.datetime.now(),
+            'quantity': 21
+        }
+        return JsonResponse(json_)              
+
 
 class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = ApplianceBase.objects.all()
@@ -140,7 +159,27 @@ class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         appliance.active = False
 
         serializer =  ApplianceBaseSerializer(appliance)
-        return Response(serializer.data)            
+        return Response(serializer.data)       
+
+    @action(methods=['GET'], detail=False)
+    def chart_1(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'brand': 'Brand',
+                'quantity': 32100
+            }],
+        }
+        return JsonResponse(json_)         
+
+    @action(methods=['GET'], detail=False)
+    def chart_2(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'group': 'Group',
+                'quantity': 32100
+            }],
+        }
+        return JsonResponse(json_)                
 
 
 
@@ -181,4 +220,74 @@ class ApplianceTransactionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         appliance = self.get_object()
 
         serializer =  ApplianceSerializer(appliance)
-        return Response(serializer.data)         
+        return Response(serializer.data)        
+
+        
+    @action(methods=['GET'], detail=False)
+    def chart_1(self, request, *args, **kwargs):
+        import datetime
+        json_ = {
+            'list_': [{
+                'timestamp': datetime.datetime.now(),
+                'quantity': 231,
+                'state': 'ON',
+                'group': 'G1'
+            }],
+        }
+        return JsonResponse(json_)         
+
+    @action(methods=['GET'], detail=False)
+    def chart_2(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'quantity': 231,
+                'state': 'ON',
+            }],
+        }
+        return JsonResponse(json_)   
+
+
+class ApplianceTransactionModeViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
+    queryset = ApplianceTransactionMode.objects.all()
+    serializer_class = ApplianceTransactionModeSerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+
+    def get_permissions(self):
+        permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]    
+
+    
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.user_type == 'SU':
+            queryset = ApplianceTransaction.objects.all()
+        elif user.user_type == 'LV':
+            pass
+        elif user.user_type == 'HT':
+            pass
+        elif user.user_type == 'UT':
+            pass                
+        else:
+            queryset = ApplianceTransaction.objects.none()        
+        return queryset          
+
+    @action(methods=['GET'], detail=False)
+    def chart_1(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'quantity': 0,
+                'tak': 'faham',
+            }],
+        }
+        return JsonResponse(json_)         
+
+    @action(methods=['GET'], detail=False)
+    def chart_2(self, request, *args, **kwargs):
+        json_ = {
+            'list_': [{
+                'quantity': 0,
+                'tak': 'faham',
+            }],
+        }
+        return JsonResponse(json_)          

@@ -12,20 +12,12 @@ from django.utils.timezone import now
 
 
 from .models import (
-    Device,
-    DeviceReading
+    Service
 )
 
 
-class DeviceSerializer(serializers.ModelSerializer):
+class ServiceSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Device
-        fields = '__all__'
-
-
-class DeviceReadingSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = DeviceReading
+        model = Service
         fields = '__all__'
