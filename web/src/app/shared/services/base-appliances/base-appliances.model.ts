@@ -5,6 +5,8 @@ export class BaseAppliance {
     public model: string
     public year: string
     public manufacturer: string
+    public batch_num: string
+    public group: string
 
     constructor(
         id: string,
@@ -12,7 +14,9 @@ export class BaseAppliance {
         brand: string,
         model: string,
         year: string,
-        manufacturer: string
+        manufacturer: string,
+        batch_num: string,
+        group: string
     ) {
         this.id = id
         this.active = active
@@ -20,5 +24,7 @@ export class BaseAppliance {
         this.model = model
         this.year = year
         this.manufacturer = manufacturer
+        this.batch_num = batch_num
+        this.group = group
     }
 }

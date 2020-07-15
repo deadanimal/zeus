@@ -24,6 +24,18 @@ import { DatabaseAppliancesComponent } from './database-appliances/database-appl
 import { DatabaseDevicesComponent } from './database-devices/database-devices.component';
 import { BillingComponent } from './billing/billing.component';
 import { ToolsComponent } from './tools/tools.component';
+import { UsersComponent } from './users/users.component';
+import { ControlPowerComponent } from './control-power/control-power.component';
+import { DevicesComponent } from './devices/devices.component';
+import { DeviceReadingsComponent } from './device-readings/device-readings.component';
+import { DeviceInstallMaintenanceComponent } from './device-install-maintenance/device-install-maintenance.component';
+import { AppliancesComponent } from './appliances/appliances.component';
+import { AppliancesBaseComponent } from './appliances-base/appliances-base.component';
+import { AppliancesTransactionComponent } from './appliances-transaction/appliances-transaction.component';
+import { AppliancesModeComponent } from './appliances-mode/appliances-mode.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { ControlTowerComponent } from './control-tower/control-tower.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +47,19 @@ import { ToolsComponent } from './tools/tools.component';
     DatabaseAppliancesComponent,
     DatabaseDevicesComponent,
     BillingComponent,
-    ToolsComponent
+    ToolsComponent,
+    UsersComponent,
+    ControlPowerComponent,
+    DevicesComponent,
+    DeviceReadingsComponent,
+    DeviceInstallMaintenanceComponent,
+    AppliancesComponent,
+    AppliancesBaseComponent,
+    AppliancesTransactionComponent,
+    AppliancesModeComponent,
+    AccountsComponent,
+    NotificationsComponent,
+    ControlTowerComponent
   ],
   imports: [
     CommonModule,

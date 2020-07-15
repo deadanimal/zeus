@@ -39,9 +39,25 @@ export const ROUTES: RouteInfo[] = [
     collapse: 'database',
     isCollapsed: true,
     children: [
-      { path: 'summary', title: 'Summary', type: 'link' },
-      { path: 'appliances', title: 'Appliances', type: 'link' },
-      { path: 'devices', title: 'Devices', type: 'link' },
+      // { path: 'summary', title: 'Summary', type: 'link' },
+      { 
+        path: 'appliances', title: 'Appliances', type: 'sub', isCollapsed: true, collapse: 'appliances', children: [
+          { path: 'appliances', title: 'Appliances', type: 'link' },
+          { path: 'appliances-base', title: 'Appliance Bases', type: 'link' },
+          { path: 'appliances-mode', title: 'Appliance Modes', type: 'link' },
+          { path: 'appliances-transaction', title: 'Appliance Transactions', type: 'link' },
+        ]
+      },
+      { 
+        path: 'devices', title: 'Devices', type: 'sub', isCollapsed: true, collapse: 'devices', children: [
+          { path: 'devices', title: 'Devices', type: 'link' },
+          { path: 'device-readings', title: 'Devices Reading', type: 'link' },
+          { path: 'device-install-maintain', title: 'Devices Install & Reading', type: 'link' },
+        ]
+      },
+      { path: 'accounts', title: 'Accounts', type: 'link' },
+      { path: 'users', title: 'Users', type: 'link'},
+      { path: 'notifications', title: 'Notifications', type: 'link'}
       // { path: '', title: '', type: 'link' },
     ]
   },
@@ -58,16 +74,10 @@ export const ROUTES: RouteInfo[] = [
   //   ]
   // },
   {
-    path: '/admin/management',
-    title: 'Management',
-    type: 'sub',
-    icontype: 'fas fa-file-alt text-primary',
-    collapse: 'management',
-    isCollapsed: true,
-    children: [
-      { path: 'audit-trails', title: 'Audit Trails', type: 'link' },
-      { path: 'user', title: 'User', type: 'link' }
-    ]
+    path: '/admin/control-tower',
+    title: 'Control Tower',
+    type: 'link',
+    icontype: 'fas fa-broadcast-tower text-primary',
   },
   {
     path: '/admin/report',
