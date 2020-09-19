@@ -30,9 +30,16 @@
         <img *ngIf="appliance.type == 'Air'" [src]="iconAir">
         <img *ngIf="appliance.type == 'Deep'" [src]="iconDeep">
         <img *ngIf="appliance.type == 'Blender'" [src]="iconBlender">
+        <img *ngIf="appliance.type == 'Heater'" [src]="iconBlender">
         <img *ngIf="appliance.type == 'Induction'" [src]="iconInduction">
         <img *ngIf="appliance.type == 'Iron'" [src]="iconIron">
-        <img *ngIf="appliance.type == 'Vacuum'" [src]="iconVacuum">
+        <img *ngIf="appliance.type == 'Vaccuum'" [src]="iconVacuum">
+        <img *ngIf="appliance.type == 'Water'" [src]="iconWater">
+        <img *ngIf="appliance.type == 'Rice'" [src]="iconCooker">
+        <img *ngIf="appliance.type == 'Pressure'" [src]="iconCooker">
+        <img *ngIf="appliance.type == 'Oven'" [src]="iconMicrowave">
+        <img *ngIf="appliance.type == 'Steamer'" [src]="iconSteamer">
+        <img *ngIf="appliance.type == 'Kettle'" [src]="iconKettle">
       </ion-avatar>
 
       <ion-label class="ion-text-wrap">
@@ -45,12 +52,10 @@
     <ion-avatar slot="start">
       <img [src]="iconLCD">
     </ion-avatar>
-
     <ion-label class="ion-text-wrap">
       <h2>Name</h2>
       <p>Description</p>
     </ion-label>
-
     <ion-label slot="end" class="ion-text-right">
       <ion-badge color="success">On</ion-badge>
       <p>Reading</p>
