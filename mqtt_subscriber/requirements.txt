@@ -1,0 +1,12 @@
+boto3==1.14.9
+botocore==1.17.9
+docutils==0.15.2
+gmqtt==0.6.5
+jmespath==0.10.0
+python-dateutil==2.8.1
+python-http-client==3.2.7
+s3transfer==0.3.3
+sendgrid==6.3.1
+six==1.15.0
+urllib3==1.25.9
+uvloop==0.14.0
