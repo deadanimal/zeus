@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -11,7 +12,6 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpTokenInterceptor } from './shared/interceptor/http.token.interceptor';
-import { AuthService } from './shared/services/auth/auth.service';
 import { JwtService } from './shared/handler/jwt/jwt.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { JwtHelperService } from '@auth0/angular-jwt';

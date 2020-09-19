@@ -18,15 +18,64 @@
 			<ion-row>
 				<ion-col>
 					<img src="assets/red.png">
-					<p class="ion-text-center ion-padding-bottom">Please enter your data</p>
+					<p class="ion-text-center ion-padding-bottom">Register User Account</p>
 	
 					<form
 						class="form"
 						[formGroup]="registerForm"
 						(ngSubmit)="register()"
 					>
+
 						<ion-item lines="none" class="ion-no-padding ion-no-margin">
-							<ion-label position="stacked">Your Username</ion-label>
+							<ion-label position="stacked">Full name</ion-label>
+							<ion-input type="text" formControlName="name" placeholder="eg:980528105610"></ion-input>
+						</ion-item>
+
+						<div class="validation-errors">
+							<ng-container *ngFor="let message of registerFormMessages.name">
+								<div 
+									class="error-message"
+									*ngIf="registerForm.get('name').hasError(message.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)"
+								>
+									{{ message.message }}
+								</div>
+							</ng-container>
+						</div>
+
+						<ion-item lines="none" class="ion-no-padding ion-no-margin">
+							<ion-label position="stacked">IC number</ion-label>
+							<ion-input type="text" formControlName="identification_number" placeholder="eg:980528105610"></ion-input>
+						</ion-item>
+
+						<div class="validation-errors">
+							<ng-container *ngFor="let message of registerFormMessages.identification_number">
+								<div 
+									class="error-message"
+									*ngIf="registerForm.get('identification_number').hasError(message.type) && (registerForm.get('identification_number').dirty || registerForm.get('identification_number').touched)"
+								>
+									{{ message.message }}
+								</div>
+							</ng-container>
+						</div>
+
+						<ion-item lines="none" class="ion-no-padding ion-no-margin">
+							<ion-label position="stacked">Mobile number</ion-label>
+							<ion-input type="text" formControlName="mobile_number" placeholder="eg:0164567789"></ion-input>
+						</ion-item>
+
+						<div class="validation-errors">
+							<ng-container *ngFor="let message of registerFormMessages.mobile_number">
+								<div 
+									class="error-message"
+									*ngIf="registerForm.get('mobile_number').hasError(message.type) && (registerForm.get('mobile_number').dirty || registerForm.get('mobile_number').touched)"
+								>
+									{{ message.message }}
+								</div>
+							</ng-container>
+						</div>
+
+						<ion-item lines="none" class="ion-no-padding ion-no-margin">
+							<ion-label position="stacked">Email</ion-label>
 							<ion-input type="text" formControlName="username" placeholder="Username"></ion-input>
 						</ion-item>
 	
@@ -42,7 +91,7 @@
 						</div>
 	
 						<ion-item lines="none" class="ion-no-padding ion-no-margin">
-							<ion-label position="stacked">Your Password</ion-label>
+							<ion-label position="stacked">Password</ion-label>
 							<ion-input type="text" formControlName="password1" placeholder="Password"></ion-input>
 						</ion-item>
 	
@@ -58,7 +107,7 @@
 						</div>
 	
 						<ion-item lines="none" class="ion-no-padding ion-no-margin">
-							<ion-label position="stacked">Confirm Your Password</ion-label>
+							<ion-label position="stacked">Confirm Password</ion-label>
 							<ion-input type="password" formControlName="password2" placeholder="Confirm password"></ion-input>
 						</ion-item>
 	
@@ -83,6 +132,7 @@
 							>
 								Register
 							</ion-button>
+						
 							<ion-button
 								disabled
 								*ngIf="isLoading"

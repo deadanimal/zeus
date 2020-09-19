@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content>
+
   <canvas #canvasPower></canvas>
 
   <ion-list
@@ -21,41 +22,32 @@
     </div>
     
     <div [hidden]="isFeedEmpty">
-      <ion-item lines="none" *ngFor="let feed of feeds">
+      <ion-item lines="none" *ngFor="let activity of activities">
         <ion-avatar slot="start">
-          <img *ngIf="feed.appliance == 'TV'" [src]="iconLCD">
-          <img *ngIf="feed.appliance == 'Lamp'" [src]="iconLamp">
-          <img *ngIf="feed.appliance == 'Light'" [src]="iconLamp1">
-          <img *ngIf="feed.appliance == 'Fridge'" [src]="iconDryer">
-          <img *ngIf="feed.appliance == 'AC'" [src]="iconAirCond">
-          <img *ngIf="feed.appliance == 'AC NI'" [src]="iconAirCond">
-          <img *ngIf="feed.appliance == 'Dishwasher'" [src]="iconDishwasher">
-          <img *ngIf="feed.appliance == 'Toaster'" [src]="iconToaster">
-          <img *ngIf="feed.appliance == 'Dryer'" [src]="iconDryer">
-          <img *ngIf="feed.appliance == 'Washing'" [src]="iconDryer">
-          <img *ngIf="feed.appliance == 'Microwave'" [src]="iconMicrowave">
-          <img *ngIf="feed.appliance == 'Air'" [src]="iconAir">
-          <img *ngIf="feed.appliance == 'Deep'" [src]="iconDeep">
-          <img *ngIf="feed.appliance == 'Blender'" [src]="iconBlender">
-          <img *ngIf="feed.appliance == 'Heater'" [src]="iconBlender">
-          <img *ngIf="feed.appliance == 'Induction'" [src]="iconInduction">
-          <img *ngIf="feed.appliance == 'Iron'" [src]="iconIron">
-          <img *ngIf="feed.appliance == 'Vaccuum'" [src]="iconVacuum">
-          <img *ngIf="feed.appliance == 'Water'" [src]="iconWater">
-          <img *ngIf="feed.appliance == 'Pressure Cooker'" [src]="iconCooker">
-          <img *ngIf="feed.appliance == 'Rice Cooker'" [src]="iconCooker">
-          <img *ngIf="feed.appliance == 'Pressure'" [src]="iconCooker">
-          <img *ngIf="feed.appliance == 'Oven'" [src]="iconMicrowave">
-          <img *ngIf="feed.appliance == 'Steamer'" [src]="iconSteamer">
-          <img *ngIf="feed.appliance == 'Kettle'" [src]="iconKettle">
+          <img *ngIf="activity.appliance == 'TV'" [src]="iconLCD">
+          <img *ngIf="activity.appliance == 'Lamp'" [src]="iconLamp">
+          <img *ngIf="activity.appliance == 'Light'" [src]="iconLamp1">
+          <img *ngIf="activity.appliance == 'Fridge'" [src]="iconDryer">
+          <img *ngIf="activity.appliance == 'AC'" [src]="iconAirCond">
+          <img *ngIf="activity.appliance == 'Dishwasher'" [src]="iconDishwasher">
+          <img *ngIf="activity.appliance == 'Toaster'" [src]="iconToaster">
+          <img *ngIf="activity.appliance == 'Dryer'" [src]="iconDryer">
+          <img *ngIf="activity.appliance == 'Washing'" [src]="iconDryer">
+          <img *ngIf="activity.appliance == 'Microwave'" [src]="iconMicrowave">
+          <img *ngIf="activity.appliance == 'Air'" [src]="iconAir">
+          <img *ngIf="activity.appliance == 'Deep'" [src]="iconDeep">
+          <img *ngIf="activity.appliance == 'Blender'" [src]="iconBlender">
+          <img *ngIf="activity.appliance == 'Induction'" [src]="iconInduction">
+          <img *ngIf="activity.appliance == 'Iron'" [src]="iconIron">
+          <img *ngIf="activity.appliance == 'Vacuum'" [src]="iconVacuum">
         </ion-avatar>
         <ion-label class="ion-text-wrap">
-          <h2>{{feed.appliance}}</h2>
+          <h2>{{activity.appliance}}</h2>
         </ion-label>
         <ion-label slot="end" class="ion-text-wrap ion-text-right">
-          <ion-badge *ngIf="feed.at_state == 'ON'" color="success">ON</ion-badge>
-          <ion-badge *ngIf="feed.at_state == 'OF'" color="light">OFF</ion-badge>
-          <p>{{feed.created_at}}</p>
+        <ion-badge color="success">ON</ion-badge>
+          <ion-badge color="light">OFF</ion-badge>
+          <h2>{{activity.created_date}}</h2>
         </ion-label>
       </ion-item>
     </div>

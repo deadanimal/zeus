@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Activity } from 'src/assets/mock/activities';
 import { Router } from '@angular/router';
 import { Chart } from "chart.js";
 import { DevicesService } from 'src/app/shared/services/devices/devices.service';
 import { interval } from 'rxjs';
 import * as moment from 'moment';
-import { AppliancesService } from 'src/app/shared/services/appliances/appliances.service';
-import { Appliance } from 'src/app/shared/services/appliances/appliances.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,22 +15,19 @@ export class DashboardPage implements OnInit {
 
   // Data
   activities = []
-  activitiesLengthOld = 0
-  activitiesLengthNew = 0
+  today:string
 
   notiActivities = []
 
   dataKiri: number = 0
   dataKanan: number = 0
 
-  feeds: any[] = []
-
   // Segment
   segment: string
 
   // Chart
-  @ViewChild('canvasPower', { static: false }) canvasPower: ElementRef
-  @ViewChild('canvasAppliance', { static: false }) canvasAppliance: ElementRef
+  @ViewChild('canvasPower', {static: true}) canvasPower: ElementRef
+  @ViewChild('canvasAppliance', {static: false}) canvasAppliance: ElementRef
   private chartPower
   private chartAppliance
 
@@ -43,7 +38,7 @@ export class DashboardPage implements OnInit {
   // Length
   notifyMe: any[] = []
 
-  intervalFeed
+  intervalNoti
   intervalCSV
 
   // Icon
@@ -63,108 +58,34 @@ export class DashboardPage implements OnInit {
   iconInduction = 'assets/img/appliance/induction.svg'
   iconIron = 'assets/img/appliance/iron.svg'
   iconVacuum = 'assets/img/appliance/vacuum.svg'
-  iconWater = 'assets/img/appliance/water-heater.svg'
-  iconCooker = 'assets/img/appliance/rice-cooker.svg'
-  iconSteamer = 'assets/img/appliance/steamer.svg'
-  iconKettle = 'assets/img/appliance/kettle.svg'
 
   constructor(
     private deviceService: DevicesService,
-    private applianceService: AppliancesService,
     private router: Router
-  ) {
+  ) { 
     this.getData()
+    this.getCSV()
   }
 
   ngOnInit() {
     this.segment = 'P'
-    
-    this.intervalFeed = setInterval(
+    this.intervalNoti = setInterval(
       () => {
-        this.getFeeds()
-        this.getCSV()
-      }, 2000
+        this.getNoti()
+      },
+      10000
     )
-  }
 
-  getFeeds() {
-    this.applianceService.getActivity().subscribe(
-      (res) => {
-        // console.log()
-        this.activities  = res
-        if (this.activitiesLengthNew == 0) {
-          this.activitiesLengthNew = this.activities.length
-        }
-        else {
-          this.activitiesLengthOld = this.activitiesLengthNew
-          this.activitiesLengthNew = this.activities.length
-        }
-
-        console.log('old', this.activitiesLengthOld)
-        console.log('new', this.activitiesLengthNew)
-
-        if (this.activitiesLengthNew != this.activitiesLengthOld) {
-          if (this.feeds.length < 5) {
-            console.log('Feed < 5')
-            this.applianceService.appliances.forEach(
-              (appliance) => {
-                if (appliance.id == this.activities[this.activitiesLengthNew-1].appliance) {
-                  let applianceName = appliance.name
-                  let timestamp = moment(this.activities[this.activitiesLengthNew-1].created_at).format('hh:mm:ss A')
-                  this.activities[this.activitiesLengthNew-1].appliance = applianceName
-                  this.activities[this.activitiesLengthNew-1].created_at = timestamp
-                  this.feeds.push(this.activities[this.activitiesLengthNew-1])
-                  console.log( 'gee',this.activities[this.activitiesLengthNew-1])
-                  console.log('Jumpa if')
-                  this.isFeedEmpty = false
-                  
-                }
-              }
-            )
-          }
-          else {            
-            this.applianceService.appliances.forEach(
-              (appliance) => {
-                if (appliance.id == this.activities[this.activitiesLengthNew-1].appliance) {
-                  console.log('Jumpa else')
-                  let applianceName = appliance.name
-                  let timestamp = moment(this.activities[this.activitiesLengthNew-1].created_at).format('hh:mm:ss A')
-                  this.activities[this.activitiesLengthNew-1].appliance = applianceName
-                  this.activities[this.activitiesLengthNew-1].created_at = timestamp
-                  this.feeds.push(this.activities[this.activitiesLengthNew-1])
-                  this.feeds.shift()
-                }
-              }
-            )
-          }
-        }
-      }
-    )
-  }
-
-  getCSV() {
-    this.deviceService.getCSV().subscribe(
-      (res) => {
-        console.log('l', res.body.length)
-        if (res.body.length < 100) {
-          let newData = JSON.parse(res.body)
-          if (newData.device == 'bolt-003') {
-
-            let label = moment.unix(newData.time).format('h:mm:ss a')
-            let power = newData.power
-            console.log('update', label, power)
-            this.chartPower.data.labels.push(label)
-            this.chartPower.data.datasets[0].data.push(power)
-            this.chartPower.update()
-          }
-        }
-        // console.log()
-      }
-    )
   }
 
   getData() {
-    this.applianceService.get().subscribe()
+    this.activities = Activity
+    if (this.activities.length == 0) {
+      this.isFeedEmpty = true
+    }
+    else {
+      this.isFeedEmpty = false
+    }
   }
 
   view() {
@@ -177,10 +98,9 @@ export class DashboardPage implements OnInit {
     this.initChartAppliance()
   }
 
-  ionViewWillLeave() {
+  ngOnDestroy() {
     clearInterval(this.intervalCSV)
-    clearInterval(this.intervalFeed)
-    console.log('destroy')
+    clearInterval(this.intervalNoti)
   }
 
   segmentChanged(ev: any) {
@@ -205,35 +125,35 @@ export class DashboardPage implements OnInit {
   initChartAppliance() {
     this.chartAppliance = new Chart(this.canvasAppliance.nativeElement, {
       type: 'pie',
-      data: {
-        datasets: [{
-          data: [
+			data: {
+				datasets: [{
+					data: [
             55,
             120,
             155,
             160,
             95
-          ],
-          backgroundColor: [
-            'red',
-            'orange',
-            'yellow',
-            'green',
-            'blue',
-          ],
-          label: 'Dataset 1'
-        }],
-        labels: [
-          'Lamp',
-          'Solar',
-          'Fridge',
-          'Microwave',
-          'Fan'
-        ]
-      },
-      options: {
-        responsive: true
-      }
+					],
+					backgroundColor: [
+						'red',
+						'orange',
+						'yellow',
+						'green',
+						'blue',
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Lamp',
+					'Solar',
+					'Fridge',
+					'Microwave',
+					'Fan'
+				]
+			},
+			options: {
+				responsive: true
+			}
     })
   }
 
@@ -271,7 +191,58 @@ export class DashboardPage implements OnInit {
 
   }
 
-  
+  getCSV() {
+    console.log('Hello ninjaboi')
+    // Baru comment sini // SB
+    // this.deviceService.getCSV().subscribe(
+    //   (res) => {
+    //     let row = res.body.split(",")
+    //     if (res.body.length < 30) {
+    //       let label = moment.unix(res.test).format('h:mm:ss a')
+    //       let data1 = row[0]*240/1000
+    //       let data2 = row[1]*240/1000
+    //       let data3 = row[2]*240/1000
+    //       this.dataKiri = (this.dataKiri + data1 + data2 + data3) / 60
+    //       this.dataKanan = (this.dataKanan + data1 + data2 + data3) / 50
+    //       this.chartPower.data.labels.push(label)
+    //       this.chartPower.data.datasets[0].data.push(data1)
+    //       this.chartPower.data.datasets[1].data.push(data2)
+    //       this.chartPower.data.datasets[2].data.push(data3)
+    //       this.chartPower.update()
+    //     }
+    //     // console.log('Dashboard: ', res)
+    //     // this.
+    //     console.log()
+    //   }
+    // )
+    // End comment // SB
+
+    // this.intervalCSV = setInterval(
+    //   () => {
+    //     this.deviceService.getCSV().subscribe(
+    //       (res) => {
+    //         let row = res.body.split(",")
+    //         if (res.body.length < 30) {
+    //           let label = moment.unix(res.test).format('h:mm:ss a')
+    //           let data1 = row[0]*240/1000
+    //           let data2 = row[1]*240/1000
+    //           let data3 = row[2]*240/1000
+    //           this.dataKiri = (this.dataKiri + data1 + data2 + data3) / 60
+    //           this.dataKanan = (this.dataKanan + data1 + data2 + data3) / 50
+    //           this.chartPower.data.labels.push(label)
+    //           this.chartPower.data.datasets[0].data.push(data1)
+    //           this.chartPower.data.datasets[1].data.push(data2)
+    //           this.chartPower.data.datasets[2].data.push(data3)
+    //           this.chartPower.update()
+    //         }
+    //         // console.log('Dashboard: ', res)
+    //         // this.
+    //         console.log()
+    //       }
+    //     )
+    //   }, 1000
+    // )
+  }
 
   addData(chart, label, data) {
 
@@ -280,19 +251,27 @@ export class DashboardPage implements OnInit {
 
   getNoti() {
     this.notiActivities = []
-    this.deviceService.getValue().subscribe(
-      (res: any[]) => {
-        res = res.sort((n1, n2) => n1 - n2);
-        res.forEach(
-          (data) => {
-            data.time = moment.unix(data.time).format('h:mm:ss a')
-            this.notiActivities.push(data)
-          }
-        )
-      },
-      () => { },
-      () => { }
-    )
+    console.log('Hello ninjaboi')
+    // Baru comment sini // SB
+    // this.deviceService.getValue().subscribe(
+    //   (res: any[]) => {
+    //     res = res.sort((n1,n2) => n1 - n2);
+    //     res.forEach(
+    //       (data) => {
+    //         data.time = moment.unix(data.time).format('h:mm:ss a')
+    //         this.notiActivities.push(data)
+    //       }
+    //     )
+    //   },
+    //   () => {},
+    //   () => {}
+    // )
+    // End comment // SB
   }
 
+  // getDate(){
+  //     const now = new Date();
+  //     this.today = now.toISOString();
+  //   }
+    
 }

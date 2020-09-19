@@ -464,15 +464,15 @@ const routes = [
     },
     {
         path: 'auth/login',
-        loadChildren: () => Promise.all(/*! import() | auth-login-login-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~core-profile~df7a72ef"), __webpack_require__.e("common"), __webpack_require__.e("auth-login-login-module")]).then(__webpack_require__.bind(null, /*! ./auth/login/login.module */ "./src/app/auth/login/login.module.ts")).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() | auth-login-login-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("common"), __webpack_require__.e("auth-login-login-module")]).then(__webpack_require__.bind(null, /*! ./auth/login/login.module */ "./src/app/auth/login/login.module.ts")).then(m => m.LoginPageModule)
     },
     {
         path: 'auth/register',
-        loadChildren: () => Promise.all(/*! import() | auth-register-register-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~core-profile~df7a72ef"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null, /*! ./auth/register/register.module */ "./src/app/auth/register/register.module.ts")).then(m => m.RegisterPageModule)
+        loadChildren: () => Promise.all(/*! import() | auth-register-register-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("common"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null, /*! ./auth/register/register.module */ "./src/app/auth/register/register.module.ts")).then(m => m.RegisterPageModule)
     },
     {
         path: 'auth/forgot',
-        loadChildren: () => Promise.all(/*! import() | auth-forgot-forgot-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~core-profile~df7a72ef"), __webpack_require__.e("auth-forgot-forgot-module")]).then(__webpack_require__.bind(null, /*! ./auth/forgot/forgot.module */ "./src/app/auth/forgot/forgot.module.ts")).then(m => m.ForgotPageModule)
+        loadChildren: () => Promise.all(/*! import() | auth-forgot-forgot-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("auth-forgot-forgot-module")]).then(__webpack_require__.bind(null, /*! ./auth/forgot/forgot.module */ "./src/app/auth/forgot/forgot.module.ts")).then(m => m.ForgotPageModule)
     },
     {
         path: 'auth',
@@ -515,25 +515,33 @@ const routes = [
         loadChildren: () => __webpack_require__.e(/*! import() | core-profile-help-ticket-profile-help-ticket-module */ "core-profile-help-ticket-profile-help-ticket-module").then(__webpack_require__.bind(null, /*! ./core/profile-help-ticket/profile-help-ticket.module */ "./src/app/core/profile-help-ticket/profile-help-ticket.module.ts")).then(m => m.ProfileHelpTicketPageModule)
     },
     {
-        path: 'bills',
-        loadChildren: () => __webpack_require__.e(/*! import() | core-bills-bills-module */ "core-bills-bills-module").then(__webpack_require__.bind(null, /*! ./core/bills/bills.module */ "./src/app/core/bills/bills.module.ts")).then(m => m.BillsPageModule)
+        path: 'information',
+        loadChildren: () => __webpack_require__.e(/*! import() | core-information-information-module */ "core-information-information-module").then(__webpack_require__.bind(null, /*! ./core/information/information.module */ "./src/app/core/information/information.module.ts")).then(m => m.InformationPageModule)
     },
     {
         path: 'appliances',
         loadChildren: () => Promise.all(/*! import() | core-appliances-appliances-module */[__webpack_require__.e("common"), __webpack_require__.e("core-appliances-appliances-module")]).then(__webpack_require__.bind(null, /*! ./core/appliances/appliances.module */ "./src/app/core/appliances/appliances.module.ts")).then(m => m.AppliancesPageModule)
     },
     {
-        path: 'bill-detail',
-        loadChildren: () => __webpack_require__.e(/*! import() | core-bill-detail-bill-detail-module */ "core-bill-detail-bill-detail-module").then(__webpack_require__.bind(null, /*! ./core/bill-detail/bill-detail.module */ "./src/app/core/bill-detail/bill-detail.module.ts")).then(m => m.BillDetailPageModule)
-    },
-    {
-        path: 'bill-payment',
-        loadChildren: () => __webpack_require__.e(/*! import() | core-bill-payment-bill-payment-module */ "core-bill-payment-bill-payment-module").then(__webpack_require__.bind(null, /*! ./core/bill-payment/bill-payment.module */ "./src/app/core/bill-payment/bill-payment.module.ts")).then(m => m.BillPaymentPageModule)
-    },
-    {
         path: 'appliance-detail',
-        loadChildren: () => Promise.all(/*! import() | core-appliance-detail-appliance-detail-module */[__webpack_require__.e("default~core-appliance-detail-appliance-detail-module~core-dashboard-dashboard-module"), __webpack_require__.e("core-appliance-detail-appliance-detail-module")]).then(__webpack_require__.bind(null, /*! ./core/appliance-detail/appliance-detail.module */ "./src/app/core/appliance-detail/appliance-detail.module.ts")).then(m => m.ApplianceDetailPageModule)
+        loadChildren: () => Promise.all(/*! import() | core-appliance-detail-appliance-detail-module */[__webpack_require__.e("default~core-appliance-detail-appliance-detail-module~core-dashboard-dashboard-module"), __webpack_require__.e("common"), __webpack_require__.e("core-appliance-detail-appliance-detail-module")]).then(__webpack_require__.bind(null, /*! ./core/appliance-detail/appliance-detail.module */ "./src/app/core/appliance-detail/appliance-detail.module.ts")).then(m => m.ApplianceDetailPageModule)
+    },
+    {
+        path: 'auth/success',
+        loadChildren: () => Promise.all(/*! import() | auth-success-success-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("common"), __webpack_require__.e("auth-success-success-module")]).then(__webpack_require__.bind(null, /*! ./auth/success/success.module */ "./src/app/auth/success/success.module.ts")).then(m => m.SuccessPageModule)
     }
+    // {
+    //   path: 'bills',
+    //   loadChildren: () => import('./core/bills/bills.module').then( m => m.BillsPageModule)
+    // },
+    // {
+    //   path: 'bill-detail',
+    //   loadChildren: () => import('./core/bill-detail/bill-detail.module').then( m => m.BillDetailPageModule)
+    // },
+    // {
+    //   path: 'bill-payment',
+    //   loadChildren: () => import('./core/bill-payment/bill-payment.module').then( m => m.BillPaymentPageModule)
+    // }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -846,7 +854,7 @@ let HttpTokenInterceptor = class HttpTokenInterceptor {
                 // Handle offline error
             }
             else {
-                // this.notificationHandler.openToastrError(error.statusText)
+                this.notificationHandler.openToastrError(error.statusText);
                 // this.notificationHandler.openToastrHttp(error.status, error.statusText) <--
                 // Handle Http Error (error.status === 403, 404...)
             }
@@ -905,7 +913,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    baseUrl: 'https://zeus-api.pipe.my/'
+    baseUrl: 'http://127.0.0.1:8000/'
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -952,7 +960,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/syafiqbasri/Development/Skunk/skunk-002-zeus/mobile/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/farrahzelyna/Documents/zeus/mobile/src/main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"dashboard\">\n      <ion-icon name=\"home-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"appliances\">\n      <ion-icon name=\"bulb-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"bills\">\n      <ion-icon name=\"receipt-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"profile\">\n      <ion-icon name=\"person-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n\n</ion-tabs>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"dashboard\">\n      <ion-icon name=\"home-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"appliances\">\n      <ion-icon name=\"bulb-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"information\">\n      <ion-icon name=\"information-circle-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"profile\">\n      <ion-icon name=\"person-outline\"></ion-icon>\n      <ion-label></ion-label>\n    </ion-tab-button>\n  </ion-tab-bar>\n\n</ion-tabs>\n");
 
 /***/ }),
 
@@ -46,11 +46,11 @@ const routes = [
                 ]
             },
             {
-                path: 'bills',
+                path: 'information',
                 children: [
                     {
                         path: '',
-                        loadChildren: () => __webpack_require__.e(/*! import() | core-bills-bills-module */ "core-bills-bills-module").then(__webpack_require__.bind(null, /*! ../../core/bills/bills.module */ "./src/app/core/bills/bills.module.ts")).then(m => m.BillsPageModule)
+                        loadChildren: () => __webpack_require__.e(/*! import() | core-information-information-module */ "core-information-information-module").then(__webpack_require__.bind(null, /*! ../../core/information/information.module */ "./src/app/core/information/information.module.ts")).then(m => m.InformationPageModule)
                     }
                 ]
             },
@@ -68,7 +68,7 @@ const routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () => Promise.all(/*! import() | core-profile-profile-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~core-profile~df7a72ef"), __webpack_require__.e("common"), __webpack_require__.e("core-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ../../core/profile/profile.module */ "./src/app/core/profile/profile.module.ts")).then(m => m.ProfilePageModule)
+                        loadChildren: () => Promise.all(/*! import() | core-profile-profile-module */[__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("common"), __webpack_require__.e("core-profile-profile-module")]).then(__webpack_require__.bind(null, /*! ../../core/profile/profile.module */ "./src/app/core/profile/profile.module.ts")).then(m => m.ProfilePageModule)
                     }
                 ]
             },

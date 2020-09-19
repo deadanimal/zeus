@@ -287,12 +287,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ApplianceDetailPage, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          this.segment = 'D'; // this.intervalCSV = setInterval(
-          //   () => {
-          //     this.getCSV()
-          //   },
-          //   3000
-          // )
+          var _this2 = this;
+
+          this.segment = 'D';
+          this.intervalCSV = setInterval(function () {
+            _this2.getCSV();
+          }, 3000);
         }
       }, {
         key: "ionViewDidEnter",
@@ -316,25 +316,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "segmentChanged",
         value: function segmentChanged(ev) {
-          var _this2 = this;
+          var _this3 = this;
 
           console.log(ev);
 
           if (this.segment == 'D') {
             setTimeout(function () {
-              _this2.initChartDay();
+              _this3.initChartDay();
             }, 1000);
           } else if (this.segment == 'W') {
             setTimeout(function () {
-              _this2.initChartWeek();
+              _this3.initChartWeek();
             }, 1000);
           } else if (this.segment == 'M') {
             setTimeout(function () {
-              _this2.initChartMonth();
+              _this3.initChartMonth();
             }, 1000);
           } else if (this.segment == 'Y') {
             setTimeout(function () {
-              _this2.initChartYear();
+              _this3.initChartYear();
             }, 1000);
           }
         }
@@ -469,125 +469,125 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getCSV",
         value: function getCSV() {
-          var _this3 = this;
+          var _this4 = this;
 
           this.chartDay.data.labels = [];
           this.chartDay.data.datasets.data = [];
           this.deviceService.getValue().subscribe(function (res) {
             res.forEach(function (data) {
-              if (_this3.appliance.type == 'Fridge' && data.label == 'Fridge') {
+              if (_this4.appliance.type == 'Fridge' && data.label == 'Fridge') {
                 var powerValue = Number(data.power) * 240 / 1000;
                 var newTime = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(newTime);
+                _this4.chartDay.data.labels.push(newTime);
 
-                _this3.chartDay.data.datasets[0].data.push(powerValue);
+                _this4.chartDay.data.datasets[0].data.push(powerValue);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'AC' || data.label == 'AC') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'AC' || data.label == 'AC') {
                 console.log('tes');
-                console.log(_this3.appliance.type);
+                console.log(_this4.appliance.type);
                 console.log(data.label);
 
                 var _powerValue = Number(data.power) * 240 / 1000;
 
                 var _newTime = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime);
+                _this4.chartDay.data.labels.push(_newTime);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Dryer' && data.label == 'Dryer') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Dryer' && data.label == 'Dryer') {
                 var _powerValue2 = Number(data.power) * 240 / 1000;
 
                 var _newTime2 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime2);
+                _this4.chartDay.data.labels.push(_newTime2);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue2);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue2);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Washing' && data.label == 'Washing') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Washing' && data.label == 'Washing') {
                 var _powerValue3 = Number(data.power) * 240 / 1000;
 
                 var _newTime3 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime3);
+                _this4.chartDay.data.labels.push(_newTime3);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue3);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue3);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Microwave' && data.label == 'Microwave') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Microwave' && data.label == 'Microwave') {
                 var _powerValue4 = Number(data.power) * 240 / 1000;
 
                 var _newTime4 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime4);
+                _this4.chartDay.data.labels.push(_newTime4);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue4);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue4);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Air' && data.label == 'Air') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Air' && data.label == 'Air') {
                 var _powerValue5 = Number(data.power) * 240 / 1000;
 
                 var _newTime5 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime5);
+                _this4.chartDay.data.labels.push(_newTime5);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue5);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue5);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Deep' && data.label == 'Deep') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Deep' && data.label == 'Deep') {
                 var _powerValue6 = Number(data.power) * 240 / 1000;
 
                 var _newTime6 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime6);
+                _this4.chartDay.data.labels.push(_newTime6);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue6);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue6);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Blender' && data.label == 'Blender') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Blender' && data.label == 'Blender') {
                 var _powerValue7 = Number(data.power) * 240 / 1000;
 
                 var _newTime7 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime7);
+                _this4.chartDay.data.labels.push(_newTime7);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue7);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue7);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Induction' && data.label == 'Induction') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Induction' && data.label == 'Induction') {
                 var _powerValue8 = Number(data.power) * 240 / 1000;
 
                 var _newTime8 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime8);
+                _this4.chartDay.data.labels.push(_newTime8);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue8);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue8);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Iron' && data.label == 'Iron') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Iron' && data.label == 'Iron') {
                 var _powerValue9 = Number(data.power) * 240 / 1000;
 
                 var _newTime9 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime9);
+                _this4.chartDay.data.labels.push(_newTime9);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue9);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue9);
 
-                _this3.chartDay.update();
-              } else if (_this3.appliance.type == 'Vacuum' && data.label == 'Vacuum') {
+                _this4.chartDay.update();
+              } else if (_this4.appliance.type == 'Vacuum' && data.label == 'Vacuum') {
                 var _powerValue10 = Number(data.power) * 240 / 1000;
 
                 var _newTime10 = moment__WEBPACK_IMPORTED_MODULE_6__["unix"](data.time).format('h:mm:ss a');
 
-                _this3.chartDay.data.labels.push(_newTime10);
+                _this4.chartDay.data.labels.push(_newTime10);
 
-                _this3.chartDay.data.datasets[0].data.push(_powerValue10);
+                _this4.chartDay.data.datasets[0].data.push(_powerValue10);
 
-                _this3.chartDay.update();
+                _this4.chartDay.update();
               }
             });
           });

@@ -1,0 +1,40 @@
+<ion-header mode="ios" class="ion-no-border">
+	<ion-toolbar mode="ios" color="primary">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/auth/register" routerLink="/auth/register" routerDirection="back" text="">
+			</ion-back-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" fullscreen>
+	<div class="main-content">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<img src="assets/red.png">
+					<p class="ion-text-center ion-padding-bottom">Register User Account</p>
+
+					<div *ngIf="value===register">
+						<p class="ion-text-center ion-padding-bottom">Register account</p>
+						<ion-card class="card">
+							<ion-card-content>
+								<ng-container>
+									<p style="color:white;">Register success. Please log in into your account</p>
+								</ng-container>
+							</ion-card-content>
+						</ion-card>
+					</div>
+
+					<div class="ion-text-center">
+						<ion-button *ngIf="!isLoading" type="submit" shape="round" color="primary" mode="ios">
+							Login
+						</ion-button>
+					</div>
+
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>
+

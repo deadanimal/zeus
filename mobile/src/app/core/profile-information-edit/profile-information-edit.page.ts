@@ -47,6 +47,9 @@ export class ProfileInformationEditPage implements OnInit {
       ])),
       billing_address: new FormControl(this.user.billing_address, Validators.compose([
         Validators.required
+      ])),
+      mobile_number: new FormControl(this.user.mobile_number, Validators.compose([
+        Validators.required
       ]))
     })
   }

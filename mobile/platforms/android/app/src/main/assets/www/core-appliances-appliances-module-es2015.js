@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header mode=\"ios\" class=\"ion-no-border\">\n  <ion-toolbar mode=\"ios\" color=\"primary\">\n    <ion-title>Appliances</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list mode=\"ios\" class=\"ion-no-margin list-core\">\n    <ion-list-header mode=\"ios\">\n      <h3>Registered Appliances</h3>\n    </ion-list-header>\n\n    <div [hidden]=\"!isListEmpty\">\n      <img [src]=\"iconError\" class=\"error-img\">\n      <p class=\"error-text\">No appliances registered</p>\n    </div>\n\n    <ion-item detail *ngFor=\"let appliance of tempAppliance\" lines=\"none\" (click)=\"view(appliance)\">\n      <ion-avatar slot=\"start\">\n        <img *ngIf=\"appliance.type == 'TV'\" [src]=\"iconLCD\">\n        <img *ngIf=\"appliance.type == 'Lamp'\" [src]=\"iconLamp\">\n        <img *ngIf=\"appliance.type == 'Light'\" [src]=\"iconLamp1\">\n        <img *ngIf=\"appliance.type == 'Fridge'\" [src]=\"iconDryer\">\n        <img *ngIf=\"appliance.type == 'AC'\" [src]=\"iconAirCond\">\n        <img *ngIf=\"appliance.type == 'Dishwasher'\" [src]=\"iconDishwasher\">\n        <img *ngIf=\"appliance.type == 'Toaster'\" [src]=\"iconToaster\">\n        <img *ngIf=\"appliance.type == 'Dryer'\" [src]=\"iconDryer\">\n        <img *ngIf=\"appliance.type == 'Washing'\" [src]=\"iconDryer\">\n        <img *ngIf=\"appliance.type == 'Microwave'\" [src]=\"iconMicrowave\">\n        <img *ngIf=\"appliance.type == 'Air'\" [src]=\"iconAir\">\n        <img *ngIf=\"appliance.type == 'Deep'\" [src]=\"iconDeep\">\n        <img *ngIf=\"appliance.type == 'Blender'\" [src]=\"iconBlender\">\n        <img *ngIf=\"appliance.type == 'Heater'\" [src]=\"iconBlender\">\n        <img *ngIf=\"appliance.type == 'Induction'\" [src]=\"iconInduction\">\n        <img *ngIf=\"appliance.type == 'Iron'\" [src]=\"iconIron\">\n        <img *ngIf=\"appliance.type == 'Vaccuum'\" [src]=\"iconVacuum\">\n        <img *ngIf=\"appliance.type == 'Water'\" [src]=\"iconWater\">\n        <img *ngIf=\"appliance.type == 'Rice'\" [src]=\"iconCooker\">\n        <img *ngIf=\"appliance.type == 'Pressure'\" [src]=\"iconCooker\">\n        <img *ngIf=\"appliance.type == 'Oven'\" [src]=\"iconMicrowave\">\n        <img *ngIf=\"appliance.type == 'Steamer'\" [src]=\"iconSteamer\">\n        <img *ngIf=\"appliance.type == 'Kettle'\" [src]=\"iconKettle\">\n      </ion-avatar>\n\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{appliance.name}}</h2>\n        <!-- <p>{{appliance.description}}</p> -->\n      </ion-label>\n    </ion-item>\n\n  <!-- <ion-item detail lines=\"none\" (click)=\"view()\">\n    <ion-avatar slot=\"start\">\n      <img [src]=\"iconLCD\">\n    </ion-avatar>\n\n    <ion-label class=\"ion-text-wrap\">\n      <h2>Name</h2>\n      <p>Description</p>\n    </ion-label>\n\n    <ion-label slot=\"end\" class=\"ion-text-right\">\n      <ion-badge color=\"success\">On</ion-badge>\n      <p>Reading</p>\n    </ion-label>\n  </ion-item> -->\n  </ion-list>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header mode=\"ios\" class=\"ion-no-border\">\n  <ion-toolbar mode=\"ios\" color=\"primary\">\n    <ion-title>Appliances</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list mode=\"ios\" class=\"ion-no-margin list-core\">\n    <ion-list-header mode=\"ios\">\n      <h3>Registered Appliances</h3>\n    </ion-list-header>\n\n    <div [hidden]=\"!isListEmpty\">\n      <img [src]=\"iconError\" class=\"error-img\">\n      <p class=\"error-text\">No appliances registered</p>\n    </div>\n\n    <ion-item detail *ngFor=\"let appliance of tempAppliance\" lines=\"none\" (click)=\"view(appliance)\">\n      <ion-avatar slot=\"start\">\n        <img *ngIf=\"appliance.type == 'TV'\" [src]=\"iconLCD\">\n        <img *ngIf=\"appliance.type == 'Lamp'\" [src]=\"iconLamp\">\n        <img *ngIf=\"appliance.type == 'Light'\" [src]=\"iconLamp1\">\n        <img *ngIf=\"appliance.type == 'Fridge'\" [src]=\"iconDryer\">\n        <img *ngIf=\"appliance.type == 'AC'\" [src]=\"iconAirCond\">\n        <img *ngIf=\"appliance.type == 'Dishwasher'\" [src]=\"iconDishwasher\">\n        <img *ngIf=\"appliance.type == 'Toaster'\" [src]=\"iconToaster\">\n        <img *ngIf=\"appliance.type == 'Dryer'\" [src]=\"iconDryer\">\n        <img *ngIf=\"appliance.type == 'Washing'\" [src]=\"iconDryer\">\n        <img *ngIf=\"appliance.type == 'Microwave'\" [src]=\"iconMicrowave\">\n        <img *ngIf=\"appliance.type == 'Air'\" [src]=\"iconAir\">\n        <img *ngIf=\"appliance.type == 'Deep'\" [src]=\"iconDeep\">\n        <img *ngIf=\"appliance.type == 'Blender'\" [src]=\"iconBlender\">\n        <img *ngIf=\"appliance.type == 'Induction'\" [src]=\"iconInduction\">\n        <img *ngIf=\"appliance.type == 'Iron'\" [src]=\"iconIron\">\n        <img *ngIf=\"appliance.type == 'Vacuum'\" [src]=\"iconVacuum\">\n      </ion-avatar>\n\n      <ion-label class=\"ion-text-wrap\">\n        <h2>{{appliance.name}}</h2>\n        <!-- <p>{{appliance.description}}</p> -->\n      </ion-label>\n    </ion-item>\n\n  <!-- <ion-item detail lines=\"none\" (click)=\"view()\">\n    <ion-avatar slot=\"start\">\n      <img [src]=\"iconLCD\">\n    </ion-avatar>\n\n    <ion-label class=\"ion-text-wrap\">\n      <h2>Name</h2>\n      <p>Description</p>\n    </ion-label>\n\n    <ion-label slot=\"end\" class=\"ion-text-right\">\n      <ion-badge color=\"success\">On</ion-badge>\n      <p>Reading</p>\n    </ion-label>\n  </ion-item> -->\n  </ion-list>\n</ion-content>");
 
 /***/ }),
 
@@ -101,7 +101,7 @@ AppliancesPageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])(
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".error-img {\n  display: grid;\n  max-width: 7rem !important;\n  margin-top: 3rem;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.error-text {\n  color: #9d9fa6;\n  display: grid;\n  font-size: 0.9rem;\n  margin-left: 4rem;\n  margin-right: 4rem;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zeWFmaXFiYXNyaS9EZXZlbG9wbWVudC9Ta3Vuay9za3Vuay0wMDItemV1cy9tb2JpbGUvc3JjL2FwcC9jb3JlL2FwcGxpYW5jZXMvYXBwbGlhbmNlcy5wYWdlLnNjc3MiLCJzcmMvYXBwL2NvcmUvYXBwbGlhbmNlcy9hcHBsaWFuY2VzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGFBQUE7RUFDQSwwQkFBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtBQ0NKOztBREVBO0VBQ0ksY0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvY29yZS9hcHBsaWFuY2VzL2FwcGxpYW5jZXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmVycm9yLWltZyB7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBtYXgtd2lkdGg6IDdyZW0gIWltcG9ydGFudDtcbiAgICBtYXJnaW4tdG9wOiAzcmVtO1xuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgIG1hcmdpbi1yaWdodDogYXV0bztcbn1cbiAgXG4uZXJyb3ItdGV4dCB7XG4gICAgY29sb3I6ICM5ZDlmYTY7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBmb250LXNpemU6IDAuOXJlbTtcbiAgICBtYXJnaW4tbGVmdDogNHJlbTtcbiAgICBtYXJnaW4tcmlnaHQ6IDRyZW07XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufSIsIi5lcnJvci1pbWcge1xuICBkaXNwbGF5OiBncmlkO1xuICBtYXgtd2lkdGg6IDdyZW0gIWltcG9ydGFudDtcbiAgbWFyZ2luLXRvcDogM3JlbTtcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbn1cblxuLmVycm9yLXRleHQge1xuICBjb2xvcjogIzlkOWZhNjtcbiAgZGlzcGxheTogZ3JpZDtcbiAgZm9udC1zaXplOiAwLjlyZW07XG4gIG1hcmdpbi1sZWZ0OiA0cmVtO1xuICBtYXJnaW4tcmlnaHQ6IDRyZW07XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".error-img {\n  display: grid;\n  max-width: 7rem !important;\n  margin-top: 3rem;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.error-text {\n  color: #9d9fa6;\n  display: grid;\n  font-size: 0.9rem;\n  margin-left: 4rem;\n  margin-right: 4rem;\n  text-align: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9mYXJyYWh6ZWx5bmEvRG9jdW1lbnRzL3pldXMvbW9iaWxlL3NyYy9hcHAvY29yZS9hcHBsaWFuY2VzL2FwcGxpYW5jZXMucGFnZS5zY3NzIiwic3JjL2FwcC9jb3JlL2FwcGxpYW5jZXMvYXBwbGlhbmNlcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0EsMEJBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7QUNDSjs7QURFQTtFQUNJLGNBQUE7RUFDQSxhQUFBO0VBQ0EsaUJBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0Esa0JBQUE7QUNDSiIsImZpbGUiOiJzcmMvYXBwL2NvcmUvYXBwbGlhbmNlcy9hcHBsaWFuY2VzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lcnJvci1pbWcge1xuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgbWF4LXdpZHRoOiA3cmVtICFpbXBvcnRhbnQ7XG4gICAgbWFyZ2luLXRvcDogM3JlbTtcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcbiAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XG59XG4gIFxuLmVycm9yLXRleHQge1xuICAgIGNvbG9yOiAjOWQ5ZmE2O1xuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgZm9udC1zaXplOiAwLjlyZW07XG4gICAgbWFyZ2luLWxlZnQ6IDRyZW07XG4gICAgbWFyZ2luLXJpZ2h0OiA0cmVtO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn0iLCIuZXJyb3ItaW1nIHtcbiAgZGlzcGxheTogZ3JpZDtcbiAgbWF4LXdpZHRoOiA3cmVtICFpbXBvcnRhbnQ7XG4gIG1hcmdpbi10b3A6IDNyZW07XG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICBtYXJnaW4tcmlnaHQ6IGF1dG87XG59XG5cbi5lcnJvci10ZXh0IHtcbiAgY29sb3I6ICM5ZDlmYTY7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGZvbnQtc2l6ZTogMC45cmVtO1xuICBtYXJnaW4tbGVmdDogNHJlbTtcbiAgbWFyZ2luLXJpZ2h0OiA0cmVtO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59Il19 */");
 
 /***/ }),
 
@@ -158,7 +158,7 @@ let AppliancesPage = class AppliancesPage {
         this.bases = [];
         this.buildings = [];
         this.users = [];
-        this.accountID = '0cfe1dc3-f224-4e9f-90ad-8a4d2f3c7378';
+        this.accountID = '5e84facb-7fba-4974-83bb-563d112ddea5';
         this.tempAppliance = [];
         // Checker
         this.isListEmpty = false;
@@ -179,10 +179,6 @@ let AppliancesPage = class AppliancesPage {
         this.iconInduction = 'assets/img/appliance/induction.svg';
         this.iconIron = 'assets/img/appliance/iron.svg';
         this.iconVacuum = 'assets/img/appliance/vacuum.svg';
-        this.iconWater = 'assets/img/appliance/water-heater.svg';
-        this.iconCooker = 'assets/img/appliance/rice-cooker.svg';
-        this.iconSteamer = 'assets/img/appliance/steamer.svg';
-        this.iconKettle = 'assets/img/appliance/kettle.svg';
         this.getData();
     }
     ngOnInit() {
@@ -207,7 +203,7 @@ let AppliancesPage = class AppliancesPage {
                     account: appliance.account,
                     building: appliance.building,
                     appliance_base: appliance.appliance_base,
-                    type: splitted[0]
+                    type: splitted[1]
                 };
                 console.log(tempData);
                 this.tempAppliance.push(tempData);
@@ -338,93 +334,6 @@ AccountsService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         providedIn: 'root'
     })
 ], AccountsService);
-
-
-
-/***/ }),
-
-/***/ "./src/app/shared/services/appliances/appliances.service.ts":
-/*!******************************************************************!*\
-  !*** ./src/app/shared/services/appliances/appliances.service.ts ***!
-  \******************************************************************/
-/*! exports provided: AppliancesService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppliancesService", function() { return AppliancesService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-
-
-
-
-
-let AppliancesService = class AppliancesService {
-    constructor(http) {
-        this.http = http;
-        // URL
-        this.urlAppliances = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseUrl + 'v1/appliances/';
-        this.urlActivity = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseUrl + 'v1/appliance-activities/';
-        this.appliances = [];
-        this.appliancesFiltered = [];
-        this.activities = [];
-    }
-    post(body) {
-        return this.http.post(this.urlAppliances, body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])((res) => {
-            console.log('Appliance: ', res);
-        }));
-    }
-    get() {
-        return this.http.get(this.urlAppliances).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])((res) => {
-            this.appliances = res;
-            console.log('Appliances: ', this.appliances);
-        }));
-    }
-    getOne(id) {
-        let urlID = this.urlAppliances + id + '/';
-        return this.http.get(urlID).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])((res) => {
-            this.appliance = res;
-            console.log('Appliance: ', this.appliance);
-        }));
-    }
-    update(id, body) {
-        let urlTemp = this.urlAppliances + id + '/';
-        return this.http.patch(urlTemp, body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])((res) => {
-            this.appliance = res;
-            console.log('Appliance: ', this.appliance);
-        }));
-    }
-    delete(id) {
-        return this.http.delete(this.urlAppliances + id + '/').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])((res) => {
-            console.log('Appliance: ', res);
-        }));
-    }
-    filter(field) {
-        let urlTemp = this.urlAppliances + '?' + field;
-        return this.http.get(urlTemp).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])((res) => {
-            this.appliancesFiltered = res;
-            console.log('Appliances filtered: ', this.appliancesFiltered);
-        }));
-    }
-    getActivity() {
-        return this.http.get(this.urlActivity).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])((res) => {
-            this.activities = res;
-            console.log('Activity: ', this.activities);
-        }));
-    }
-};
-AppliancesService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] }
-];
-AppliancesService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    })
-], AppliancesService);
 
 
 

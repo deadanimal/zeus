@@ -87,9 +87,9 @@ export class LoginPage implements OnInit {
     )
   }
 
-  tipu() {
-    this.loginForm.controls['username'].setValue('syafiqbasri@pipeline.com.my')
-    this.loginForm.controls['password'].setValue('PabloEscobar')
+  malasLogin() {
+    this.loginForm.controls['username'].setValue('cb@gmail.com')
+    this.loginForm.controls['password'].setValue('cbpassword')
     this.login()
   }
 

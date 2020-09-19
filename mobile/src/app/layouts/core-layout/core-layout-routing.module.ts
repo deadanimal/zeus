@@ -19,12 +19,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'bills',
+        path: 'information',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../../core/bills/bills.module').then(m => m.BillsPageModule)
+              import('../../core/information/information.module').then(m => m.InformationPageModule)
           }
         ]
       },

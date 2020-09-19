@@ -60,25 +60,33 @@ const routes: Routes = [
     loadChildren: () => import('./core/profile-help-ticket/profile-help-ticket.module').then( m => m.ProfileHelpTicketPageModule)
   },
   {
-    path: 'bills',
-    loadChildren: () => import('./core/bills/bills.module').then( m => m.BillsPageModule)
+    path: 'information',
+    loadChildren: () => import('./core/information/information.module').then( m => m.InformationPageModule)
   },
   {
     path: 'appliances',
     loadChildren: () => import('./core/appliances/appliances.module').then( m => m.AppliancesPageModule)
   },
   {
-    path: 'bill-detail',
-    loadChildren: () => import('./core/bill-detail/bill-detail.module').then( m => m.BillDetailPageModule)
-  },
-  {
-    path: 'bill-payment',
-    loadChildren: () => import('./core/bill-payment/bill-payment.module').then( m => m.BillPaymentPageModule)
-  },
-  {
     path: 'appliance-detail',
     loadChildren: () => import('./core/appliance-detail/appliance-detail.module').then( m => m.ApplianceDetailPageModule)
+  },
+  {
+    path: 'auth/success',
+    loadChildren: () => import('./auth/success/success.module').then( m => m.SuccessPageModule)
   }
+  // {
+  //   path: 'bills',
+  //   loadChildren: () => import('./core/bills/bills.module').then( m => m.BillsPageModule)
+  // },
+  // {
+  //   path: 'bill-detail',
+  //   loadChildren: () => import('./core/bill-detail/bill-detail.module').then( m => m.BillDetailPageModule)
+  // },
+  // {
+  //   path: 'bill-payment',
+  //   loadChildren: () => import('./core/bill-payment/bill-payment.module').then( m => m.BillPaymentPageModule)
+  // }
 ];
 @NgModule({
   imports: [

@@ -1,41 +1,67 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar mode="ios" color="primary">
     <ion-buttons slot="start">
-      <ion-back-button
-      defaultHref="/core/profile"
-      routerLink="/core/profile"
-      routerDirection="back"
-      text=""
-      >
+      <ion-back-button defaultHref="/core/profile" routerLink="/core/profile" routerDirection="back" text="">
       </ion-back-button>
     </ion-buttons>
-    <ion-title>Hardware</ion-title>
+    <ion-title>Setting</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-  <ion-list class="ion-no-margin list-core" mode="ios">
-    <ion-list-header lines="none" mode="ios">
-			<h3>Information</h3>
-    </ion-list-header>
-    
-    <ion-item lines="none" class="item-form" disabled>
-      <ion-label position="stacked" mode="ios">Connected device</ion-label>
-      <ion-input placeholder="Connected device"></ion-input>
-    </ion-item>
-  </ion-list>
+<ion-content class="ion-padding" fullscreen>
+  <div class="main-content">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+
+          <form class="form" [formGroup]="userForm">
+            <ion-item lines="none" class="ion-no-padding ion-no-margin">
+              <ion-label position="stacked">Password</ion-label>
+              <ion-input type="password" formControlName="new_password1" placeholder="Password"></ion-input>
+            </ion-item>
+            <div class="message">
+              <p class="message-text">Change password</p>
+            </div>
+
+            <ion-item lines="none" class="ion-no-padding ion-no-margin">
+              <ion-label position="stacked">Confirm password</ion-label>
+              <ion-input type="password" formControlName="new_password2" placeholder="Password"></ion-input>
+            </ion-item>
+            <div class="message">
+              <p class="message-text">Confirm password</p>
+            </div>
+
+            <ion-item lines="full" class="ion-no-padding ion-no-margin">
+              <ion-label position="stacked">Select connectivity</ion-label>
+              <ion-select mode="ios">
+                <ion-select-option value="4G">Network 4G</ion-select-option>
+                <ion-select-option value="3G">Network 3G</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <p class="message-text">Change WiFi</p>
+
+            <!-- <ion-item lines="full" class="ion-no-padding ion-no-margin">
+              <ion-label position="stacked">Select theme</ion-label>
+              <ion-select mode="ios">
+                <ion-select-option value="4G">Dark mode</ion-select-option>
+                <ion-select-option value="3G">Light mode</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <p class="message-text">Change theme</p> -->
+
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-footer class="ion-padding ion-no-border" transparent>
+    <ion-button class="round" shape="round" expand="block" mode="ios" (click)="updated()" *ngIf="!isLoading">
+      Update
+    </ion-button>
+    <ion-button class="round" shape="round" expand="block" mode="ios" *ngIf="isLoading">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </ion-button>
+  </ion-footer>
 </ion-content>
 
-<ion-footer class="ion-padding ion-no-border" transparent>
-  <ion-button 
-    class="round" 
-    shape="round"
-    color="primary"
-    expand="block"
-    mode="ios"
-    (click)="connect()"
-    disabled
-  >
-    Connect
-  </ion-button>
-</ion-footer>

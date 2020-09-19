@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Injectable, NgZone } from '@angular/core';
 import {
     HttpEvent,
@@ -17,7 +18,8 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 
     constructor(
         private jwtHandler: JwtService,
-        private notificationHandler: NotifyService
+        private notificationHandler: NotifyService,
+        private authService: AuthService
     ){ }
 
     private handleError(error: HttpErrorResponse) {
@@ -33,7 +35,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
                 // this.notificationHandler.openToastrConnection() <--
                 // Handle offline error
             } else {
-                // this.notificationHandler.openToastrError(error.statusText)
+                this.notificationHandler.openToastrError(error.statusText)
                 // this.notificationHandler.openToastrHttp(error.status, error.statusText) <--
                 // Handle Http Error (error.status === 403, 404...)
             }
@@ -52,7 +54,8 @@ export class HttpTokenInterceptor implements HttpInterceptor {
             'Accept': '*/*'
         };
 
-        const token = this.jwtHandler.getToken('accessToken');
+        const token = this.authService.tokenAccess;
+    
 
         if (token) {
             headersConfig['Authorization'] = `Bearer ${token}`;

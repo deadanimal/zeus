@@ -1,0 +1,29 @@
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar mode="ios" color="primary">
+    <ion-title>Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="ion-padding" fullscreen>
+  <div class="main-content">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h3 style = "padding-bottom:5%;">Safety Knowledge and Action</h3>
+          <ion-card (click)="expandItem(item)" *ngFor="let item of items">
+            <ion-card-header color="primary">
+              <ion-card-title>{{item.title}}</ion-card-title>
+            </ion-card-header>
+            <app-expandable expandHeight="200px" [expanded]="item.expanded">
+              <ion-card-content style="background-color:#e0e0e0">
+                <p >{{item.message}}</p>
+              </ion-card-content>
+            </app-expandable>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

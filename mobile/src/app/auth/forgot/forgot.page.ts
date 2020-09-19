@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { NotifyService } from 'src/app/shared/handler/notify/notify.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-forgot',
@@ -27,7 +28,8 @@ export class ForgotPage implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastr: NotifyService
+    private toastr: NotifyService,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -52,13 +54,31 @@ export class ForgotPage implements OnInit {
       },
       () => {
         // After
-        this.toastr.openToastr('A reset link has been sent to your email')
+        // this.toastr.openToastr('A reset link has been sent to your email')
+        this.showAlert()
       }
     )
   }
 
-  navigatePage(path: string) {
-    this.router.navigate([path])
+  navigatePage() {
+    this.router.navigate(['core/dashboard'])
+  }
+
+  showAlert() {
+
+    this.alertController.create({
+      mode:'ios',
+      header: 'Reset password',
+      message: 'A reset link has been sent to your email',
+      buttons: [{text:'Log in',
+      handler: () => {
+        this.navigatePage();
+      }
+      }]
+    }).then(res => {
+
+      res.present();
+    });
   }
 
 }

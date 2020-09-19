@@ -217,7 +217,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | auth-login-login-module */
-        [__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~core-profile~df7a72ef"), __webpack_require__.e("common"), __webpack_require__.e("auth-login-login-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("common"), __webpack_require__.e("auth-login-login-module")]).then(__webpack_require__.bind(null,
         /*! ./auth/login/login.module */
         "./src/app/auth/login/login.module.ts")).then(function (m) {
           return m.LoginPageModule;
@@ -228,7 +228,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | auth-register-register-module */
-        [__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~core-profile~df7a72ef"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("common"), __webpack_require__.e("auth-register-register-module")]).then(__webpack_require__.bind(null,
         /*! ./auth/register/register.module */
         "./src/app/auth/register/register.module.ts")).then(function (m) {
           return m.RegisterPageModule;
@@ -239,7 +239,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | auth-forgot-forgot-module */
-        [__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~core-profile~df7a72ef"), __webpack_require__.e("auth-forgot-forgot-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("auth-forgot-forgot-module")]).then(__webpack_require__.bind(null,
         /*! ./auth/forgot/forgot.module */
         "./src/app/auth/forgot/forgot.module.ts")).then(function (m) {
           return m.ForgotPageModule;
@@ -356,14 +356,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
-      path: 'bills',
+      path: 'information',
       loadChildren: function loadChildren() {
         return __webpack_require__.e(
-        /*! import() | core-bills-bills-module */
-        "core-bills-bills-module").then(__webpack_require__.bind(null,
-        /*! ./core/bills/bills.module */
-        "./src/app/core/bills/bills.module.ts")).then(function (m) {
-          return m.BillsPageModule;
+        /*! import() | core-information-information-module */
+        "core-information-information-module").then(__webpack_require__.bind(null,
+        /*! ./core/information/information.module */
+        "./src/app/core/information/information.module.ts")).then(function (m) {
+          return m.InformationPageModule;
         });
       }
     }, {
@@ -378,39 +378,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
-      path: 'bill-detail',
-      loadChildren: function loadChildren() {
-        return __webpack_require__.e(
-        /*! import() | core-bill-detail-bill-detail-module */
-        "core-bill-detail-bill-detail-module").then(__webpack_require__.bind(null,
-        /*! ./core/bill-detail/bill-detail.module */
-        "./src/app/core/bill-detail/bill-detail.module.ts")).then(function (m) {
-          return m.BillDetailPageModule;
-        });
-      }
-    }, {
-      path: 'bill-payment',
-      loadChildren: function loadChildren() {
-        return __webpack_require__.e(
-        /*! import() | core-bill-payment-bill-payment-module */
-        "core-bill-payment-bill-payment-module").then(__webpack_require__.bind(null,
-        /*! ./core/bill-payment/bill-payment.module */
-        "./src/app/core/bill-payment/bill-payment.module.ts")).then(function (m) {
-          return m.BillPaymentPageModule;
-        });
-      }
-    }, {
       path: 'appliance-detail',
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | core-appliance-detail-appliance-detail-module */
-        [__webpack_require__.e("default~core-appliance-detail-appliance-detail-module~core-dashboard-dashboard-module"), __webpack_require__.e("core-appliance-detail-appliance-detail-module")]).then(__webpack_require__.bind(null,
+        [__webpack_require__.e("default~core-appliance-detail-appliance-detail-module~core-dashboard-dashboard-module"), __webpack_require__.e("common"), __webpack_require__.e("core-appliance-detail-appliance-detail-module")]).then(__webpack_require__.bind(null,
         /*! ./core/appliance-detail/appliance-detail.module */
         "./src/app/core/appliance-detail/appliance-detail.module.ts")).then(function (m) {
           return m.ApplianceDetailPageModule;
         });
       }
-    }];
+    }, {
+      path: 'auth/success',
+      loadChildren: function loadChildren() {
+        return Promise.all(
+        /*! import() | auth-success-success-module */
+        [__webpack_require__.e("default~auth-forgot-forgot-module~auth-login-login-module~auth-register-register-module~auth-success~4d23f364"), __webpack_require__.e("common"), __webpack_require__.e("auth-success-success-module")]).then(__webpack_require__.bind(null,
+        /*! ./auth/success/success.module */
+        "./src/app/auth/success/success.module.ts")).then(function (m) {
+          return m.SuccessPageModule;
+        });
+      }
+    } // {
+    //   path: 'bills',
+    //   loadChildren: () => import('./core/bills/bills.module').then( m => m.BillsPageModule)
+    // },
+    // {
+    //   path: 'bill-detail',
+    //   loadChildren: () => import('./core/bill-detail/bill-detail.module').then( m => m.BillDetailPageModule)
+    // },
+    // {
+    //   path: 'bill-payment',
+    //   loadChildren: () => import('./core/bill-payment/bill-payment.module').then( m => m.BillPaymentPageModule)
+    // }
+    ];
 
     var AppRoutingModule = function AppRoutingModule() {
       _classCallCheck(this, AppRoutingModule);
@@ -981,10 +982,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (!navigator.onLine) {
               this.notificationHandler.openToastrConnection(); // this.notificationHandler.openToastrConnection() <--
               // Handle offline error
-            } else {// this.notificationHandler.openToastrError(error.statusText)
-                // this.notificationHandler.openToastrHttp(error.status, error.statusText) <--
-                // Handle Http Error (error.status === 403, 404...)
-              }
+            } else {
+              this.notificationHandler.openToastrError(error.statusText); // this.notificationHandler.openToastrHttp(error.status, error.statusText) <--
+              // Handle Http Error (error.status === 403, 404...)
+            }
           } else {// Handle Client Error (Angular Error, ReferenceError...)     
             }
 
@@ -1060,7 +1061,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var environment = {
       production: false,
-      baseUrl: 'https://zeus-api.pipe.my/'
+      baseUrl: 'http://127.0.0.1:8000/'
     };
     /*
      * For easier debugging in development mode, you can import the following file
@@ -1133,7 +1134,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /Users/syafiqbasri/Development/Skunk/skunk-002-zeus/mobile/src/main.ts */
+    /*! /Users/farrahzelyna/Documents/zeus/mobile/src/main.ts */
     "./src/main.ts");
     /***/
   }

@@ -35,6 +35,7 @@ export class AuthService {
   
   public userRole: number = 1
 
+
   constructor(
     private jwtService: JwtService,
     private http: HttpClient
@@ -87,7 +88,7 @@ export class AuthService {
         // console.log('Post response: ', res)
         // console.log('Refresh token', this.tokenRefresh)
         // console.log('Access token', this.tokenAccess)
-        // console.log('Token: ', this.token)
+        console.log('Token: ', this.token)
         // console.log('Email: ', this.email)
         // console.log('Username: ', this.username)
         // console.log('User ID: ', this.userID)

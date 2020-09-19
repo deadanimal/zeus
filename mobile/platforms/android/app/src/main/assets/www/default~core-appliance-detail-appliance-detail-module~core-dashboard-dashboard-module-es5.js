@@ -35742,153 +35742,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
-  "./src/app/shared/services/appliances/appliances.service.ts":
-  /*!******************************************************************!*\
-    !*** ./src/app/shared/services/appliances/appliances.service.ts ***!
-    \******************************************************************/
-
-  /*! exports provided: AppliancesService */
-
-  /***/
-  function srcAppSharedServicesAppliancesAppliancesServiceTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "AppliancesService", function () {
-      return AppliancesService;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-    /* harmony import */
-
-
-    var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! src/environments/environment */
-    "./src/environments/environment.ts");
-    /* harmony import */
-
-
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @angular/common/http */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
-    /* harmony import */
-
-
-    var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! rxjs/operators */
-    "./node_modules/rxjs/_esm2015/operators/index.js");
-
-    var AppliancesService = /*#__PURE__*/function () {
-      function AppliancesService(http) {
-        _classCallCheck(this, AppliancesService);
-
-        this.http = http; // URL
-
-        this.urlAppliances = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseUrl + 'v1/appliances/';
-        this.urlActivity = src_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseUrl + 'v1/appliance-activities/';
-        this.appliances = [];
-        this.appliancesFiltered = [];
-        this.activities = [];
-      }
-
-      _createClass(AppliancesService, [{
-        key: "post",
-        value: function post(body) {
-          return this.http.post(this.urlAppliances, body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            console.log('Appliance: ', res);
-          }));
-        }
-      }, {
-        key: "get",
-        value: function get() {
-          var _this = this;
-
-          return this.http.get(this.urlAppliances).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this.appliances = res;
-            console.log('Appliances: ', _this.appliances);
-          }));
-        }
-      }, {
-        key: "getOne",
-        value: function getOne(id) {
-          var _this2 = this;
-
-          var urlID = this.urlAppliances + id + '/';
-          return this.http.get(urlID).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this2.appliance = res;
-            console.log('Appliance: ', _this2.appliance);
-          }));
-        }
-      }, {
-        key: "update",
-        value: function update(id, body) {
-          var _this3 = this;
-
-          var urlTemp = this.urlAppliances + id + '/';
-          return this.http.patch(urlTemp, body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this3.appliance = res;
-            console.log('Appliance: ', _this3.appliance);
-          }));
-        }
-      }, {
-        key: "delete",
-        value: function _delete(id) {
-          return this.http["delete"](this.urlAppliances + id + '/').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            console.log('Appliance: ', res);
-          }));
-        }
-      }, {
-        key: "filter",
-        value: function filter(field) {
-          var _this4 = this;
-
-          var urlTemp = this.urlAppliances + '?' + field;
-          return this.http.get(urlTemp).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this4.appliancesFiltered = res;
-            console.log('Appliances filtered: ', _this4.appliancesFiltered);
-          }));
-        }
-      }, {
-        key: "getActivity",
-        value: function getActivity() {
-          var _this5 = this;
-
-          return this.http.get(this.urlActivity).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this5.activities = res;
-            console.log('Activity: ', _this5.activities);
-          }));
-        }
-      }]);
-
-      return AppliancesService;
-    }();
-
-    AppliancesService.ctorParameters = function () {
-      return [{
-        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
-      }];
-    };
-
-    AppliancesService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-      providedIn: 'root'
-    })], AppliancesService);
-    /***/
-  },
-
-  /***/
   "./src/app/shared/services/devices/devices.service.ts":
   /*!************************************************************!*\
     !*** ./src/app/shared/services/devices/devices.service.ts ***!
@@ -35963,33 +35816,33 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "get",
         value: function get() {
-          var _this6 = this;
+          var _this = this;
 
           return this.http.get(this.urlDevices).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this6.devices = res;
-            console.log('Devices: ', _this6.devices);
+            _this.devices = res;
+            console.log('Devices: ', _this.devices);
           }));
         }
       }, {
         key: "getOne",
         value: function getOne(id) {
-          var _this7 = this;
+          var _this2 = this;
 
           var urlTemp = this.urlDevices + id + '/';
           return this.http.get(urlTemp).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this7.device = res;
-            console.log('Device: ', _this7.device);
+            _this2.device = res;
+            console.log('Device: ', _this2.device);
           }));
         }
       }, {
         key: "update",
         value: function update(id, body) {
-          var _this8 = this;
+          var _this3 = this;
 
           var urlTemp = this.urlDevices + id + '/';
           return this.http.patch(urlTemp, body).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this8.device = res;
-            console.log('Device: ', _this8.device);
+            _this3.device = res;
+            console.log('Device: ', _this3.device);
           }));
         }
       }, {
@@ -36003,12 +35856,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "filter",
         value: function filter(field) {
-          var _this9 = this;
+          var _this4 = this;
 
           var urlTemp = this.urlDevices + '?' + field;
           return this.http.get(urlTemp).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            _this9.devicesFiltered = res;
-            console.log('Devices filtered: ', _this9.devicesFiltered);
+            _this4.devicesFiltered = res;
+            console.log('Devices filtered: ', _this4.devicesFiltered);
           }));
         }
       }, {
@@ -36022,16 +35875,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getValue",
         value: function getValue() {
-          var _this10 = this;
+          var _this5 = this;
 
           return this.http.get(this.urlDeviceValues).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (res) {
-            if (_this10.isFirst) {
-              _this10.isFirst = false;
-              _this10.devValueCounter = res.length;
+            if (_this5.isFirst) {
+              _this5.isFirst = false;
+              _this5.devValueCounter = res.length;
             }
 
-            _this10.deviceValues = res;
-            console.log('Values: ', _this10.deviceValues);
+            _this5.deviceValues = res;
+            console.log('Values: ', _this5.deviceValues);
           }));
         }
       }]);

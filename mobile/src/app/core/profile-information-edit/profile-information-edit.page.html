@@ -21,8 +21,28 @@
 
     <form [formGroup]="userForm">
       <ion-item class="item-form" lines="none" *ngIf="formType == 'name'">
-        <ion-label position="stacked" mode="ios">Name</ion-label>
+        <ion-label position="stacked" mode="ios">Full name</ion-label>
         <ion-input formControlName="name" mode="ios"></ion-input>
+      </ion-item>
+
+      <ion-item class="item-form" lines="none" *ngIf="formType == 'mobile_number'">
+        <ion-label position="stacked" mode="ios">Mobile number</ion-label>
+        <ion-textarea formControlName="mobile_number" mode="ios"></ion-textarea>
+      </ion-item>
+
+      <ion-item class="item-form" lines="none" *ngIf="formType == 'device'">
+        <ion-label position="stacked" mode="ios">Device S/N</ion-label>
+        <ion-textarea formControlName="device" mode="ios">abcs12398mm1bsuy1</ion-textarea>
+      </ion-item>
+
+      <ion-item class="item-form" lines="none" *ngIf="formType == 'supply_type'">
+        <ion-label position="stacked" mode="ios">Supply type</ion-label>
+        <ion-textarea formControlName="supply_type" mode="ios">3 phase</ion-textarea>
+      </ion-item>
+
+      <ion-item class="item-form" lines="none" *ngIf="formType == 'installation_date'">
+        <ion-label position="stacked" mode="ios">Installation date</ion-label>
+        <ion-textarea formControlName="installation_date" mode="ios">1 December 2020</ion-textarea>
       </ion-item>
 
       <ion-item class="item-form" lines="none" *ngIf="formType == 'billing_address'">

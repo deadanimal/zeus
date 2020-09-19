@@ -1,6 +1,8 @@
 export class User {
     public id: string
     public name: string
+    public identification_number: number
+    public mobile_number: number
     public username: string
     public active: boolean
     public enabled: boolean
@@ -11,6 +13,8 @@ export class User {
     constructor(
         id: string,
         name: string,
+        indentification_number: number,
+        mobile_number: number,
         username: string,
         active: boolean,
         enabled: boolean,
@@ -20,6 +24,8 @@ export class User {
     ) {
         this.id = id
         this.name = name
+        this.identification_number = indentification_number
+        this.mobile_number = mobile_number
         this.username = username
         this.active = active
         this.enabled = enabled

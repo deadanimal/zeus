@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header mode=\"ios\" class=\"ion-no-border\">\n  <ion-toolbar mode=\"ios\" color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button\n      defaultHref=\"/core/profile\"\n      routerLink=\"/core/profile\"\n      routerDirection=\"back\"\n      text=\"\"\n      >\n      </ion-back-button>\n    </ion-buttons>\n    <ion-title>Help</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list\n    mode=\"ios\"\n    class=\"ion-no-margin list-core\"\n  >\n    <ion-list-header mode=\"ios\">\n      <h3>New ticket</h3>\n    </ion-list-header>\n\n    <ion-item lines=\"none\" detail (click)=\"navigatePage('/profile-help-ticket')\">\n      <ion-icon name=\"reader-outline\" color=\"primary\" slot=\"end\"></ion-icon>\n      <ion-label>\n        <h3>Create new ticket</h3>\n      </ion-label>\n    </ion-item>\n\n    <ion-list-header mode=\"ios\">\n      <h3>Ticket history</h3>\n    </ion-list-header>\n\n    <ion-item lines=\"none\" detail (click)=\"navigatePage('/profile-help-ticket')\">\n      <ion-avatar slot=\"start\">\n\t\t\t\t<img [src]=\"iconSpeech\">\n\t\t\t</ion-avatar>\n      <ion-label class=\"ion-text-wrap\">\n        <h4>Ticket</h4>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header mode=\"ios\" class=\"ion-no-border\">\n  <ion-toolbar mode=\"ios\" color=\"primary\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button defaultHref=\"/core/profile\" routerLink=\"/core/profile\" routerDirection=\"back\" text=\"\">\n      </ion-back-button>\n    </ion-buttons>\n    <ion-title>Help</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list mode=\"ios\" class=\"ion-no-margin list-core\">\n    <ion-list-header mode=\"ios\">\n      <h3>New ticket</h3>\n    </ion-list-header>\n\n    <ion-item lines=\"none\" detail (click)=\"navigatePage('/profile-help-ticket')\">\n      <ion-icon name=\"reader-outline\" color=\"primary\" slot=\"end\"></ion-icon>\n      <ion-label>\n        <h3>Create new ticket</h3>\n      </ion-label>\n    </ion-item>\n\n    <ion-list-header mode=\"ios\">\n      <h3>Ticket history</h3>\n    </ion-list-header>\n\n    <ion-item lines=\"none\" detail (click)=\"navigatePage('/profile-help-ticket')\">\n      <ion-avatar slot=\"start\">\n        <img [src]=\"iconSpeech\">\n      </ion-avatar>\n      <ion-label class=\"ion-text-wrap\">\n        <h4>Ticket</h4>\n      </ion-label>\n    </ion-item>\n  </ion-list>\n\n  <ion-list-header mode=\"ios\">\n    <h3>Help and support</h3>\n  </ion-list-header>\n\n  <ion-item lines=\"none\">\n    <ion-avatar slot=\"start\">\n      <img [src]=\"iconPhone1\">\n    </ion-avatar>\n    <ion-label class=\"ion-text-wrap\">\n      <h4>Hotline</h4>\n      <p>03-1234567</p>\n    </ion-label>\n  </ion-item>\n\n  <ion-item lines=\"none\">\n    <ion-avatar slot=\"start\">\n      <img [src]=\"iconPhone2\">\n    </ion-avatar>\n    <ion-label class=\"ion-text-wrap\">\n      <h4>Technical support</h4>\n      <p>15454</p>\n    </ion-label>\n  </ion-item>\n\n</ion-content>";
     /***/
   },
 
@@ -229,7 +229,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.ticketService = ticketService;
         this.router = router; // Icon
 
-        this.iconSpeech = 'assets/img/settings/speech-bubble.svg'; // Data
+        this.iconSpeech = 'assets/img/settings/speech-bubble.svg';
+        this.iconPhone1 = 'assets/img/settings/phone1.svg';
+        this.iconPhone2 = 'assets/img/settings/phone2.svg'; // Data
 
         this.tickets = [];
       }

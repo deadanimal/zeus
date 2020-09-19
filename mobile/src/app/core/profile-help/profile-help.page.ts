@@ -12,6 +12,8 @@ export class ProfileHelpPage implements OnInit {
 
   // Icon
   iconSpeech = 'assets/img/settings/speech-bubble.svg'
+  iconPhone1 = 'assets/img/settings/phone1.svg'
+  iconPhone2 = 'assets/img/settings/phone2.svg'
 
   // Data
   tickets: Ticket[] = []
