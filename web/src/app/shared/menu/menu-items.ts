@@ -44,20 +44,20 @@ export const ROUTES: RouteInfo[] = [
         path: 'appliances', title: 'Appliances', type: 'sub', isCollapsed: true, collapse: 'appliances', children: [
           { path: 'appliances', title: 'Appliances', type: 'link' },
           { path: 'appliances-base', title: 'Appliance Bases', type: 'link' },
-          { path: 'appliances-mode', title: 'Appliance Modes', type: 'link' },
-          { path: 'appliances-transaction', title: 'Appliance Transactions', type: 'link' },
+          // { path: 'appliances-mode', title: 'Appliance Modes', type: 'link' },
+          // { path: 'appliances-transaction', title: 'Appliance Transactions', type: 'link' },
         ]
       },
       { 
         path: 'devices', title: 'Devices', type: 'sub', isCollapsed: true, collapse: 'devices', children: [
           { path: 'devices', title: 'Devices', type: 'link' },
-          { path: 'device-readings', title: 'Devices Reading', type: 'link' },
+          // { path: 'device-readings', title: 'Devices Reading', type: 'link' },
           { path: 'device-install-maintain', title: 'Devices Install & Reading', type: 'link' },
         ]
       },
-      { path: 'accounts', title: 'Accounts', type: 'link' },
+      // { path: 'accounts', title: 'Accounts', type: 'link' },
       { path: 'users', title: 'Users', type: 'link'},
-      { path: 'notifications', title: 'Notifications', type: 'link'}
+      // { path: 'notifications', title: 'Notifications', type: 'link'}
       // { path: '', title: '', type: 'link' },
     ]
   },
@@ -79,12 +79,12 @@ export const ROUTES: RouteInfo[] = [
     type: 'link',
     icontype: 'fas fa-broadcast-tower text-primary',
   },
-  {
-    path: '/admin/report',
-    title: 'Reporting',
-    type: 'link',
-    icontype: 'fas fa-chart-bar text-primary'
-  },
+  // {
+  //   path: '/admin/report',
+  //   title: 'Reporting',
+  //   type: 'link',
+  //   icontype: 'fas fa-chart-bar text-primary'
+  // },
   /*
   {
     path: '/helpdesk',

@@ -15,7 +15,8 @@ from .models import (
     Appliance,
     ApplianceBase,
     ApplianceTransaction,
-    ApplianceTransactionMode
+    ApplianceTransactionMode,
+    ApplianceActivity
 )
 
 
@@ -42,4 +43,10 @@ class ApplianceTransactionModeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ApplianceTransactionMode
+        fields = '__all__'                   
+
+class ApplianceActivitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ApplianceActivity
         fields = '__all__'                   

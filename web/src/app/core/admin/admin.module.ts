@@ -25,7 +25,6 @@ import { DatabaseDevicesComponent } from './database-devices/database-devices.co
 import { BillingComponent } from './billing/billing.component';
 import { ToolsComponent } from './tools/tools.component';
 import { UsersComponent } from './users/users.component';
-import { ControlPowerComponent } from './control-power/control-power.component';
 import { DevicesComponent } from './devices/devices.component';
 import { DeviceReadingsComponent } from './device-readings/device-readings.component';
 import { DeviceInstallMaintenanceComponent } from './device-install-maintenance/device-install-maintenance.component';
@@ -49,7 +48,6 @@ import { ControlTowerComponent } from './control-tower/control-tower.component';
     BillingComponent,
     ToolsComponent,
     UsersComponent,
-    ControlPowerComponent,
     DevicesComponent,
     DeviceReadingsComponent,
     DeviceInstallMaintenanceComponent,

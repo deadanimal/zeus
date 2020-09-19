@@ -1,5 +1,6 @@
 import jwt
 from django.http import JsonResponse
+import datetime
 
 from django.shortcuts import render
 from django.db.models import Q
@@ -13,18 +14,22 @@ from rest_framework_extensions.mixins import NestedViewSetMixin
 
 from django_filters.rest_framework import DjangoFilterBackend
 
+#from notifications.helpers import send_message_to_specific
+
 from .models import (
     Appliance, 
     ApplianceBase,
     ApplianceTransaction,
-    ApplianceTransactionMode
+    ApplianceTransactionMode,
+    ApplianceActivity
 )
 
 from .serializers import (
     ApplianceSerializer, 
     ApplianceBaseSerializer,
     ApplianceTransactionSerializer,
-    ApplianceTransactionModeSerializer
+    ApplianceTransactionModeSerializer,
+    ApplianceActivitySerializer
 )
 
 from accounts.models import (
@@ -109,6 +114,24 @@ class ApplianceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
         }
         return JsonResponse(json_)              
 
+    @action(methods=['GET'], detail=True)
+    def on(self, request, *args, **kwargs):
+        appliance = self.get_object()
+        appliance.at_state = 'ON'
+
+        # send_message_to_specific(appliance.)
+
+        serializer =  ApplianceSerializer(appliance)
+        return Response(serializer.data)  
+    
+    @action(methods=['GET'], detail=True)
+    def off(self, request, *args, **kwargs):
+        appliance = self.get_object()
+        appliance.at_state = 'OF'
+
+        serializer =  ApplianceSerializer(appliance)
+        return Response(serializer.data)  
+    
 
 class ApplianceBaseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = ApplianceBase.objects.all()
@@ -189,7 +212,7 @@ class ApplianceTransactionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]  #[IsAuthenticated]
         """
         if self.action == 'list':
             permission_classes = [IsAuthenticated]
@@ -201,17 +224,18 @@ class ApplianceTransactionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     
     def get_queryset(self):
         user = self.request.user
+        queryset = ApplianceBase.objects.all()
 
-        if user.user_type == 'SU':
-            queryset = ApplianceTransaction.objects.all()
-        elif user.user_type == 'LV':
-            pass
-        elif user.user_type == 'HT':
-            pass
-        elif user.user_type == 'UT':
-            pass                
-        else:
-            queryset = ApplianceTransaction.objects.none()        
+        # if user.user_type == 'SU':
+        #     queryset = ApplianceTransaction.objects.all()
+        # elif user.user_type == 'LV':
+        #     pass
+        # elif user.user_type == 'HT':
+        #     pass
+        # elif user.user_type == 'UT':
+        #     pass                
+        # else:
+        #     queryset = ApplianceTransaction.objects.none()        
         return queryset          
 
 
@@ -244,7 +268,17 @@ class ApplianceTransactionViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
                 'state': 'ON',
             }],
         }
-        return JsonResponse(json_)   
+        return JsonResponse(json_)
+    
+    # @action(methods=['GET'], detail=False)
+    # def toaster_on(self, request, *args, **kwargs):
+    #     ApplianceTransaction.objects.create(
+    #         at_datetime = datetime.datetime.now(),
+    #         appliance = '7c368d67-f95a-4671-b3f8-959ecd843749',
+    #         at_state = 'ON'
+    #     )
+    #     return super().toaster_on(request)
+
 
 
 class ApplianceTransactionModeViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
@@ -291,3 +325,23 @@ class ApplianceTransactionModeViewSet(NestedViewSetMixin, viewsets.ModelViewSet)
             }],
         }
         return JsonResponse(json_)          
+
+
+
+class ApplianceActivityViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
+    queryset = ApplianceActivity.objects.all()
+    serializer_class = ApplianceActivitySerializer
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+
+    def get_permissions(self):
+        if self.action == 'list':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [AllowAny]
+
+        return [permission() for permission in permission_classes]    
+
+    
+    def get_queryset(self):
+        queryset = ApplianceActivity.objects.all()
+        return queryset

@@ -70,12 +70,12 @@ export class ApplianceDetailPage implements OnInit {
 
   ngOnInit() {
     this.segment = 'D'
-    this.intervalCSV = setInterval(
-      () => {
-        this.getCSV()
-      },
-      3000
-    )
+    // this.intervalCSV = setInterval(
+    //   () => {
+    //     this.getCSV()
+    //   },
+    //   3000
+    // )
   }
 
   ionViewDidEnter() {

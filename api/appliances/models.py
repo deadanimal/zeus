@@ -47,6 +47,19 @@ class Appliance(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True)
 
+    STATE = [
+        ('ON', 'On'),  
+        ('OF', 'Off'),  
+
+        ('NA', 'Not Available'),   
+    ] 
+
+    at_state = models.CharField(
+        max_length=2,
+        choices=STATE,
+        default='OF',
+    )
+
     purchase_date = models.DateTimeField(null=True) 
     install_date = models.DateTimeField(null=True) 
 
@@ -107,6 +120,19 @@ class ApplianceTransaction(models.Model):
     appliance = models.ForeignKey(Appliance, on_delete=models.CASCADE, null=True)
     appliance_transaction_mode = models.ForeignKey(ApplianceTransactionMode, on_delete=models.CASCADE, null=True)
 
+    STATE = [
+        ('ON', 'On'),  
+        ('OF', 'Off'),  
+
+        ('NA', 'Not Available'),   
+    ] 
+
+    at_state = models.CharField(
+        max_length=2,
+        choices=STATE,
+        default='NA',
+    )
+
     real_delta_start_range = models.FloatField(null=True)
     real_delta_end_range = models.FloatField(null=True)
     real_cumulative_delta_start_range = models.FloatField(null=True)
@@ -114,4 +140,28 @@ class ApplianceTransaction(models.Model):
 
 
     def __str__(self):
-        return self.at_datetime    
+        return self.at_datetime
+
+
+class ApplianceActivity(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = models.DateTimeField(auto_now=True)
+    
+    appliance = models.ForeignKey(Appliance, on_delete=models.CASCADE, null=True)
+
+    STATE = [
+        ('ON', 'On'),  
+        ('OF', 'Off'),  
+
+        ('NA', 'Not Available'),   
+    ] 
+
+    at_state = models.CharField(
+        max_length=2,
+        choices=STATE,
+        default='NA',
+    )
+
+    def __str__(self):
+        return self.at_datetime  

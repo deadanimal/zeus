@@ -57,7 +57,7 @@ export class AppliancesPage implements OnInit {
   users: User[] = []
 
 
-  accountID = '5e84facb-7fba-4974-83bb-563d112ddea5'
+  accountID = '0cfe1dc3-f224-4e9f-90ad-8a4d2f3c7378'
 
   tempAppliance: Temp[] = []
 
@@ -81,6 +81,10 @@ export class AppliancesPage implements OnInit {
   iconInduction = 'assets/img/appliance/induction.svg'
   iconIron = 'assets/img/appliance/iron.svg'
   iconVacuum = 'assets/img/appliance/vacuum.svg'
+  iconWater = 'assets/img/appliance/water-heater.svg'
+  iconCooker = 'assets/img/appliance/rice-cooker.svg'
+  iconSteamer = 'assets/img/appliance/steamer.svg'
+  iconKettle = 'assets/img/appliance/kettle.svg'
 
   constructor(
     private applianceService: AppliancesService,
@@ -123,9 +127,9 @@ export class AppliancesPage implements OnInit {
               account: appliance.account,
               building: appliance.building,
               appliance_base: appliance.appliance_base,
-              type: splitted[1]
+              type: splitted[0]
             }
-            // console.log(tempData)
+            console.log(tempData)
             this.tempAppliance.push(tempData)
           }
         )

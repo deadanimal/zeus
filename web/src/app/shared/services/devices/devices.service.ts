@@ -13,11 +13,16 @@ export class DevicesService {
 
   // URL
   public urlDevices: string = environment.baseUrl + 'v1/devices/'
+  public urlDeviceValues: string = environment.baseUrl + 'v1/device-values/'
 
   // Data
   public device: Device
   public devices: Device[] = []
   public devicesFiltered: Device[] = []
+  public deviceValues: any[] = []
+
+  public chart_1
+  public chart_2
 
   constructor(
     private http: HttpClient
@@ -76,6 +81,35 @@ export class DevicesService {
         this.devicesFiltered = res
         console.log('Devices filtered: ', this.devicesFiltered)
       })
+    )
+  }
+
+  getChart1(): Observable<any> {
+    let urlTemp = this.urlDevices + 'chart_1/'
+    return this.http.get<any>(urlTemp).pipe(
+      tap((res) => {
+        this.chart_1 = res
+        // console.log('Devices filtered: ', this.devicesFiltered)
+      })
+    )
+  }
+
+  getChart2(): Observable<any> {
+    let urlTemp = this.urlDevices + 'chart_2/'
+    return this.http.get<any>(urlTemp).pipe(
+      tap((res) => {
+        this.chart_1 = res
+        // console.log('Devices filtered: ', this.devicesFiltered)
+      })
+    )
+  }
+
+  getLog(): Observable<any> {
+    let urlTemp = this.urlDevices + 'malas/'
+    return this.http.get<any>(urlTemp).pipe(
+      tap((res) => {
+        console.log(res)
+      }) 
     )
   }
 

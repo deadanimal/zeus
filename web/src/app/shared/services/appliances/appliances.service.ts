@@ -13,11 +13,13 @@ export class AppliancesService {
 
   // URL
   public urlAppliances: string = environment.baseUrl + 'v1/appliances/'
+  public urlActivities: string = environment.baseUrl + 'v1/appliance-activities/'
 
   // Data
   public appliance: Appliance
   public appliances: Appliance[] = []
   public appliancesFiltered: Appliance[] = []
+  public activities: any[] = []
 
   public chart_1
   public chart_2
@@ -97,6 +99,15 @@ export class AppliancesService {
       tap((res) => {
         this.chart_2 = res
         // console.log('Appliances filtered: ', this.appliancesFiltered)
+      })
+    )
+  }
+
+  getActivity(): Observable<any[]> {
+    return this.http.get<any[]>(this.urlActivities).pipe(
+      tap((res: any[]) => {
+        this.activities = res
+        console.log('Activity: ', this.activities)
       })
     )
   }
