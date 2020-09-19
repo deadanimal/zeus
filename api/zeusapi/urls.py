@@ -56,7 +56,8 @@ from appliances.views import (
     ApplianceViewSet,
     ApplianceBaseViewSet,
     ApplianceTransactionViewSet,
-    ApplianceTransactionModeViewSet)
+    ApplianceTransactionModeViewSet,
+    ApplianceActivityViewSet)
 from bills.views import (BillViewSet)
 from buildings.views import (BuildingViewSet)
 from devices.views import (
@@ -96,6 +97,10 @@ appliances_router.register(
 
 appliance_transaction_modes_router = router.register(
     'appliance_transaction_modes', ApplianceTransactionModeViewSet
+)
+
+appliance_activity_router = router.register(
+    'appliance-activities', ApplianceActivityViewSet
 )
 
 base_appliances_router = router.register(

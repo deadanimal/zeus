@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, NgZone } from '@angular/core';
 
 import swal from 'sweetalert2';
 import { Device } from 'src/app/shared/services/devices/devices.model';
@@ -6,6 +6,11 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DevicesService } from 'src/app/shared/services/devices/devices.service';
 import { LoadingBarService } from '@ngx-loading-bar/core';
+
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+am4core.useTheme(am4themes_animated);
 
 export enum SelectionType {
   single = 'single',
@@ -49,8 +54,9 @@ export class DeviceInstallMaintenanceComponent implements OnInit {
     private deviceService: DevicesService,
     private formBuilder: FormBuilder,
     private loadingBar: LoadingBarService,
-    private modalService: BsModalService
-  ) { 
+    private modalService: BsModalService,
+    private zone: NgZone
+  ) {
     // console.log('Constructor')
     this.loadData()
   }
@@ -65,6 +71,15 @@ export class DeviceInstallMaintenanceComponent implements OnInit {
         Validators.required
       ]))
     })
+
+    this.getCharts()
+  }
+
+  getCharts() {
+    this.zone.runOutsideAngular(() => {
+      this.getChart()
+      this.getChart1()
+    })
   }
 
   loadData() {
@@ -77,7 +92,7 @@ export class DeviceInstallMaintenanceComponent implements OnInit {
         this.tableTemp = this.tableRows.map((prop, key) => {
           return {
             ...prop,
-            id_index: key+1
+            id_index: key + 1
           };
         });
       },
@@ -173,6 +188,91 @@ export class DeviceInstallMaintenanceComponent implements OnInit {
 
   onActivate(event) {
     this.tableActiveRow = event.row;
+  }
+
+  getChart() {
+    let chart = am4core.create("chartdeviceim1", am4charts.PieChart);
+
+    // Add data
+    chart.data = [{
+      "state": "Maintain",
+      "total": 27
+    }, {
+      "state": "Install",
+      "total": 99
+    }
+    ];
+
+    // Add and configure Series
+    let pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "total";
+    pieSeries.dataFields.category = "state";
+    pieSeries.slices.template.stroke = am4core.color("#fff");
+    pieSeries.slices.template.strokeOpacity = 1;
+
+    // This creates initial animation
+    pieSeries.hiddenState.properties.opacity = 1;
+    pieSeries.hiddenState.properties.endAngle = -90;
+    pieSeries.hiddenState.properties.startAngle = -90;
+
+    chart.hiddenState.properties.radius = am4core.percent(0);
+
+  }
+
+  getChart1() {
+    let chart = am4core.create("chartdeviceim2", am4charts.XYChart);
+
+    // Add data
+    chart.data = [{
+      "country": "5.00am",
+      "visits": 0
+    },{
+      "country": "6.00am",
+      "visits": 0
+    }, {
+      "country": "7.00am",
+      "visits": 0
+    }, {
+      "country": "8.00am",
+      "visits": 1
+    }, {
+      "country": "9.00am",
+      "visits": 2
+    }, {
+      "country": "10.00am",
+      "visits": 0
+    }];
+
+    // Create axes
+
+    let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "country";
+    categoryAxis.renderer.grid.template.location = 0;
+    categoryAxis.renderer.minGridDistance = 30;
+
+    categoryAxis.renderer.labels.template.adapter.add("dy", function (dy, target) {
+      if (target.dataItem && target.dataItem.index && 2 == 2) {
+        return dy + 25;
+      }
+      return dy;
+    });
+
+    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+    // Create series
+    let series = chart.series.push(new am4charts.ColumnSeries());
+    series.dataFields.valueY = "visits";
+    series.dataFields.categoryX = "country";
+    series.name = "Visits";
+    series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+    series.columns.template.fillOpacity = .8;
+
+    let columnTemplate = series.columns.template;
+    columnTemplate.strokeWidth = 2;
+    columnTemplate.strokeOpacity = 1;
+
+
+
   }
 
 }

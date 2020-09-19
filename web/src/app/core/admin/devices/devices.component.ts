@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, NgZone } from '@angular/core';
 
 import swal from 'sweetalert2';
 import { Device } from 'src/app/shared/services/devices/devices.model';
@@ -6,6 +6,12 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DevicesService } from 'src/app/shared/services/devices/devices.service';
 import { LoadingBarService } from '@ngx-loading-bar/core';
+
+import * as moment from 'moment';
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+am4core.useTheme(am4themes_animated);
 
 export enum SelectionType {
   single = 'single',
@@ -25,6 +31,8 @@ export class DevicesComponent implements OnInit {
 
   // Data
   devices: Device[] = []
+  chartData1: any
+  chartData2: any
 
   // Table
   tableEntries: number = 5;
@@ -50,8 +58,9 @@ export class DevicesComponent implements OnInit {
     private deviceService: DevicesService,
     private formBuilder: FormBuilder,
     private loadingBar: LoadingBarService,
-    private modalService: BsModalService
-  ) { 
+    private modalService: BsModalService,
+    private zone: NgZone
+  ) {
     // console.log('Constructor')
     this.loadData()
   }
@@ -66,6 +75,15 @@ export class DevicesComponent implements OnInit {
         Validators.required
       ]))
     })
+
+    this.getCharts()
+  }
+
+  getCharts() {
+    this.zone.runOutsideAngular(() => {
+      this.getChart()
+      this.getChart1()
+    })
   }
 
   loadData() {
@@ -78,7 +96,7 @@ export class DevicesComponent implements OnInit {
         this.tableTemp = this.tableRows.map((prop, key) => {
           return {
             ...prop,
-            id_index: key+1
+            id_index: key + 1
           };
         });
       },
@@ -174,6 +192,64 @@ export class DevicesComponent implements OnInit {
 
   onActivate(event) {
     this.tableActiveRow = event.row;
+  }
+
+  getChart() {
+    let chart = am4core.create("chartdevice1", am4charts.PieChart);
+
+    // Add data
+    chart.data = [{
+      "state": "Active",
+      "total": 101
+    }, {
+      "state": "Inactive",
+      "total": 30
+    }
+    ];
+
+    // Add and configure Series
+    let pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "total";
+    pieSeries.dataFields.category = "state";
+    pieSeries.slices.template.stroke = am4core.color("#fff");
+    pieSeries.slices.template.strokeOpacity = 1;
+
+    // This creates initial animation
+    pieSeries.hiddenState.properties.opacity = 1;
+    pieSeries.hiddenState.properties.endAngle = -90;
+    pieSeries.hiddenState.properties.startAngle = -90;
+
+    chart.hiddenState.properties.radius = am4core.percent(0);
+
+  }
+
+  getChart1() {
+    let chart = am4core.create("chartdevice2", am4charts.PieChart);
+
+    // Add data
+    chart.data = [{
+      "state": "1",
+      "total": 97
+    }, {
+      "state": "> 1",
+      "total": 25
+    }
+    ];
+
+    // Add and configure Series
+    let pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "total";
+    pieSeries.dataFields.category = "state";
+    pieSeries.slices.template.stroke = am4core.color("#fff");
+    pieSeries.slices.template.strokeOpacity = 1;
+
+    // This creates initial animation
+    pieSeries.hiddenState.properties.opacity = 1;
+    pieSeries.hiddenState.properties.endAngle = -90;
+    pieSeries.hiddenState.properties.startAngle = -90;
+
+    chart.hiddenState.properties.radius = am4core.percent(0);
+
   }
 
 }

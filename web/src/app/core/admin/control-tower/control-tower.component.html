@@ -5,7 +5,7 @@
                 <div class="col-lg-6 col-7">
                     <h6 class="h2 text-dark d-inline-block mb-0">Control Tower</h6>
 
-                    <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">
@@ -28,11 +28,102 @@
         <div class="col">
             <div class="card">
                 <div class="card-header bg-secondary">
-                    <h4 class="m-0"></h4>
+                    <h4 class="m-0">Search</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <input class="form-control" value="KW1241403716" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-2 text-right">
+                            <button class="btn btn-primary" disabled>Search</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-label">Device</label>
+                        <input class="form-control" value="DEV292bdf2d" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-12">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <h4 class="m-0">News Feed</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush list my--3">
+                        <li class="list-group-item px-0" *ngFor="let feed of feeds">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <a class="avatar rounded-circle bg-white" href="javascript:void(0)">
+                                        <img *ngIf="feed.appliance == 'TV'" [src]="iconLCD">
+                                        <img *ngIf="feed.appliance == 'Lamp'" [src]="iconLamp">
+                                        <img *ngIf="feed.appliance == 'Light'" [src]="iconLamp1">
+                                        <img *ngIf="feed.appliance == 'Fridge'" [src]="iconDryer">
+                                        <img *ngIf="feed.appliance == 'AC'" [src]="iconAirCond">
+                                        <img *ngIf="feed.appliance == 'AC NI'" [src]="iconAirCond">
+                                        <img *ngIf="feed.appliance == 'Dishwasher'" [src]="iconDishwasher">
+                                        <img *ngIf="feed.appliance == 'Toaster'" [src]="iconToaster">
+                                        <img *ngIf="feed.appliance == 'Dryer'" [src]="iconDryer">
+                                        <img *ngIf="feed.appliance == 'Washing'" [src]="iconDryer">
+                                        <img *ngIf="feed.appliance == 'Microwave'" [src]="iconMicrowave">
+                                        <img *ngIf="feed.appliance == 'Air'" [src]="iconAir">
+                                        <img *ngIf="feed.appliance == 'Deep'" [src]="iconDeep">
+                                        <img *ngIf="feed.appliance == 'Blender'" [src]="iconBlender">
+                                        <img *ngIf="feed.appliance == 'Heater'" [src]="iconBlender">
+                                        <img *ngIf="feed.appliance == 'Induction'" [src]="iconInduction">
+                                        <img *ngIf="feed.appliance == 'Iron'" [src]="iconIron">
+                                        <img *ngIf="feed.appliance == 'Vaccuum'" [src]="iconVacuum">
+                                        <img *ngIf="feed.appliance == 'Water'" [src]="iconWater">
+                                        <img *ngIf="feed.appliance == 'Pressure Cooker'" [src]="iconCooker">
+                                        <img *ngIf="feed.appliance == 'Rice Cooker'" [src]="iconCooker">
+                                        <img *ngIf="feed.appliance == 'Pressure'" [src]="iconCooker">
+                                        <img *ngIf="feed.appliance == 'Oven'" [src]="iconMicrowave">
+                                        <img *ngIf="feed.appliance == 'Steamer'" [src]="iconSteamer">
+                                        <img *ngIf="feed.appliance == 'Kettle'" [src]="iconKettle">
+                                    </a>
+                                </div>
+
+                                <div class="col ml--2">
+                                    <h4 class="mb-0">
+                                        <a href="javascript:void(0)"> {{feed.appliance}} </a>
+                                    </h4>
+                                    <small>{{feed.created_at}}</small>
+                                </div>
+
+                                <div class="col-auto">
+                                    <div *ngIf="feed.at_state == 'ON'">
+                                        <span class="text-success"> ● </span>
+                                        <small> ON </small>
+                                    </div>
+                                    <div *ngIf="feed.at_state == 'OF'">
+                                        <span class="text-warning"> ● </span>
+                                        <small> OFF </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8 col-sm-12">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <h4 class="m-0">Power Consumption</h4>
                 </div>
                 <div class="card-body">
                     <div class="chart">
-                        
+                        <div class="amchart" id="chartcontrol"></div>
                     </div>
                 </div>
             </div>

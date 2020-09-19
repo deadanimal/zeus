@@ -35,9 +35,9 @@ import { Hotspot } from '@ionic-native/hotspot/ngx';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    /*{
+    {
       provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true
-    }*/
+    }
   ],
   bootstrap: [
     AppComponent

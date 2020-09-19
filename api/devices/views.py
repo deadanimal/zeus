@@ -87,11 +87,11 @@ class DeviceViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     def malas(self, request, *args, **kwargs):
 
 
-        url = "https://pipeline-project.sgp1.digitaloceanspaces.com/zeus/mqtt/" + str(int(time.time())) + '.csv' #+ "-" + uuid.uuid4().hex + 
+        url = "https://pipeline-project.sgp1.digitaloceanspaces.com/zeus/mqtt/" + str(int(time.time())) + '.json' #+ "-" + uuid.uuid4().hex + 
         print(url)
         req = requests.get(url)
         lol = req.content.decode('utf-8')
-        print(lol)
+        print(json.dumps(lol))
 
         #itemname = "zeus/mqtt/" + datetime.datetime.utcnow().strftime("%s") + '.csv'
 

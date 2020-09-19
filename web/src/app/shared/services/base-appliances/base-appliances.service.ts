@@ -19,6 +19,9 @@ export class BaseAppliancesService {
   public baseAppliances: BaseAppliance[] = []
   public baseAppliancesFiltered: BaseAppliance[] = []
 
+  public chart_1
+  public chart_2
+
   constructor(
     private http: HttpClient
   ) { }
@@ -77,5 +80,26 @@ export class BaseAppliancesService {
       })
     )
   }
+
+  getChart1(): Observable<any> {
+    let urlTemp = this.urlBaseAppliances + 'chart_1/'
+    return this.http.get<any>(urlTemp).pipe(
+      tap((res) => {
+        this.chart_1 = res
+        // console.log('Base appliances filtered: ', this.baseAppliancesFiltered)
+      })
+    )
+  }
+
+  getChart2(): Observable<any> {
+    let urlTemp = this.urlBaseAppliances + 'chart_2/'
+    return this.http.get<any>(urlTemp).pipe(
+      tap((res) => {
+        this.chart_2 = res
+        // console.log('Base appliances filtered: ', this.baseAppliancesFiltered)
+      })
+    )
+  }
+  
 
 }

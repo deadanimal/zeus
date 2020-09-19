@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: zeus-api
-        image: syafiqpipe/zeus-api:1.0.4 #boleh tambah version
+        image: syafiqpipe/zeus-api:1.0.5 #boleh tambah version
         imagePullPolicy: Always
         ports:
         - containerPort: 5000

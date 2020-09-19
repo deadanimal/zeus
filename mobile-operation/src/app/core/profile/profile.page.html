@@ -1,9 +1,339 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar mode="ios">
-    <ion-title>Profile</ion-title>
+    <ion-title>ion Z Formula</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
+<ion-content>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <!-- Steamer -->
+        <ion-card mode="ios" button (click)="create('Steamer', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">Stmer, Z=x+w</p> 
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Steamer', 'ON')">
+          <ion-card-header>
+            <p class="m-0">Stmer</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Water heater -->
+        <ion-card mode="ios" button (click)="create('Heater', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">H2OH, z = A</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Heater', 'ON')">
+          <ion-card-header>
+            <p class="m-0">H2OH</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Blender -->
+        <ion-card mode="ios" button (click)="create('Blender', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">Bder, Z=A+A</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Blender', 'ON')">
+          <ion-card-header>
+            <p class="m-0">Bder</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Oven -->
+        <ion-card mode="ios" button (click)="create('Oven', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">Ove, Z = C</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Oven', 'ON')">
+          <ion-card-header>
+            <p class="m-0">Ove</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Vaccuum -->
+        <ion-card mode="ios" button (click)="create('Vacuum', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">Va, Z = b</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Vacuum', 'ON')">
+          <ion-card-header>
+            <p class="m-0">Va</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Microwave -->
+        <ion-card mode="ios" button (click)="create('Microwave', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">Mc, Z = A-B+C</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Microwave', 'ON')">
+          <ion-card-header>
+            <p class="m-0">Mc</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Iron -->
+        <ion-card mode="ios" button (click)="create('Iron', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">IrO, Z=C+120</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Iron', 'ON')">
+          <ion-card-header>
+            <p class="m-0">IrO</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Toaster -->
+        <ion-card mode="ios" button (click)="create('Toaster', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">Tter, Z=v+B</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Toaster', 'ON')">
+          <ion-card-header>
+            <p class="m-0">Tter</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Kettle -->
+        <ion-card mode="ios" button (click)="create('Kettle', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">Kitker, Z = x+C</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Kettle', 'ON')">
+          <ion-card-header>
+            <p class="m-0">Kitker</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Rice Cooker -->
+        <ion-card mode="ios" button (click)="create('Rice', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">RCker, Z=x+360</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Rice', 'ON')">
+          <ion-card-header>
+            <p class="m-0">RCker</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- Pressure Cooker -->
+        <ion-card mode="ios" button (click)="create('Pressure', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">PCker, Z=Del*pi*360</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('Pressure', 'ON')">
+          <ion-card-header>
+            <p class="m-0">PCker</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- AC Non Inverter -->
+        <ion-card mode="ios" button (click)="create('AC', 'OFF')">
+          <ion-card-header>
+            <p class="m-0">ANI, Z=A+B+C</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+      <ion-col>
+        <ion-card mode="ios" button (click)="create('AC', 'ON')">
+          <ion-card-header>
+            <p class="m-0">ANI</p>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <ion-list>
+    <ion-item>
+      <ion-label>
+        <p>ON AC Wall</p>
+      </ion-label>
+      <ion-button (click)="create('ACW', 'ON')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>OFF AC Wall</p>
+      </ion-label>
+      <ion-button (click)="create('ACW', 'OFF')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>ON Toaster</p>
+      </ion-label>
+      <ion-button (click)="create('Toaster', 'ON')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>OFF Toaster</p>
+      </ion-label>
+      <ion-button (click)="create('Toaster', 'OFF')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>ON Iron</p>
+      </ion-label>
+      <ion-button (click)="create('Iron', 'ON')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>OFF Iron</p>
+      </ion-label>
+      <ion-button (click)="create('Iron', 'OFF')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>ON Vacuum</p>
+      </ion-label>
+      <ion-button (click)="create('Vacuum', 'ON')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>OFF Vacuum</p>
+      </ion-label>
+      <ion-button (click)="create('Vacuum', 'OFF')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>ON Heater</p>
+      </ion-label>
+      <ion-button (click)="create('Heater', 'ON')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>OFF Heater</p>
+      </ion-label>
+      <ion-button (click)="create('Heater', 'OFF')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>ON AC Cassette</p>
+      </ion-label>
+      <ion-button (click)="create('ACC', 'ON')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>OFF AC Cassette</p>
+      </ion-label>
+      <ion-button (click)="create('ACC', 'OFF')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>ON TV</p>
+      </ion-label>
+      <ion-button (click)="create('TV', 'ON')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>OFF TV</p>
+      </ion-label>
+      <ion-button (click)="create('TV', 'OFF')" slot="end" size="large">GO</ion-button>
+    </ion-item>
+
+  </ion-list> -->
 </ion-content>

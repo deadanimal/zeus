@@ -9,6 +9,13 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
 
 import swal from 'sweetalert2';
 
+
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+am4core.useTheme(am4themes_animated);
+
+
 export enum SelectionType {
   single = 'single',
   multi = 'multi',
@@ -27,6 +34,9 @@ export class AppliancesBaseComponent implements OnInit {
 
   // Data
   bases: BaseAppliance[] = []
+
+  chartData1: any
+  chartData2: any
 
   // Table
   tableEntries: number = 5;
@@ -74,7 +84,10 @@ export class AppliancesBaseComponent implements OnInit {
       ])),
       manufacturer: new FormControl('', Validators.compose([
         Validators.required
-      ]))
+      ])),
+      batch_num: new FormControl(''),
+      active: new FormControl(true),
+      group: new FormControl('NA')
     })
   }
 
@@ -96,6 +109,20 @@ export class AppliancesBaseComponent implements OnInit {
       () => {
         this.loadingBar.complete()
         // console.log(this.tableBaseTemp)
+      }
+    )
+
+    this.baseService.getChart1().subscribe(
+      (res) => {
+        this.chartData1 = res
+        this.getChart1()
+      }
+    )
+
+    this.baseService.getChart1().subscribe(
+      (res) => {
+        this.chartData2 = res
+        this.getChart2()
       }
     )
   }
@@ -210,6 +237,56 @@ export class AppliancesBaseComponent implements OnInit {
 
   onActivate(event) {
     this.tableActiveRow = event.row;
+  }
+
+  getChart1() {
+    this.zone.runOutsideAngular(
+      () => {
+        let chart = am4core.create("chart-base-1", am4charts.PieChart);
+
+        // Add data
+        chart.data = this.chartData1.list_
+
+        // Add and configure Series
+        let pieSeries = chart.series.push(new am4charts.PieSeries());
+        pieSeries.dataFields.value = "quantity";
+        pieSeries.dataFields.category = "brand";
+        pieSeries.slices.template.stroke = am4core.color("#fff");
+        pieSeries.slices.template.strokeOpacity = 1;
+
+        // This creates initial animation
+        pieSeries.hiddenState.properties.opacity = 1;
+        pieSeries.hiddenState.properties.endAngle = -90;
+        pieSeries.hiddenState.properties.startAngle = -90;
+
+        chart.hiddenState.properties.radius = am4core.percent(0);
+      }
+    )
+  }
+
+  getChart2() {
+    this.zone.runOutsideAngular(
+      () => {
+        let chart = am4core.create("chart-base-2", am4charts.PieChart);
+
+        // Add data
+        chart.data = this.chartData2.list_
+
+        // Add and configure Series
+        let pieSeries = chart.series.push(new am4charts.PieSeries());
+        pieSeries.dataFields.value = "quantity";
+        pieSeries.dataFields.category = "group";
+        pieSeries.slices.template.stroke = am4core.color("#fff");
+        pieSeries.slices.template.strokeOpacity = 1;
+
+        // This creates initial animation
+        pieSeries.hiddenState.properties.opacity = 1;
+        pieSeries.hiddenState.properties.endAngle = -90;
+        pieSeries.hiddenState.properties.startAngle = -90;
+
+        chart.hiddenState.properties.radius = am4core.percent(0);
+      }
+    )
   }
 
 }

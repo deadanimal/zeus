@@ -1,0 +1,12 @@
+:host {
+    background: #fff no-repeat center/cover url('src/assets/background/cloud-bg.png');
+    text-align: center;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+ion-content {
+    --background: transparent;
+}
